@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Lily & Pearl | Aesthetic Jewellery</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            /* Core Palette */
+            --golden-rose: #c88d94; 
+            --golden-rose-light: #e6c280;
+            --baby-pink: #fce7f3;
+            --sky-blue: #7dd3fc;
+            --sky-blue-light: #e0f2fe;
+            --text-dark: #2d1820;
+            --text-muted: #6b505b;
+            
+            /* Typography */
+            --font-calligraphy: 'Alex Brush', cursive;
+            --font-sans: 'Poppins', sans-serif;
+            
+            /* Enhanced Glassmorphism Variables */
+            --glass-bg: rgba(255, 255, 255, 0.45);
+            --glass-blur: 16px;
+            --glass-border-light: rgba(255, 255, 255, 0.9);
+            --glass-border-dark: rgba(255, 255, 255, 0.3);
+            --glass-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--text-dark);
+            background-color: #fafafa;
+            overflow-x: hidden;
+            font-size: 15px; /* Increased base font size for medium readability */
+            line-height: 1.6;
+        }
+
+        /* --- 1. SPLASH SCREEN ANIMATION --- */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #fff0f5, #e0f2fe);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            animation: fadeOutSplash 0.6s ease 3s forwards;
+        }
+
+        .splash-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            animation: popIn 1s ease forwards;
+        }
+
+        .splash-logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            padding: 4px;
+            background: linear-gradient(45deg, var(--golden-rose), var(--sky-blue));
+            box-shadow: 0 10px 30px rgba(200, 141, 148, 0.4);
+        }
+
+        .splash-logo img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .splash-text {
+            font-family: var(--font-calligraphy);
+            font-size: 42px; /* Bigger splash text */
+            color: #5c1d24;
+            letter-spacing: 1.5px;
+            white-space: nowrap;
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes fadeOutSplash {
+            to { opacity: 0; visibility: hidden; }
+        }
+
+        /* --- REUSABLE TRUE GLASS BOX CLASS --- */
+        .true-glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border-top: 1.5px solid var(--glass-border-light);
+            border-left: 1.5px solid var(--glass-border-light);
+            border-right: 1.5px solid var(--glass-border-dark);
+            border-bottom: 1.5px solid var(--glass-border-dark);
+            box-shadow: var(--glass-shadow);
+            border-radius: 20px;
+        }
+
+        /* --- 2. TOP NAVBAR --- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70px; /* Increased height */
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-brand img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 2px solid var(--golden-rose);
+            object-fit: cover;
+        }
+
+        .nav-title {
+            font-family: var(--font-calligraphy);
+            font-size: 28px;
+            color: #4a192c;
+            font-weight: 600;
+        }
+
+        .cart-icon-wrapper {
+            position: relative;
+            background: rgba(252, 231, 243, 0.9);
+            border: 1px solid var(--golden-rose);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4a192c;
+            cursor: pointer;
+            font-size: 18px;
+            box-shadow: 0 4px 12px rgba(200, 141, 148, 0.3);
+            transition: transform 0.2s;
+        }
+        
+        .cart-icon-wrapper:active { transform: scale(0.95); }
+
+        .cart-badge {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            background: var(--golden-rose);
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #fff;
+        }
+
+        /* --- BACKGROUNDS --- */
+        
+        /* 1. Fixed Background (The Cute Aesthetic Necklace - Always stays in back) */
+        #fixed-bracelet-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            /* Simple aesthetic cute necklace image */
+            background-image: url('https://images.unsplash.com/photo-1599643477877-530eb83abc8e?auto=format&fit=crop&q=80&w=1000');
+            background-size: cover;
+            background-position: center;
+            z-index: -2;
+            opacity: 0.85; /* Vibrant visibility */
+        }
+
+        /* 2. Hero Background (Aesthetic Girl / Vibe - Fades away on scroll) */
+        #hero-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            /* Aesthetic soft background */
+            background-image: url('https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&q=80&w=1000');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+            transform-origin: top center;
+            will-change: transform, opacity;
+            opacity: 1; /* Clearly visible initially */
+        }
+
+        /* --- 3. HERO VIEW (1ST VIEW) --- */
+        #hero-view {
+            width: 100%;
+            height: 100vh;
+            padding-top: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-inline: 25px;
+            position: relative;
+        }
+
+        /* Prominent Hero Glass Box */
+        .glass-hero-box {
+            padding: 40px 25px;
+            text-align: center;
+            width: 100%;
+            max-width: 450px;
+            position: relative;
+        }
+
+        .glass-hero-box::before {
+            content: '';
+            position: absolute;
+            top: -3px; left: -3px; right: -3px; bottom: -3px;
+            border-radius: 22px;
+            background: linear-gradient(135deg, var(--golden-rose), transparent, var(--sky-blue));
+            z-index: -1;
+            opacity: 0.7;
+        }
+
+        .hero-title {
+            font-family: var(--font-calligraphy);
+            font-size: 52px; /* Bigger hero title */
+            color: #3b131e;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 10px rgba(255,255,255,0.8);
+            line-height: 1.1;
+        }
+
+        .welcome-note {
+            font-size: 16px; /* Medium readable size */
+            color: #1a0f14;
+            font-weight: 500;
+            line-height: 1.7;
+            text-align: center;
+            text-shadow: 0 1px 5px rgba(255,255,255,0.9);
+        }
+
+        /* --- MAIN SCROLL CONTAINER --- */
+        #main-content {
+            padding: 30px 20px;
+            position: relative;
+            z-index: 5;
+            min-height: 100vh;
+            background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.6) 20%);
+        }
+
+        /* --- 5. DETAILED ABOUT SECTION --- */
+        .glass-container {
+            padding: 30px 25px;
+            margin-bottom: 40px;
+        }
+
+        .section-heading {
+            font-family: var(--font-calligraphy);
+            font-size: 34px; /* Bigger Headings */
+            color: #4a192c;
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(255,255,255,0.8);
+        }
+
+        .about-story {
+            font-size: 15px;
+            text-align: center;
+            margin-bottom: 25px;
+            color: #3b131e;
+            font-weight: 500;
+        }
+
+        .specialist-bar {
+            background: linear-gradient(90deg, rgba(252,231,243,0.85), rgba(224,242,254,0.85));
+            border: 1px solid white;
+            border-left: 4px solid var(--golden-rose);
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .spec-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #2d1820;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 5px;
+        }
+
+        .spec-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.5;
+            padding-left: 28px;
+        }
+
+        /* --- SEARCH & CATEGORY SCROLL BAR --- */
+        .filter-row {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            margin-bottom: 30px;
+            border-radius: 40px;
+        }
+
+        .category-scroll {
+            width: 82%;
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            padding: 5px 10px;
+        }
+        
+        .category-scroll::-webkit-scrollbar { display: none; }
+
+        .cat-btn {
+            background: rgba(255,255,255,0.7);
+            border: 1.5px solid var(--golden-rose);
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 15px;
+            font-weight: 500;
+            white-space: nowrap;
+            color: var(--text-dark);
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .cat-btn.active {
+            background: var(--golden-rose);
+            color: white;
+            border-color: var(--golden-rose);
+            box-shadow: 0 4px 12px rgba(200, 141, 148, 0.4);
+        }
+
+        .search-box {
+            width: 18%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-left: 2px solid rgba(255,255,255,0.6);
+            color: var(--golden-rose);
+            font-size: 20px;
+        }
+
+        /* --- 20+ PRODUCTS GRID --- */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 45px;
+        }
+
+        .product-card {
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s;
+        }
+        
+        .product-card:active { transform: scale(0.98); }
+
+        .product-img {
+            width: 100%;
+            height: 180px; /* Bigger Images */
+            border-radius: 12px;
+            object-fit: cover;
+            margin-bottom: 12px;
+            background: rgba(255,255,255,0.8);
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+
+        .product-name {
+            font-size: 15px;
+            font-weight: 700;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-bottom: 8px;
+            color: #2d1820;
+        }
+
+        .product-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .product-price {
+            font-size: 16px;
+            font-weight: 800;
+            color: #5c1d24;
+        }
+
+        .add-btn {
+            background: linear-gradient(135deg, #fff, var(--baby-pink));
+            border: 1.5px solid var(--golden-rose);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            color: #2d1820;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: all 0.2s;
+        }
+        .add-btn:active { background: var(--golden-rose); color: white; }
+
+        /* --- 6. VIP PRODUCTS --- */
+        .vip-container {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            padding-bottom: 15px;
+            margin-bottom: 40px;
+        }
+
+        .vip-container::-webkit-scrollbar { display: none; }
+
+        .vip-card {
+            min-width: 260px; /* Larger VIP cards */
+            padding: 15px;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .vip-badge {
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background: linear-gradient(45deg, #2d1820, #4a192c);
+            color: var(--golden-rose-light);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            z-index: 2;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .vip-img {
+            width: 100%;
+            height: 220px;
+            border-radius: 12px;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255,255,255,0.6);
+        }
+
+        /* --- WHATSAPP INVITATION --- */
+        .wa-invite-box {
+            padding: 25px 20px;
+            text-align: center;
+            margin-bottom: 40px;
+            background: rgba(220, 252, 231, 0.65); /* Greenish glass */
+            border-color: rgba(134, 239, 172, 0.8);
+        }
+
+        .wa-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #166534;
+            margin-bottom: 10px;
+        }
+
+        .wa-subtitle {
+            font-size: 14px;
+            color: #374151;
+            margin-bottom: 18px;
+            line-height: 1.5;
+        }
+
+        .wa-input-row {
+            display: flex;
+            gap: 12px;
+        }
+
+        .wa-input {
+            flex: 1;
+            padding: 12px 18px;
+            border-radius: 12px;
+            border: 2px solid #bbf7d0;
+            background: rgba(255,255,255,0.9);
+            font-size: 15px;
+            outline: none;
+            font-family: inherit;
+        }
+
+        .wa-btn {
+            background: #25d366;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        /* --- REVIEWS (HORIZONTAL) --- */
+        .reviews-scroll {
+            display: flex;
+            gap: 18px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            padding-bottom: 15px;
+            margin-bottom: 40px;
+        }
+        
+        .reviews-scroll::-webkit-scrollbar { display: none; }
+
+        .review-card {
+            min-width: 280px;
+            padding: 18px;
+            flex-shrink: 0;
+        }
+
+        .stars { color: #f59e0b; font-size: 13px; margin-bottom: 8px; }
+        .reviewer-name { font-weight: 700; font-size: 16px; color: #2d1820; }
+        .review-text { font-size: 14px; color: var(--text-muted); margin-top: 8px; font-style: italic; }
+
+        /* --- FAQS --- */
+        .faq-box {
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            padding: 15px 0;
+        }
+        .faq-box:last-child { border-bottom: none; }
+        
+        .faq-q {
+            font-size: 16px;
+            font-weight: 700;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            color: #2d1820;
+        }
+        
+        .faq-a {
+            font-size: 15px;
+            color: var(--text-muted);
+            margin-top: 10px;
+            display: none;
+            line-height: 1.6;
+            padding-right: 20px;
+        }
+
+        /* --- FOOTER --- */
+        .footer-note {
+            text-align: center;
+            font-family: var(--font-calligraphy);
+            font-size: 28px;
+            color: #4a192c;
+            margin: 50px 0 30px;
+            line-height: 1.4;
+            text-shadow: 0 2px 5px rgba(255,255,255,0.6);
+        }
+
+        .fake-certs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .cert-chip {
+            background: rgba(255, 255, 255, 0.7);
+            border: 1.5px solid var(--golden-rose);
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        /* --- CART MODAL --- */
+        #cart-modal {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 85%;
+            max-width: 400px;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            z-index: 2000;
+            box-shadow: -10px 0 40px rgba(0,0,0,0.15);
+            transition: right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            display: flex;
+            flex-direction: column;
+            border-left: 3px solid var(--golden-rose);
+        }
+
+        #cart-modal.active { right: 0; }
+
+        .cart-header {
+            padding: 20px;
+            border-bottom: 1.5px solid rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--baby-pink);
+        }
+
+        .cart-title { font-size: 20px; font-weight: 700; color: #2d1820; }
+        .close-cart { background: none; border: none; font-size: 24px; cursor: pointer; color: #2d1820; }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed rgba(0,0,0,0.15);
+        }
+
+        .cart-item-img {
+            width: 70px;
+            height: 70px;
+            border-radius: 12px;
+            object-fit: cover;
+            border: 1px solid #eee;
+        }
+
+        .cart-item-info { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+        
+        .cart-item-name { font-size: 15px; font-weight: 700; margin-bottom: 4px; color: #2d1820; }
+        .cart-item-price { font-size: 15px; color: var(--golden-rose); font-weight: 700; }
+        
+        .qty-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        .qty-btn {
+            background: #fff;
+            border: 1.5px solid var(--sky-blue);
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            cursor: pointer;
+            color: #2d1820;
+        }
+
+        .cart-footer {
+            padding: 20px;
+            background: rgba(252, 231, 243, 0.6);
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .cart-total-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 18px;
+            color: #2d1820;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background: #2d1820;
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .cart-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(3px);
+            z-index: 1999;
+            display: none;
+        }
+        .cart-overlay.active { display: block; }
+
+    </style>
+</head>
+<body>
+
+    <!-- 1. SPLASH SCREEN -->
+    <div id="splash-screen">
+        <div class="splash-content">
+            <div class="splash-logo">
+                <img src="1000004716_2.jpg" alt="Lily & Pearl" onerror="this.src='https://images.unsplash.com/photo-1611591475113-5a0225d3042a?w=200'">
+            </div>
+            <div class="splash-text">Lily & Pearl</div>
+        </div>
+    </div>
+
+    <!-- 2. TOP NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <img src="1000004716_2.jpg" alt="Logo" onerror="this.src='https://images.unsplash.com/photo-1611591475113-5a0225d3042a?w=100'">
+            <span class="nav-title">Lily & Pearl</span>
+        </div>
+        <div class="cart-icon-wrapper" onclick="toggleCart()">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span class="cart-badge" id="cart-count">0</span>
+        </div>
+    </nav>
+
+    <!-- BACKGROUNDS -->
+    <!-- 1st Background: The Cute Minimal Necklace (Fixed in back) -->
+    <div id="fixed-bracelet-bg"></div>
+    <!-- 2nd Background: The Aesthetic Model/Vibe (Fades out when scrolling down) -->
+    <div id="hero-bg"></div>
+
+    <!-- 3. HERO VIEW -->
+    <section id="hero-view">
+        <div class="glass-hero-box true-glass">
+            <div class="hero-title">Lily & Pearl</div>
+            <p class="welcome-note">
+                Welcome to a realm of delicate aesthetics. <br><br>
+                Discover minimal, handcrafted pieces designed to blend seamlessly with your everyday elegance. From soft glowing pearls to golden rose touches, find your timeless sparkle here.
+            </p>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <main id="main-content">
+        
+        <!-- 5. DETAILED ABOUT SECTION -->
+        <section class="glass-container true-glass">
+            <h2 class="section-heading">Our Expertise</h2>
+            <p class="about-story">
+                At Lily & Pearl, we believe in the poetry of everyday elegance. Born from a love for minimal aesthetics and timeless charm, our collections are carefully curated to bring a touch of soft romance to your daily life.
+            </p>
+            
+            <div class="specialist-bar">
+                <div class="spec-title">
+                    <i class="fa-solid fa-wand-magic-sparkles" style="color: var(--golden-rose);"></i>
+                    Aesthetic Minimalist Designs
+                </div>
+                <div class="spec-desc">Every piece is designed to be subtle yet striking. Perfect for stacking or wearing alone to complement any outfit.</div>
+            </div>
+            
+            <div class="specialist-bar">
+                <div class="spec-title">
+                    <i class="fa-solid fa-droplet" style="color: var(--sky-blue);"></i>
+                    Anti-Tarnish & Waterproof
+                </div>
+                <div class="spec-desc">Wear it to the shower, the beach, or the gym. Our premium coating ensures your jewelry stays shiny and fresh.</div>
+            </div>
+            
+            <div class="specialist-bar">
+                <div class="spec-title">
+                    <i class="fa-solid fa-gem" style="color: var(--golden-rose);"></i>
+                    Authentic Freshwater Pearls
+                </div>
+                <div class="spec-desc">We hand-select real, naturally glowing freshwater pearls that add a vintage, elegant touch to your style.</div>
+            </div>
+        </section>
+
+        <!-- HORIZONTAL FILTER BAR -->
+        <div class="filter-row true-glass">
+            <div class="category-scroll">
+                <button class="cat-btn active" onclick="filterData('all', this)">All</button>
+                <button class="cat-btn" onclick="filterData('necklace', this)">Necklace</button>
+                <button class="cat-btn" onclick="filterData('bracelet', this)">Bracelet</button>
+                <button class="cat-btn" onclick="filterData('pendant', this)">Pendant</button>
+                <button class="cat-btn" onclick="filterData('rings', this)">Rings</button>
+                <button class="cat-btn" onclick="filterData('earrings', this)">Earrings</button>
+            </div>
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+        </div>
+
+        <!-- 20+ PRODUCTS GRID -->
+        <div class="product-grid" id="product-grid">
+            <!-- Populated by JS -->
+        </div>
+
+        <!-- 6. VIP PRODUCTS -->
+        <section>
+            <h2 class="section-heading">Exclusive VIP Collection</h2>
+            <div class="vip-container" id="vip-container">
+                <!-- Populated by JS -->
+            </div>
+        </section>
+
+        <!-- WHATSAPP GROUP LIVE INVITATION -->
+        <section class="wa-invite-box true-glass">
+            <div class="wa-title"><i class="fa-brands fa-whatsapp"></i> Join Secret VIP Club</div>
+            <div class="wa-subtitle">Drop your number to receive a direct invitation link for hidden discounts, early launches, and VIP aesthetics!</div>
+            <div class="wa-input-row">
+                <input type="tel" id="wa-number" class="wa-input" placeholder="Enter Phone Number...">
+                <button class="wa-btn" onclick="joinWa()">Join Now</button>
+            </div>
+        </section>
+
+        <!-- REVIEWS -->
+        <section>
+            <h2 class="section-heading">Client Love</h2>
+            <div class="reviews-scroll">
+                <div class="review-card true-glass">
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <div class="reviewer-name">Aarohi M.</div>
+                    <div class="review-text">"So aesthetic! The pendant looks exactly like the pictures. Very minimal and elegant. Definitely buying again."</div>
+                </div>
+                <div class="review-card true-glass">
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+                    <div class="reviewer-name">Kritika S.</div>
+                    <div class="review-text">"The baby pink borders on the packaging were so cute. The quality of the bracelet is amazing for daily wear."</div>
+                </div>
+                <div class="review-card true-glass">
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <div class="reviewer-name">Pooja</div>
+                    <div class="review-text">"Totally worth it. The golden rose finish hasn't faded even after daily use and showering with it."</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQS -->
+        <section class="glass-container true-glass">
+            <h2 class="section-heading">FAQs</h2>
+            <div class="faq-box">
+                <div class="faq-q" onclick="toggleFaq(this)">
+                    <span>Is the jewelry tarnish-free?</span>
+                    <i class="fa-solid fa-plus"></i>
+                </div>
+                <div class="faq-a">Yes! All our pieces are coated with an advanced anti-tarnish and waterproof layer to maintain their shine for daily aesthetic wear without turning green or black.</div>
+            </div>
+            <div class="faq-box">
+                <div class="faq-q" onclick="toggleFaq(this)">
+                    <span>What is the delivery time?</span>
+                    <i class="fa-solid fa-plus"></i>
+                </div>
+                <div class="faq-a">We dispatch all aesthetic orders within 24 hours. Normal delivery takes 3-5 business days depending on your location in India.</div>
+            </div>
+            <div class="faq-box">
+                <div class="faq-q" onclick="toggleFaq(this)">
+                    <span>Do you offer cash on delivery?</span>
+                    <i class="fa-solid fa-plus"></i>
+                </div>
+                <div class="faq-a">Yes, Cash on Delivery (COD) is available pan-India with a minimal convenience fee applied at checkout.</div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <div class="footer-note">
+            Thank you for exploring our world. <br>
+            Stay Aesthetic, Stay Beautiful. <br>
+            ~ Lily & Pearl
+        </div>
+
+        <div class="fake-certs">
+            <div class="cert-chip"><i class="fa-solid fa-certificate" style="color:var(--golden-rose)"></i> ISO Certified</div>
+            <div class="cert-chip"><i class="fa-solid fa-shield-halved" style="color:var(--sky-blue)"></i> 100% Skin Safe</div>
+            <div class="cert-chip"><i class="fa-solid fa-check-double" style="color:var(--text-dark)"></i> Verified Brand</div>
+        </div>
+        
+        <div style="text-align: center; font-size: 13px; color: var(--text-muted); margin-bottom: 30px;">
+            © 2026 Lily & Pearl Aesthetics. All Rights Reserved.
+        </div>
+    </main>
+
+    <!-- CART MODAL -->
+    <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
+    <div id="cart-modal">
+        <div class="cart-header">
+            <div class="cart-title">Your Cart</div>
+            <button class="close-cart" onclick="toggleCart()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Dynamic Cart Items -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total-row">
+                <span>Subtotal</span>
+                <span id="cart-total-price">₹0</span>
+            </div>
+            <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // 4. SCROLL ANIMATION LOGIC FOR HERO BACKGROUND
+        // The 2nd background will fade out beautifully as the user scrolls down, revealing the cute necklace behind it
+        const heroBg = document.getElementById('hero-bg');
+        window.addEventListener('scroll', () => {
+            const threshold = window.innerHeight * 0.4; // Fade out over 40% of viewport
+            const scrollY = window.scrollY;
+
+            if (scrollY <= threshold) {
+                const progress = scrollY / threshold;
+                // Move up slightly and fade out completely
+                heroBg.style.transform = `translateY(-${progress * 60}px)`;
+                heroBg.style.opacity = 1 - progress;
+            } else {
+                heroBg.style.opacity = 0;
+            }
+        });
+
+        // DATA: 20+ Aesthetic Products
+        const products = [
+            { id: 1, name: "Minimal Pearl Chain", cat: "necklace", price: 699, img: "https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=400" },
+            { id: 2, name: "Sky Blue Aura Bracelet", cat: "bracelet", price: 499, img: "https://images.unsplash.com/photo-1573408301185-9146fe634ad0?w=400" },
+            { id: 3, name: "Golden Rose Pendant", cat: "pendant", price: 599, img: "https://images.unsplash.com/photo-1600861194942-f883de0ebf79?w=400" },
+            { id: 4, name: "Delicate Flora Ring", cat: "rings", price: 399, img: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=400" },
+            { id: 5, name: "Baby Pink Studs", cat: "earrings", price: 349, img: "https://images.unsplash.com/photo-1535632741716-1f74f762dd7f?w=400" },
+            { id: 6, name: "Vintage Locket Necklace", cat: "necklace", price: 799, img: "https://images.unsplash.com/photo-1506630448388-4e683c67ddb0?w=400" },
+            { id: 7, name: "Aesthetic Pearl Bangle", cat: "bracelet", price: 549, img: "https://images.unsplash.com/photo-1611591475113-5a0225d3042a?w=400" },
+            { id: 8, name: "Crystal Drop Pendant", cat: "pendant", price: 649, img: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400" },
+            { id: 9, name: "Rose Gold Band", cat: "rings", price: 449, img: "https://images.unsplash.com/photo-1603561591411-07134e71a2a9?w=400" },
+            { id: 10, name: "Pearl Hoop Earrings", cat: "earrings", price: 499, img: "https://images.unsplash.com/photo-1630019852942-f89202989a59?w=400" },
+            { id: 11, name: "Moonlight Choker", cat: "necklace", price: 899, img: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400" },
+            { id: 12, name: "Charm Link Bracelet", cat: "bracelet", price: 599, img: "https://images.unsplash.com/photo-1573408301185-9146fe634ad0?w=400" },
+            { id: 13, name: "Solitaire Core Pendant", cat: "pendant", price: 749, img: "https://images.unsplash.com/photo-1600861194942-f883de0ebf79?w=400" },
+            { id: 14, name: "Infinity Love Ring", cat: "rings", price: 429, img: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=400" },
+            { id: 15, name: "Dainty Pink Drops", cat: "earrings", price: 399, img: "https://images.unsplash.com/photo-1535632741716-1f74f762dd7f?w=400" },
+            { id: 16, name: "Layered Pearl Necklace", cat: "necklace", price: 999, img: "https://images.unsplash.com/photo-1506630448388-4e683c67ddb0?w=400" },
+            { id: 17, name: "Evil Eye Bracelet", cat: "bracelet", price: 399, img: "https://images.unsplash.com/photo-1611591475113-5a0225d3042a?w=400" },
+            { id: 18, name: "Sunburst Pendant", cat: "pendant", price: 599, img: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400" },
+            { id: 19, name: "Eternity Band", cat: "rings", price: 499, img: "https://images.unsplash.com/photo-1603561591411-07134e71a2a9?w=400" },
+            { id: 20, name: "Gold Leaf Studs", cat: "earrings", price: 349, img: "https://images.unsplash.com/photo-1630019852942-f89202989a59?w=400" },
+            { id: 21, name: "Aesthetic Core Set", cat: "necklace", price: 1299, img: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400" }
+        ];
+
+        // DATA: VIP Products (4 items)
+        const vipProducts = [
+            { id: 101, name: "Royal Pearl Masterpiece", price: 2499, img: "https://images.unsplash.com/photo-1506630448388-4e683c67ddb0?w=500" },
+            { id: 102, name: "Golden Rose Bridal Choker", price: 3199, img: "https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=500" },
+            { id: 103, name: "Diamond Finish Cuff", price: 1899, img: "https://images.unsplash.com/photo-1611591475113-5a0225d3042a?w=500" },
+            { id: 104, name: "Luxury Sapphire Drops", price: 1599, img: "https://images.unsplash.com/photo-1535632741716-1f74f762dd7f?w=500" }
+        ];
+
+        let cart = [];
+
+        // INIT
+        window.onload = () => {
+            renderProducts(products);
+            renderVip();
+        };
+
+        // RENDER PRODUCTS
+        function renderProducts(data) {
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = data.map(p => `
+                <div class="product-card true-glass">
+                    <img src="${p.img}" class="product-img" loading="lazy">
+                    <div class="product-name">${p.name}</div>
+                    <div class="product-bottom">
+                        <span class="product-price">₹${p.price}</span>
+                        <button class="add-btn" onclick="addToCart(${p.id}, false)">Add +</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // RENDER VIP
+        function renderVip() {
+            const container = document.getElementById('vip-container');
+            container.innerHTML = vipProducts.map(p => `
+                <div class="vip-card true-glass">
+                    <div class="vip-badge">VIP Exclusive</div>
+                    <img src="${p.img}" class="vip-img" loading="lazy">
+                    <div class="product-name" style="font-size: 17px; margin-bottom: 8px;">${p.name}</div>
+                    <div class="product-bottom">
+                        <span class="product-price" style="font-size: 18px;">₹${p.price}</span>
+                        <button class="add-btn" style="padding: 10px 18px;" onclick="addToCart(${p.id}, true)">Add +</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // FILTER
+        function filterData(cat, btn) {
+            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            if (cat === 'all') {
+                renderProducts(products);
+            } else {
+                renderProducts(products.filter(p => p.cat === cat));
+            }
+        }
+
+        // CART LOGIC
+        function addToCart(id, isVip) {
+            const list = isVip ? vipProducts : products;
+            const item = list.find(p => p.id === id);
+            
+            const existing = cart.find(c => c.id === id);
+            if (existing) {
+                existing.qty += 1;
+            } else {
+                cart.push({ ...item, qty: 1 });
+            }
+            updateCart();
+            
+            // Tiny animation effect on icon
+            const icon = document.querySelector('.cart-icon-wrapper');
+            icon.style.transform = 'scale(1.2)';
+            setTimeout(() => icon.style.transform = 'scale(1)', 200);
+        }
+
+        function updateQty(id, change) {
+            const item = cart.find(c => c.id === id);
+            if (item) {
+                item.qty += change;
+                if (item.qty <= 0) {
+                    cart = cart.filter(c => c.id !== id);
+                }
+            }
+            updateCart();
+        }
+
+        function updateCart() {
+            // Count
+            const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
+            document.getElementById('cart-count').innerText = totalCount;
+
+            // Render Items
+            const container = document.getElementById('cart-items');
+            if (cart.length === 0) {
+                container.innerHTML = `<div style="text-align:center; color:#888; font-size:14px; margin-top:50px;">Your cart is empty. Find your aesthetic!</div>`;
+                document.getElementById('cart-total-price').innerText = '₹0';
+                return;
+            }
+
+            let total = 0;
+            container.innerHTML = cart.map(item => {
+                total += item.price * item.qty;
+                return `
+                    <div class="cart-item">
+                        <img src="${item.img}" class="cart-item-img">
+                        <div class="cart-item-info">
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-price">₹${item.price}</div>
+                            <div class="qty-controls">
+                                <button class="qty-btn" onclick="updateQty(${item.id}, -1)"><i class="fa-solid fa-minus"></i></button>
+                                <span style="font-size:15px; font-weight:700; width:20px; text-align:center;">${item.qty}</span>
+                                <button class="qty-btn" onclick="updateQty(${item.id}, 1)"><i class="fa-solid fa-plus"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            document.getElementById('cart-total-price').innerText = '₹' + total;
+        }
+
+        function toggleCart() {
+            document.getElementById('cart-modal').classList.toggle('active');
+            document.getElementById('cart-overlay').classList.toggle('active');
+        }
+
+        // CHECKOUT
+        function checkout() {
+            if (cart.length === 0) {
+                alert("Add some aesthetic jewelry first!");
+                return;
+            }
+            const fakeAdminNo = "919876543210";
+            let text = "Hello Lily %26 Pearl! I'd like to place a beautiful order:%0A%0A";
+            let total = 0;
+            cart.forEach(item => {
+                text += `• ${item.name} (x${item.qty}) - ₹${item.price * item.qty}%0A`;
+                total += item.price * item.qty;
+            });
+            text += `%0ATotal Amount: ₹${total}%0A%0APlease confirm my order. ✨`;
+            
+            window.open(`https://wa.me/${fakeAdminNo}?text=${text}`, '_blank');
+        }
+
+        // WHATSAPP VIP JOIN
+        function joinWa() {
+            const no = document.getElementById('wa-number').value.trim();
+            if (!no) {
+                alert("Please enter a valid number to join the club.");
+                return;
+            }
+            const fakeAdminNo = "919876543210";
+            const text = `Hi Admin! Please add my number (${no}) to the VIP Secret Group. 💖`;
+            window.open(`https://wa.me/${fakeAdminNo}?text=${encodeURIComponent(text)}`, '_blank');
+        }
+
+        // FAQS ACCORDION
+        function toggleFaq(el) {
+            const ans = el.nextElementSibling;
+            const icon = el.querySelector('i');
+            if (ans.style.display === 'block') {
+                ans.style.display = 'none';
+                icon.className = 'fa-solid fa-plus';
+            } else {
+                ans.style.display = 'block';
+                icon.className = 'fa-solid fa-minus';
+            }
+        }
+    </script>
+</body>
+</html>
