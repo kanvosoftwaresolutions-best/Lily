@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lily & Pearl | Premium Aesthetic Jewelry</title>
+    <!-- Google Fonts for Royal Calligraphy and Aesthetic Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS Variables for Royal & Aesthetic Colors */
+        :root {
+            --royal-bg: #0B132B;
+            --gold: #D4AF37;
+            --light-cream: #FCF9F2;
+            --text-dark: #1A1A1A;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--light-cream);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* --- SPLASH SCREEN (Candy Crush Style Fall) --- */
+        #splash-screen {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: radial-gradient(circle, #2b0c1a, #0B132B);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 1s ease-out;
+        }
+        .falling-necklace {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid var(--gold);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+            animation: fallAndBounce 2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            transform: translateY(-100vh);
+        }
+        .brand-calligraphy {
+            font-family: 'Great Vibes', cursive;
+            color: var(--gold);
+            font-size: 4.5rem;
+            margin-top: 20px;
+            opacity: 0;
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
+            animation: fadeIn 1.5s 1.8s forwards;
+            text-align: center;
+        }
+        
+        @keyframes fallAndBounce {
+            0% { transform: translateY(-100vh); opacity: 0; }
+            50% { opacity: 1; }
+            70% { transform: translateY(15px); }
+            85% { transform: translateY(-10px); }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes fadeIn { to { opacity: 1; } }
+
+        /* --- HEADER & NAVIGATION --- */
+        header {
+            position: sticky;
+            top: 0;
+            background-color: var(--royal-bg);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        .logo-text {
+            font-family: 'Great Vibes', cursive;
+            color: var(--gold);
+            font-size: 2rem;
+            text-decoration: none;
+        }
+        .header-icons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        .icon-btn {
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+        .icon-btn:hover { background: var(--gold); color: var(--royal-bg); }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            position: relative;
+            height: 70vh;
+            background: url('https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?auto=format&fit=crop&q=80&w=2000') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            color: #fff;
+            padding: 20px;
+        }
+        .hero-content h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 4rem;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+        .hero-content p {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-style: italic;
+        }
+
+        /* --- ABOUT SECTION --- */
+        .about-section {
+            display: flex;
+            flex-direction: column;
+            padding: 50px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+            gap: 30px;
+        }
+        .about-text {
+            flex: 1;
+            text-align: center;
+        }
+        .about-text h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--royal-bg);
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+        .about-text p {
+            line-height: 1.8;
+            font-size: 1rem;
+            color: #444;
+        }
+        .about-image {
+            flex: 1;
+            text-align: center;
+        }
+        .about-image img {
+            width: 100%;
+            max-width: 400px;
+            border: 4px solid var(--gold);
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        /* --- CATEGORIES BAR --- */
+        .category-bar {
+            background-color: var(--royal-bg);
+            padding: 15px 20px;
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            white-space: nowrap;
+            /* Hide scrollbar for beauty */
+            -ms-overflow-style: none;  
+            scrollbar-width: none;  
+        }
+        .category-bar::-webkit-scrollbar { display: none; }
+        
+        .cat-item {
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            padding: 8px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+        .cat-item:hover, .cat-item.active {
+            background: var(--gold);
+            color: var(--royal-bg);
+        }
+
+        /* --- PRODUCT GRID --- */
+        .products-container {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .products-container h2 {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: var(--royal-bg);
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2 on mobile */
+            gap: 15px;
+        }
+        .product-card {
+            background: #fff;
+            border: 2px solid var(--gold);
+            border-radius: 12px;
+            padding: 10px;
+            text-align: center;
+            transition: transform 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .product-card:hover { transform: translateY(-5px); }
+        .product-card img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        .product-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            margin-bottom: 5px;
+            color: var(--royal-bg);
+        }
+        .product-card p {
+            color: #666;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .add-to-cart {
+            background: var(--royal-bg);
+            color: var(--gold);
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            transition: 0.3s;
+            width: 100%;
+        }
+        .add-to-cart:hover {
+            background: var(--gold);
+            color: var(--royal-bg);
+        }
+
+        /* --- CART SECTION (Bottom) --- */
+        .cart-summary {
+            background: var(--royal-bg);
+            color: #fff;
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+            border-radius: 15px;
+            border: 2px dashed var(--gold);
+        }
+        .cart-summary h2 {
+            font-family: 'Great Vibes', cursive;
+            color: var(--gold);
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        #cart-items-list {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+        #cart-items-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            font-family: 'Playfair Display', serif;
+        }
+        .cart-total-box {
+            text-align: right;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--gold);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #050914;
+            color: #ddd;
+            text-align: center;
+            padding: 50px 20px 30px;
+        }
+        footer h3 {
+            font-family: 'Great Vibes', cursive;
+            color: var(--gold);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        footer a {
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .trust-badges {
+            margin-top: 25px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            font-size: 0.9rem;
+        }
+        .trust-badges span {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--gold);
+            padding: 8px 15px;
+            border-radius: 20px;
+            color: var(--gold);
+        }
+
+        /* --- RESPONSIVE MEDIA QUERIES (PC / Tablets) --- */
+        @media(min-width: 768px) {
+            .about-section { flex-direction: row; text-align: left; }
+            .about-text { text-align: left; }
+            .grid { grid-template-columns: repeat(4, 1fr); gap: 25px; } /* 4 on PC */
+            .product-card h3 { font-size: 1.1rem; }
+            .hero-content h1 { font-size: 5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Splash Screen -->
+    <div id="splash-screen">
+        <!-- Falling Necklace Image Placeholder -->
+        <img src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?auto=format&fit=crop&w=300&q=80" alt="Necklace" class="falling-necklace">
+        <h1 class="brand-calligraphy">Lily & Pearl</h1>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <a href="#" class="logo-text">Lily & Pearl</a>
+        <div class="header-icons">
+            <button class="icon-btn" onclick="alert('Search feature activated!')">Search 🔍</button>
+            <button class="icon-btn" onclick="document.getElementById('cart-section').scrollIntoView({behavior: 'smooth'})">
+                Cart 🛍️ (<span id="cart-count">0</span>)
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Lily & Pearl</h1>
+            <p>Welcome to our Royal Aesthetic Collection</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <div class="about-text">
+            <h2>Premium Necklaces & Elegance</h2>
+            <p>Welcome to Lily & Pearl. We curate the most aesthetic, cute, and royal jewelry pieces designed to make you feel like royalty. From delicate pearl drops to stunning golden headbands, every piece in our collection is carefully selected to ensure the highest premium quality. Embrace your inner elegance with us.</p>
+        </div>
+        <div class="about-image">
+            <img src="https://images.unsplash.com/photo-1599643478524-fb5244098775?auto=format&fit=crop&w=600&q=80" alt="Premium Necklace">
+        </div>
+    </section>
+
+    <!-- Categories Scroll Bar -->
+    <div class="category-bar">
+        <div class="cat-item active">All Collections</div>
+        <div class="cat-item">Necklaces</div>
+        <div class="cat-item">Pearl Headbands</div>
+        <div class="cat-item">Rings</div>
+        <div class="cat-item">Gold Bracelets</div>
+        <div class="cat-item">Earrings</div>
+    </div>
+
+    <!-- Product Grid -->
+    <section class="products-container">
+        <h2>Our Royal Collection</h2>
+        <div class="grid" id="product-grid">
+            <!-- Products will be injected here via JavaScript -->
+        </div>
+    </section>
+
+    <!-- Cart Summary Section -->
+    <section class="cart-summary" id="cart-section">
+        <h2>Your Royal Cart</h2>
+        <ul id="cart-items-list">
+            <li style="justify-content: center; color: #aaa;">Your cart is currently empty.</li>
+        </ul>
+        <div class="cart-total-box">
+            Total: $<span id="cart-total-price">0.00</span>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <h3>Thank you for visiting</h3>
+        <p>Stay connected and follow our aesthetic journey on <br>
+           <a href="https://www.instagram.com/lilyandpearl_?igsi=MTNiaXRyMnIxbjZrdQ==" target="_blank">Instagram @lilyandpearl_</a>
+        </p>
+        <div class="trust-badges">
+            <span>🛡️ 100% Secure Checkout</span>
+            <span>✨ Premium Authentic Quality</span>
+            <span>🚚 Worldwide Royal Shipping</span>
+        </div>
+        <p style="margin-top: 30px; font-size: 0.8rem; color: #666;">&copy; 2026 Lily & Pearl. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Remove Splash Screen after animations finish (3.5 seconds)
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const splash = document.getElementById('splash-screen');
+                splash.style.opacity = '0';
+                setTimeout(() => splash.remove(), 1000); // Wait for fade out
+            }, 3500);
+        });
+
+        // Generate 20 Products Dynamically 
+        const templates = [
+            { name: "Royal Pearl Choker", price: 59.00, img: "https://images.unsplash.com/photo-1599643478524-fb5244098775?auto=format&fit=crop&w=500&q=80" },
+            { name: "Aesthetic Gold Drop", price: 45.00, img: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=500&q=80" },
+            { name: "Vintage Pearl Headband", price: 35.00, img: "https://images.unsplash.com/photo-1579566952865-0f04c6439563?auto=format&fit=crop&w=500&q=80" },
+            { name: "Golden Empress Ring", price: 29.00, img: "https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?auto=format&fit=crop&w=500&q=80" },
+            { name: "Crystal Teardrop Earrings", price: 40.00, img: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=500&q=80" }
+        ];
+
+        const productGrid = document.getElementById('product-grid');
+        
+        for (let i = 0; i < 20; i++) {
+            let template = templates[i % 5];
+            let productName = template.name + (i >= 5 ? ` Vol. ${Math.floor(i/5) + 1}` : "");
+            let productPrice = (template.price + (i * 2)).toFixed(2);
+            
+            // Create Product Card
+            let card = document.createElement('div');
+            card.className = 'product-card';
+            card.innerHTML = `
+                <img src="${template.img}" alt="${productName}">
+                <h3>${productName}</h3>
+                <p>$${productPrice}</p>
+                <button class="add-to-cart" onclick="addToCart('${productName}', ${productPrice})">Add to Cart 🛒</button>
+            `;
+            productGrid.appendChild(card);
+        }
+
+        // Cart Logic
+        let cartItems = [];
+        let totalAmount = 0;
+
+        function addToCart(name, price) {
+            cartItems.push({ name, price });
+            totalAmount += parseFloat(price);
+            updateCartUI();
+            
+            // Brief visual feedback
+            alert(`✨ Added to cart: ${name}`);
+        }
+
+        function updateCartUI() {
+            // Update Header Counter
+            document.getElementById('cart-count').innerText = cartItems.length;
+            
+            // Update List in bottom section
+            const list = document.getElementById('cart-items-list');
+            list.innerHTML = '';
+            
+            cartItems.forEach(item => {
+                let li = document.createElement('li');
+                li.innerHTML = `<span>${item.name}</span> <span>$${item.price.toFixed(2)}</span>`;
+                list.appendChild(li);
+            });
+            
+            // Update Total
+            document.getElementById('cart-total-price').innerText = totalAmount.toFixed(2);
+        }
+    </script>
+</body>
+</html>
