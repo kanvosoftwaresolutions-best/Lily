@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lily & Pearl | Premium Royal Jewelry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --royal-gold: #D4AF37;
+  --gold-light: #F9E596;
+  --gold-dark: #AA7C11;
+  --bg-dark: #0A0708;
+  --text-light: #EAEAEA;
+  --text-muted: #B5B5B5;
+  --baby-pink: #FDE8E9;
+  --rose-gold: #DDA7B0;
+  --rose-dark: #9A5A66;
+  --card-bg: rgba(20, 15, 18, 0.75);
+  --gold-gradient: linear-gradient(135deg, #BF953F, #FCF6BA, #DDA7B0, #FBF5B7, #AA771C);
+  --pink-gradient: linear-gradient(135deg, var(--rose-gold), var(--baby-pink), var(--rose-dark));
+}
+* { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13.5px;
+  color: var(--text-light);
+  background-color: var(--bg-dark);
+  overflow-x: hidden;
+  background-image: linear-gradient(rgba(15, 10, 12, 0.75), rgba(5, 2, 4, 0.88)), url('https://images.unsplash.com/photo-1611591437281-460bfbe1220a?q=80&w=2000');
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+}
+.floating-icons-container {
+  position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+  pointer-events: none; z-index: 1; overflow: hidden;
+}
+.float-icon {
+  position: absolute; font-size: 1.2rem; opacity: 0.35;
+  animation: floatUp 15s linear infinite;
+  filter: drop-shadow(0 0 8px var(--rose-gold));
+}
+.float-icon:nth-child(even) { color: var(--gold-light); font-size: 0.9rem; animation-duration: 20s; }
+.float-icon:nth-child(3n) { color: var(--baby-pink); font-size: 1.5rem; animation-duration: 25s; opacity: 0.25; }
+@keyframes floatUp {
+  0% { transform: translateY(110vh) rotate(0deg) scale(0.8); opacity: 0; }
+  10% { opacity: 0.4; } 90% { opacity: 0.4; }
+  100% { transform: translateY(-10vh) rotate(360deg) scale(1.2); opacity: 0; }
+}
+#intro-screen {
+  position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+  background: radial-gradient(circle at center, #261519 0%, #000000 100%);
+  z-index: 9999; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  transition: opacity 1.2s ease-in-out, visibility 1.2s;
+}
+.intro-logo-wrapper {
+  position: relative; width: 160px; height: 160px; border-radius: 50%; background: #000;
+  border: 2px solid var(--rose-gold);
+  box-shadow: 0 0 50px rgba(221, 167, 176, 0.6), inset 0 0 20px rgba(212, 175, 55, 0.5);
+  display: flex; align-items: center; justify-content: center; overflow: hidden;
+  transform: translateY(-100vh) scale(0.5);
+  animation: elegantDrop 3s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+.intro-logo-wrapper img { width: 85%; height: 85%; object-fit: cover; border-radius: 50%; }
+@keyframes elegantDrop {
+  0% { transform: translateY(-100vh) scale(0.8) rotate(-15deg); opacity: 0; }
+  50% { transform: translateY(30px) scale(1.1) rotate(5deg); opacity: 1; box-shadow: 0 0 70px rgba(221, 167, 176, 0.9); }
+  75% { transform: translateY(-15px) scale(0.95) rotate(-2deg); }
+  100% { transform: translateY(0) scale(1) rotate(0deg); }
+}
+.intro-brand {
+  font-family: 'Great Vibes', cursive; font-size: 5rem; margin-top: 30px; opacity: 0;
+  background: var(--pink-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0px 4px 15px rgba(221, 167, 176, 0.5));
+  animation: titleReveal 2.5s 1.8s forwards; letter-spacing: 3px;
+}
+@keyframes titleReveal {
+  0% { opacity: 0; transform: translateY(20px) scale(0.9); filter: blur(10px); }
+  100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0px); }
+}
+header {
+  position: sticky; top: 0; width: 100%;
+  background: rgba(10, 5, 8, 0.75); backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(221, 167, 176, 0.2);
+  z-index: 1000; display: flex; justify-content: space-between;
+  align-items: center; padding: 10px 6%; transition: all 0.4s ease;
+}
+.brand-container { display: flex; align-items: center; gap: 15px; text-decoration: none; }
+.nav-logo-img {
+  width: 45px; height: 45px; border-radius: 50%; object-fit: cover;
+  border: 1px solid var(--rose-gold); box-shadow: 0 0 10px rgba(221, 167, 176, 0.4);
+}
+.logo-text {
+  font-family: 'Great Vibes', cursive; font-size: 2.2rem;
+  background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  letter-spacing: 2px;
+}
+.cart-btn {
+  background: rgba(221, 167, 176, 0.05); border: 1px solid rgba(221, 167, 176, 0.3);
+  border-radius: 50%; cursor: pointer; position: relative;
+  display: flex; align-items: center; justify-content: center; width: 45px; height: 45px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.cart-btn:hover {
+  transform: scale(1.1) rotate(5deg); background: rgba(221, 167, 176, 0.15);
+  border-color: var(--rose-gold); box-shadow: 0 0 15px rgba(221, 167, 176, 0.4);
+}
+.cart-btn svg { width: 20px; height: 20px; fill: var(--baby-pink); filter: drop-shadow(0 0 4px rgba(253, 232, 233, 0.5)); transition: fill 0.3s; }
+.cart-btn:hover svg { fill: var(--royal-gold); }
+.cart-badge {
+  position: absolute; top: -2px; right: -2px; background: var(--rose-dark);
+  color: var(--baby-pink); font-size: 0.65rem; font-weight: 600;
+  width: 18px; height: 18px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--baby-pink); box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+.hero {
+  position: relative; height: 80vh; display: flex; align-items: center;
+  justify-content: center; text-align: center;
+  background: url('https://images.unsplash.com/photo-1611085583191-a3b181a88401?q=80&w=2070') no-repeat center center/cover;
+  overflow: hidden; z-index: 2;
+}
+.hero::before {
+  content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(to bottom, rgba(10,5,10,0.4) 0%, rgba(15,10,12,0.9) 100%); z-index: 1;
+}
+.hero-content { position: relative; z-index: 2; padding: 0 20px; max-width: 900px; }
+.hero-title {
+  font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--baby-pink);
+  margin-bottom: 15px; letter-spacing: 6px; text-transform: uppercase; font-weight: 400;
+}
+.hero-subtitle {
+  font-family: 'Great Vibes', cursive; font-size: 3.5rem;
+  background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.9); line-height: 1.2;
+}
+.about-section {
+  position: relative; display: flex; flex-wrap: wrap; padding: 80px 6%;
+  align-items: center; gap: 60px; background: transparent; z-index: 2;
+}
+.about-text {
+  flex: 1 1 450px; background: rgba(15, 10, 12, 0.6); padding: 40px;
+  border-radius: 12px; border: 1px solid rgba(221, 167, 176, 0.15); backdrop-filter: blur(10px);
+}
+.about-text h2 {
+  font-family: 'Playfair Display', serif; color: var(--rose-gold);
+  font-size: 2.2rem; margin-bottom: 25px; font-weight: 400; letter-spacing: 1.5px;
+}
+.about-text p { font-size: 0.95rem; line-height: 2; color: var(--text-light); margin-bottom: 20px; font-weight: 300; text-align: justify; }
+.about-image { flex: 1 1 350px; position: relative; display: flex; justify-content: center; }
+.about-image img {
+  width: 100%; max-width: 450px; height: auto; object-fit: contain; border-radius: 8px;
+  border: 1px solid rgba(221, 167, 176, 0.4);
+  box-shadow: 15px 15px 40px rgba(0,0,0,0.9), -5px -5px 20px rgba(221,167,176,0.1);
+  background: radial-gradient(circle, rgba(30,20,25,0.8) 0%, rgba(5,2,4,1) 100%); padding: 15px;
+}
+.categories-container {
+  position: relative; padding: 35px 6%;
+  border-top: 1px solid rgba(221, 167, 176, 0.15); border-bottom: 1px solid rgba(221, 167, 176, 0.15);
+  background: rgba(10, 5, 8, 0.7); backdrop-filter: blur(8px); z-index: 2;
+}
+.categories-scroll { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+.category-pill {
+  background: rgba(20, 10, 15, 0.6); border: 1px solid rgba(221, 167, 176, 0.3);
+  color: var(--baby-pink); padding: 10px 30px; border-radius: 40px;
+  font-family: 'Playfair Display', serif; font-size: 0.95rem; cursor: pointer;
+  letter-spacing: 1.5px; transition: all 0.4s ease; box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+.category-pill:hover { border-color: var(--rose-gold); background: rgba(221, 167, 176, 0.1); transform: translateY(-3px); }
+.category-pill.active {
+  background: var(--pink-gradient); color: #000; border-color: transparent;
+  font-weight: 600; box-shadow: 0 8px 20px rgba(221, 167, 176, 0.4); transform: translateY(-3px);
+}
+.products-section { position: relative; padding: 70px 6%; min-height: 80vh; z-index: 2; }
+.section-header { text-align: center; margin-bottom: 50px; }
+.section-header h2 { font-family: 'Great Vibes', cursive; font-size: 3rem; color: var(--baby-pink); letter-spacing: 2px; font-weight: 400; }
+.product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
+@media (min-width: 992px) { .product-grid { grid-template-columns: repeat(4, 1fr); gap: 45px; } }
+.product-card {
+  background: var(--card-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(221, 167, 176, 0.15); border-radius: 10px; padding: 18px;
+  text-align: center; position: relative;
+  transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.6s ease, border-color 0.6s ease;
+  display: flex; flex-direction: column; justify-content: space-between; overflow: hidden;
+}
+.product-card::before {
+  content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+  background: linear-gradient(to right, transparent, rgba(253, 232, 233, 0.1), transparent);
+  transform: skewX(-25deg); transition: left 0.7s; z-index: 1;
+}
+.product-card:hover::before { left: 200%; }
+.product-card:hover {
+  transform: translateY(-15px);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.95), 0 0 25px rgba(221, 167, 176, 0.2);
+  border-color: rgba(221, 167, 176, 0.7);
+}
+.image-wrapper {
+  width: 100%; aspect-ratio: 1 / 1;
+  background: radial-gradient(circle, #1a1416 0%, #050203 100%);
+  border-radius: 6px; margin-bottom: 20px; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid rgba(255,255,255,0.02); padding: 10px; position: relative; z-index: 2;
+}
+.product-image {
+  max-width: 100%; max-height: 100%; object-fit: contain;
+  transition: transform 0.8s ease; filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
+}
+.product-card:hover .product-image { transform: scale(1.08) rotate(1deg); }
+.product-category { font-family: 'Great Vibes', cursive; color: var(--rose-gold); font-size: 1.4rem; margin-bottom: 8px; position: relative; z-index: 2; }
+.product-title {
+  font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--baby-pink);
+  margin-bottom: 10px; font-weight: 400; letter-spacing: 0.8px; flex-grow: 1;
+  display: flex; align-items: center; justify-content: center; position: relative; z-index: 2;
+}
+.product-price { font-family: 'Montserrat', sans-serif; font-weight: 500; color: var(--gold-light); font-size: 1.15rem; margin-bottom: 18px; letter-spacing: 1px; position: relative; z-index: 2; }
+.add-to-cart {
+  background: transparent; color: var(--baby-pink); border: 1px solid var(--rose-gold);
+  padding: 12px 15px; border-radius: 30px; font-family: 'Montserrat', sans-serif;
+  font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: all 0.4s;
+  text-transform: uppercase; letter-spacing: 2px; width: 100%; position: relative; z-index: 2;
+}
+.add-to-cart:hover { background: var(--pink-gradient); color: #000; border-color: transparent; box-shadow: 0 5px 15px rgba(221, 167, 176, 0.4); }
+.reviews-section {
+  position: relative; padding: 80px 6%;
+  background: linear-gradient(180deg, rgba(10,5,8,0.4) 0%, rgba(20,10,15,0.7) 100%);
+  border-top: 1px solid rgba(221, 167, 176, 0.1); z-index: 2;
+}
+.reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
+.review-card { background: rgba(10, 5, 8, 0.8); border: 1px solid rgba(221, 167, 176, 0.2); padding: 30px; border-radius: 8px; text-align: center; transition: transform 0.4s; }
+.review-card:hover { transform: translateY(-8px); border-color: var(--rose-gold); }
+.stars { color: var(--royal-gold); font-size: 1.2rem; margin-bottom: 15px; letter-spacing: 2px; }
+.review-text { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.95rem; color: var(--text-light); line-height: 1.8; margin-bottom: 20px; }
+.reviewer { font-family: 'Montserrat', sans-serif; color: var(--baby-pink); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+.newsletter-section {
+  position: relative; padding: 70px 6%; text-align: center;
+  background: rgba(5, 2, 4, 0.85); z-index: 2; border-top: 1px solid rgba(221, 167, 176, 0.15);
+}
+.newsletter-title { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--rose-gold); margin-bottom: 15px; }
+.newsletter-desc { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 30px; max-width: 600px; margin-inline: auto; }
+.newsletter-form { display: flex; justify-content: center; gap: 10px; max-width: 500px; margin: 0 auto; }
+.newsletter-form input {
+  flex: 1; padding: 15px 20px; background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(221, 167, 176, 0.3); border-radius: 30px;
+  color: var(--baby-pink); font-family: 'Montserrat', sans-serif; outline: none; transition: border 0.3s;
+}
+.newsletter-form input:focus { border-color: var(--rose-gold); }
+.newsletter-form button {
+  padding: 0 30px; border-radius: 30px; background: var(--pink-gradient); border: none;
+  color: #000; font-family: 'Montserrat', sans-serif; font-weight: 600;
+  cursor: pointer; text-transform: uppercase; letter-spacing: 1px; transition: transform 0.3s, box-shadow 0.3s;
+}
+.newsletter-form button:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(221, 167, 176, 0.4); }
+.cart-overlay {
+  position: fixed; top: 0; right: -100%; width: 100vw; height: 100vh;
+  background: rgba(5, 2, 4, 0.85); backdrop-filter: blur(12px);
+  z-index: 10000; transition: right 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+}
+.cart-overlay.open { right: 0; }
+.cart-modal {
+  position: absolute; top: 0; right: 0; width: 100%; max-width: 420px; height: 100%;
+  background: #0D080A; border-left: 1px solid rgba(221, 167, 176, 0.3);
+  padding: 30px 25px; display: flex; flex-direction: column; box-shadow: -20px 0 50px rgba(0,0,0,0.95);
+}
+.cart-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(221, 167, 176, 0.2); padding-bottom: 20px; margin-bottom: 25px; }
+.cart-header h2 { font-family: 'Playfair Display', serif; color: var(--baby-pink); font-weight: 400; font-size: 1.8rem; letter-spacing: 2px; }
+.close-cart {
+  background: rgba(221, 167, 176, 0.1); border: 1px solid rgba(221, 167, 176, 0.3);
+  color: var(--baby-pink); font-size: 1.5rem; width: 35px; height: 35px; border-radius: 50%;
+  cursor: pointer; transition: all 0.3s; display: flex; align-items: center; justify-content: center;
+}
+.close-cart:hover { background: var(--rose-gold); color: #000; transform: rotate(90deg); }
+.cart-items { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 20px; padding-right: 10px; }
+.cart-items::-webkit-scrollbar { width: 5px; } .cart-items::-webkit-scrollbar-thumb { background: var(--rose-dark); border-radius: 5px; }
+.cart-item { display: flex; align-items: center; gap: 18px; background: rgba(20, 15, 18, 0.8); padding: 15px; border-radius: 8px; border: 1px solid rgba(221, 167, 176, 0.15); transition: transform 0.3s; }
+.cart-item:hover { transform: translateX(-5px); border-color: var(--rose-gold); }
+.cart-item-img-wrap { width: 70px; height: 70px; background: radial-gradient(circle, #2a1f23 0%, #000 100%); border-radius: 6px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.05); padding: 5px; }
+.cart-item-img-wrap img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.cart-item-details { flex: 1; }
+.cart-item-title { font-family: 'Playfair Display', serif; font-size: 0.95rem; color: var(--baby-pink); margin-bottom: 6px; line-height: 1.3; }
+.cart-item-price { color: var(--royal-gold); font-family: 'Montserrat', sans-serif; font-size: 0.9rem; font-weight: 500; }
+.cart-item-remove { color: var(--rose-dark); cursor: pointer; font-size: 1.4rem; background: none; border: none; padding: 5px; transition: color 0.3s, transform 0.3s; }
+.cart-item-remove:hover { color: #FF4D4D; transform: scale(1.2); }
+.cart-footer { border-top: 1px solid rgba(221, 167, 176, 0.2); padding-top: 25px; margin-top: 20px; }
+.cart-total { display: flex; justify-content: space-between; font-size: 1.2rem; font-family: 'Playfair Display', serif; margin-bottom: 25px; color: var(--baby-pink); letter-spacing: 1px; }
+.checkout-btn {
+  background: var(--pink-gradient); color: #000; border: none; width: 100%; padding: 16px;
+  font-family: 'Montserrat', sans-serif; font-size: 0.85rem; font-weight: 700;
+  text-transform: uppercase; border-radius: 40px; cursor: pointer; letter-spacing: 2.5px;
+  box-shadow: 0 8px 20px rgba(221, 167, 176, 0.25); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.checkout-btn:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 12px 25px rgba(221, 167, 176, 0.5); }
+footer { position: relative; background: rgba(5, 2, 4, 0.95); padding: 70px 6% 30px; border-top: 1px solid rgba(221, 167, 176, 0.2); text-align: center; z-index: 2; }
+.thanks-note { font-family: 'Great Vibes', cursive; font-size: 3.5rem; color: var(--baby-pink); margin-bottom: 45px; opacity: 0.9; text-shadow: 0 2px 10px rgba(221,167,176,0.2); }
+.footer-content { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 45px; margin-bottom: 50px; text-align: left; }
+.footer-section { flex: 1 1 250px; }
+.footer-section h3 { font-family: 'Playfair Display', serif; color: var(--rose-gold); margin-bottom: 20px; font-size: 1.2rem; font-weight: 400; letter-spacing: 1.5px; text-transform: uppercase; }
+.footer-section p, .footer-section a { color: var(--text-muted); font-size: 0.85rem; line-height: 2.2; text-decoration: none; display: block; margin-bottom: 10px; transition: color 0.3s; }
+.footer-section a:hover { color: var(--baby-pink); padding-left: 5px; }
+.trust-badges { display: flex; gap: 12px; margin-top: 20px; align-items: center; flex-wrap: wrap; }
+.trust-badges span { background: rgba(221, 167, 176, 0.05); padding: 8px 15px; border-radius: 6px; font-size: 0.75rem; border: 1px solid rgba(221, 167, 176, 0.25); color: var(--baby-pink); letter-spacing: 1px; transition: background 0.3s; }
+.trust-badges span:hover { background: rgba(221, 167, 176, 0.15); }
+.copyright { border-top: 1px solid rgba(255,255,255,0.05); padding-top: 25px; color: #666; font-size: 0.8rem; letter-spacing: 1.5px; }
+@media (max-width: 768px) {
+  .intro-brand { font-size: 3.5rem; } .hero-title { font-size: 1.6rem; } .hero-subtitle { font-size: 2.5rem; }
+  .about-section { padding: 50px 6%; text-align: center; } .about-text h2 { font-size: 1.8rem; }
+  .footer-content { text-align: center; justify-content: center; } .trust-badges { justify-content: center; }
+  .categories-scroll { justify-content: flex-start; overflow-x: auto; padding-bottom: 15px; scrollbar-width: none; }
+  .category-pill { white-space: nowrap; } .logo-text { font-size: 1.6rem; }
+  .nav-logo-img { width: 35px; height: 35px; } .cart-btn { width: 40px; height: 40px; }
+  .section-header h2 { font-size: 2.5rem; }
+}
+</style>
+</head>
+<body>
+<div class="floating-icons-container" id="particles"></div>
+<div id="intro-screen">
+  <div class="intro-logo-wrapper">
+    <img src="https://images.unsplash.com/photo-1599643477874-5c366d20f667?q=80&w=300" alt="Lily & Pearl Logo">
+  </div>
+  <div class="intro-brand">Lily & Pearl</div>
+</div>
+<div id="main-content" style="opacity: 0; display: none;">
+<header id="navbar">
+  <a href="#" class="brand-container">
+    <img src="https://images.unsplash.com/photo-1599643477874-5c366d20f667?q=80&w=150" alt="Logo" class="nav-logo-img">
+    <span class="logo-text">Lily & Pearl</span>
+  </a>
+  <div class="nav-controls">
+    <button class="cart-btn" onclick="toggleCart()" aria-label="Open Cart">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+      </svg>
+      <span class="cart-badge" id="cartBadge">0</span>
+    </button>
+  </div>
+</header>
+<section class="hero">
+  <div class="hero-content">
+    <h1 class="hero-title">Welcome to Royalty</h1>
+    <p class="hero-subtitle">Discover the Elegance of Lily & Pearl</p>
+  </div>
+</section>
+<section class="about-section">
+  <div class="about-text">
+    <h2>A Legacy of Elegance</h2>
+    <p>Welcome to Lily & Pearl, where every piece tells a story of timeless beauty and regal sophistication. Crafted with the finest pearls, pure gold accents, and aesthetic perfection, our collections are designed to make you feel nothing less than royalty.</p>
+    <p>Incorporating delicate blush pink hues, opulent statement pieces, and hand-crafted mastery, we bring premium design to your everyday aesthetic. Established with passion, worn with unparalleled grace.</p>
+  </div>
+  <div class="about-image">
+    <img src="https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?q=80&w=1000" alt="Premium Rose Gold Jewelry Collection">
+  </div>
+</section>
+<section class="categories-container" id="collections">
+  <div class="categories-scroll">
+    <button class="category-pill active" onclick="filterProducts('All')">All Elegance</button>
+    <button class="category-pill" onclick="filterProducts('Necklace')">Necklaces</button>
+    <button class="category-pill" onclick="filterProducts('Bracelet')">Bracelets</button>
+    <button class="category-pill" onclick="filterProducts('Ring')">Rings</button>
+    <button class="category-pill" onclick="filterProducts('Earrings')">Earrings</button>
+  </div>
+</section>
+<section class="products-section">
+  <div class="section-header"><h2>The Royal Collection</h2></div>
+  <div class="product-grid" id="productGrid"></div>
+</section>
+<section class="reviews-section">
+  <div class="section-header"><h2>Whispers of the Court</h2></div>
+  <div class="reviews-grid">
+    <div class="review-card"><div class="stars">★★★★★</div><p class="review-text">"The Rose Gold Pendant I received is absolutely breathtaking. The attention to detail and the beautiful packaging made me feel like an absolute queen."</p><div class="reviewer">— Lady Eleanor, UK</div></div>
+    <div class="review-card"><div class="stars">★★★★★</div><p class="review-text">"I have never seen such clarity in jewelry design. The pieces float elegantly on the skin. Lily & Pearl is my new exclusive standard."</p><div class="reviewer">— Victoria S., NY</div></div>
+    <div class="review-card"><div class="stars">★★★★★</div><p class="review-text">"Purchased the Golden Pearl Hand Band. The subtle pink undertones in the gold are mesmerizing. Highly recommend this royal collection!"</p><div class="reviewer">— Sophia M., Paris</div></div>
+  </div>
+</section>
+<section class="newsletter-section">
+  <h2 class="newsletter-title">Join the Inner Circle</h2>
+  <p class="newsletter-desc">Subscribe to receive exclusive invitations to private collection launches, royal aesthetic tips, and premier access to our rarest pieces.</p>
+  <div class="newsletter-form">
+    <input type="email" id="newsletterEmail" placeholder="Enter your email address...">
+    <button onclick="subscribeNews()">Subscribe</button>
+  </div>
+</section>
+<footer>
+  <div class="thanks-note">Thank you for visiting our Royal Court</div>
+  <div class="footer-content">
+    <div class="footer-section"><h3>The Lily & Pearl Promise</h3><p>We represent the pinnacle of aesthetic, premium jewelry design. We believe in crafting heirloom pieces that transcend time, giving you a royal aesthetic with beautiful blush and gold elements every single day.</p></div>
+    <div class="footer-section"><h3>Connect & Discover</h3><a href="#" target="_blank">✨ Follow our Instagram</a><a href="#">🌸 Pinterest Aesthetics</a><a href="#">✉️ support@lilyandpearl.com</a><a href="#">📍 The Royal Arcade, Velvet District</a></div>
+    <div class="footer-section"><h3>Excellence & Trust</h3><p>100% Authenticity Guaranteed. Secured premium packaging in signature baby pink velvet. Fully insured worldwide shipping directly to your doorstep.</p><div class="trust-badges"><span>🔒 Secure Ordering</span><span>💎 Premium Finish</span><span>🛡️ Brand Certified</span></div></div>
+  </div>
+  <div class="copyright">© 2026 Lily & Pearl Aesthetic Jewelry. All Rights Reserved. Crafted for Royalty.</div>
+</footer>
+</div>
+<div class="cart-overlay" id="cartOverlay">
+  <div class="cart-modal">
+    <div class="cart-header"><h2>Royal Selection</h2><button class="close-cart" onclick="toggleCart()">×</button></div>
+    <div class="cart-items" id="cartItemsContainer"></div>
+    <div class="cart-footer">
+      <div class="cart-total"><span>Total Estimate:</span><span id="cartTotalValue">$0.00</span></div>
+      <button class="checkout-btn" onclick="processCheckout()">Complete Royal Order</button>
+    </div>
+  </div>
+</div>
+<script>
+function createParticles() {
+  const container = document.getElementById('particles');
+  const icons = ['✨', '🌸', '💎', '🤍', '✧', '✦'];
+  const numParticles = 25;
+  for (let i = 0; i < numParticles; i++) {
+    const el = document.createElement('div');
+    el.className = 'float-icon';
+    el.innerText = icons[Math.floor(Math.random() * icons.length)];
+    el.style.left = `${Math.random() * 100}vw`;
+    el.style.animationDelay = `${Math.random() * 20}s`;
+    container.appendChild(el);
+  }
+}
+window.addEventListener('DOMContentLoaded', () => {
+  createParticles();
+  setTimeout(() => {
+    const intro = document.getElementById('intro-screen');
+    const main = document.getElementById('main-content');
+    intro.style.opacity = '0';
+    setTimeout(() => {
+      intro.style.display = 'none';
+      main.style.display = 'block';
+      setTimeout(() => { main.style.opacity = '1'; main.style.transition = 'opacity 1.8s ease'; }, 100);
+    }, 1200);
+  }, 3500);
+});
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('navbar');
+  if (window.scrollY > 50) {
+    nav.style.background = 'rgba(10, 5, 8, 0.95)';
+    nav.style.borderBottom = '1px solid rgba(221, 167, 176, 0.4)';
+  } else {
+    nav.style.background = 'rgba(10, 5, 8, 0.75)';
+    nav.style.borderBottom = '1px solid rgba(221, 167, 176, 0.2)';
+  }
+});
+const products = [
+  { id: 1, category: "Necklace", name: "Imperial Rose Choker", price: 145.00, img: "https://images.unsplash.com/photo-1599643478524-fb66fa5320e5?q=80&w=500" },
+  { id: 2, category: "Ring", name: "Queen's Diamond Halo", price: 285.00, img: "https://images.unsplash.com/photo-1605100804763-247f6612148e?q=80&w=500" },
+  { id: 3, category: "Earrings", name: "Blush Tear Drop", price: 95.00, img: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=500" },
+  { id: 4, category: "Bracelet", name: "Pink Pearl Hand Band", price: 110.00, img: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?q=80&w=500" },
+  { id: 5, category: "Necklace", name: "Rose Gold Pendant", price: 125.00, img: "https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?q=80&w=500" },
+  { id: 6, category: "Ring", name: "Vintage Ruby Ring", price: 195.00, img: "https://images.unsplash.com/photo-1596944924616-7b38e7cf9361?q=80&w=500" },
+  { id: 7, category: "Bracelet", name: "Dainty Blush Chain", price: 75.00, img: "https://images.unsplash.com/photo-1573408301145-3fc1e860bc00?q=80&w=500" },
+  { id: 8, category: "Necklace", name: "Majestic Pearl Strand", price: 160.00, img: "https://images.unsplash.com/photo-1610633428808-620245228ab5?q=80&w=500" },
+  { id: 9, category: "Earrings", name: "Royal Sapphire Studs", price: 105.00, img: "https://images.unsplash.com/photo-1602751584552-8ba73aad10be?q=80&w=500" },
+  { id: 10, category: "Necklace", name: "Goddess Layered Chain", price: 155.00, img: "https://images.unsplash.com/photo-1583064327998-f29e1620a2cb?q=80&w=500" },
+  { id: 11, category: "Ring", name: "Eternity Rose Band", price: 230.00, img: "https://images.unsplash.com/photo-1600181516264-329ea1be6b14?q=80&w=500" },
+  { id: 12, category: "Bracelet", name: "Velvet Rope Cuff", price: 120.00, img: "https://images.unsplash.com/photo-1611652022419-e9477580b031?q=80&w=500" },
+  { id: 13, category: "Necklace", name: "Starlight Crystal Drop", price: 215.00, img: "https://images.unsplash.com/photo-1599643477874-5c366d20f667?q=80&w=500" },
+  { id: 14, category: "Earrings", name: "Golden Hoop Classics", price: 65.00, img: "https://images.unsplash.com/photo-1617265163155-227eb0c7b39a?q=80&w=500" },
+  { id: 15, category: "Ring", name: "Princess Cut Solitaire", price: 340.00, img: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=500" },
+  { id: 16, category: "Necklace", name: "Luna Crescent Chain", price: 85.00, img: "https://images.unsplash.com/photo-1543294001-f7cd5d7fb516?q=80&w=500" },
+  { id: 17, category: "Bracelet", name: "Zirconia Tennis Brace", price: 135.00, img: "https://images.unsplash.com/photo-1531995811006-35cb42e1a022?q=80&w=500" },
+  { id: 18, category: "Earrings", name: "Dangling Pearl Drops", price: 135.00, img: "https://images.unsplash.com/photo-1611652022419-e9477580b031?q=80&w=500" },
+  { id: 19, category: "Necklace", name: "Obsidian Heart Pendant", price: 175.00, img: "https://images.unsplash.com/photo-1610633428808-620245228ab5?q=80&w=500" },
+  { id: 20, category: "Ring", name: "Minimalist Stack", price: 105.00, img: "https://images.unsplash.com/photo-1605100804763-247f6612148e?q=80&w=500" },
+  { id: 21, category: "Bracelet", name: "Twisted Gold Bangle", price: 150.00, img: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?q=80&w=500" },
+  { id: 22, category: "Necklace", name: "Opal Sunburst Chain", price: 190.00, img: "https://images.unsplash.com/photo-1599643478524-fb66fa5320e5?q=80&w=500" },
+  { id: 23, category: "Earrings", name: "Chandelier Drops", price: 160.00, img: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=500" },
+  { id: 24, category: "Ring", name: "Morganite Blush Ring", price: 275.00, img: "https://images.unsplash.com/photo-1596944924616-7b38e7cf9361?q=80&w=500" }
+];
+let cart = [];
+const productGrid = document.getElementById('productGrid');
+function displayProducts(productArray) {
+  productGrid.innerHTML = '';
+  if (productArray.length === 0) {
+    productGrid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--baby-pink); font-family: Playfair Display; font-size: 1.2rem;">No royal pieces found in this exclusive category.</p>';
+    return;
+  }
+  productArray.forEach(prod => {
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    card.innerHTML = `
+      <div class="image-wrapper"><img src="${prod.img}" alt="${prod.name}" class="product-image" loading="lazy"></div>
+      <div class="product-category">${prod.category}</div>
+      <h3 class="product-title">${prod.name}</h3>
+      <div class="product-price">$${prod.price.toFixed(2)}</div>
+      <button class="add-to-cart" onclick="addToCart(${prod.id}, this)">Add to Cart</button>
+    `;
+    productGrid.appendChild(card);
+  });
+}
+displayProducts(products);
+window.filterProducts = function(category) {
+  document.querySelectorAll('.category-pill').forEach(pill => {
+    pill.classList.remove('active');
+    const btnText = pill.innerText.trim();
+    if(category === 'All' && btnText === 'All Elegance') pill.classList.add('active');
+    else if (category === 'Necklace' && btnText === 'Necklaces') pill.classList.add('active');
+    else if (category === 'Bracelet' && btnText === 'Bracelets') pill.classList.add('active');
+    else if (category === 'Ring' && btnText === 'Rings') pill.classList.add('active');
+    else if (category === 'Earrings' && btnText === 'Earrings') pill.classList.add('active');
+  });
+  if(category === 'All') { displayProducts(products); }
+  else { const filtered = products.filter(p => p.category === category); displayProducts(filtered); }
+}
+window.toggleCart = function() {
+  const overlay = document.getElementById('cartOverlay');
+  overlay.classList.toggle('open');
+}
+window.addToCart = function(productId, btnElement) {
+  const product = products.find(p => p.id === productId);
+  cart.push(product);
+  updateCartUI();
+  const originalText = btnElement.innerText;
+  btnElement.innerText = 'Secured!';
+  btnElement.style.background = 'var(--pink-gradient)';
+  btnElement.style.color = '#000';
+  btnElement.style.borderColor = 'transparent';
+  btnElement.style.boxShadow = '0 0 15px rgba(221, 167, 176, 0.6)';
+  setTimeout(() => {
+    btnElement.innerText = originalText;
+    btnElement.style.background = 'transparent';
+    btnElement.style.color = 'var(--baby-pink)';
+    btnElement.style.border = '1px solid var(--rose-gold)';
+    btnElement.style.boxShadow = 'none';
+  }, 1200);
+}
+window.removeFromCart = function(index) { cart.splice(index, 1); updateCartUI(); }
+function updateCartUI() {
+  document.getElementById('cartBadge').innerText = cart.length;
+  const container = document.getElementById('cartItemsContainer');
+  container.innerHTML = '';
+  let total = 0;
+  if(cart.length === 0) {
+    container.innerHTML = '<p style="color:var(--text-muted); text-align:center; margin-top:40px; font-style:italic; font-family: Playfair Display;">Your royal selection is currently empty.</p>';
+  } else {
+    cart.forEach((item, index) => {
+      total += item.price;
+      const el = document.createElement('div');
+      el.className = 'cart-item';
+      el.innerHTML = `
+        <div class="cart-item-img-wrap"><img src="${item.img}" alt="${item.name}"></div>
+        <div class="cart-item-details"><div class="cart-item-title">${item.name}</div><div class="cart-item-price">$${item.price.toFixed(2)}</div></div>
+        <button class="cart-item-remove" onclick="removeFromCart(${index})">&times;</button>
+      `;
+      container.appendChild(el);
+    });
+  }
+  document.getElementById('cartTotalValue').innerText = `$${total.toFixed(2)}`;
+}
+window.processCheckout = function() {
+  if (cart.length === 0) { alert("Please add items to your royal selection before proceeding."); return; }
+  let message = "Greetings Lily & Pearl!%0A%0AI would like to complete my royal order selection today:%0A%0A";
+  let total = 0;
+  cart.forEach((item, index) => {
+    message += `${index + 1}. ${item.name} - $${item.price.toFixed(2)}%0A`;
+    total += item.price;
+  });
+  message += `%0A*Total Estimate: $${total.toFixed(2)}*%0A%0APlease assist me with the final delivery details for this exquisite collection.`;
+  const fakeContactNumber = "12345678900";
+  const hiddenUrl = `https://wa.me/${fakeContactNumber}?text=${message}`;
+  window.open(hiddenUrl, '_blank');
+}
+window.subscribeNews = function() {
+  const email = document.getElementById('newsletterEmail').value;
+  if(!email || !email.includes('@')) { alert('Please enter a valid royal email address.'); return; }
+  alert(`Welcome to the Inner Circle, ${email}! Your royal invitation is on its way.`);
+  document.getElementById('newsletterEmail').value = '';
+}
+</script>
+</body>
+</html>
