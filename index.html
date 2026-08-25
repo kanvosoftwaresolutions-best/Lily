@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Lily & Pearl | Aesthetic Jewellery</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* === COLOR PALETTE & VARIABLES === */
+        :root {
+            --golden-rose: #d4af37; /* Adjusted to a more aesthetic golden rose */
+            --golden-rose-light: #f3e5ab;
+            --baby-pink: #ffd1dc;
+            --baby-pink-trans: rgba(255, 209, 220, 0.4);
+            --blue-sky: #87ceeb;
+            --blue-sky-trans: rgba(135, 206, 235, 0.3);
+            
+            --text-main: #333333;
+            --text-muted: #555555;
+            
+            --glass-bg: rgba(255, 255, 255, 0.25);
+            --glass-border: rgba(255, 255, 255, 0.5);
+            --glass-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            
+            --font-cursive: 'Alex Brush', cursive;
+            --font-body: 'Poppins', sans-serif;
+        }
+
+        /* === GLOBAL RESETS & TYPOGRAPHY === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-main);
+            font-size: 11px; /* Normal to small fit */
+            line-height: 1.4;
+            overflow-x: hidden;
+            background-color: #fff9fa;
+        }
+
+        /* Hide scrollbars for horizontal scrolling areas */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* === 1. SPLASH SCREEN ANIMATION === */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, var(--baby-pink), #ffffff, var(--blue-sky));
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            animation: fadeOutSplash 0.8s ease-in-out 3s forwards;
+        }
+
+        .splash-logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--golden-rose);
+            box-shadow: 0 0 20px var(--blue-sky-trans);
+            animation: pulse 1.5s infinite alternate;
+        }
+
+        .splash-text {
+            font-family: var(--font-cursive);
+            font-size: 32px;
+            color: #b76e79;
+            margin-top: 15px;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: textAppear 1s ease-out 0.5s forwards;
+        }
+
+        @keyframes pulse {
+            from { transform: scale(0.95); }
+            to { transform: scale(1.05); box-shadow: 0 0 30px var(--baby-pink); }
+        }
+        @keyframes textAppear {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeOutSplash {
+            to { opacity: 0; visibility: hidden; }
+        }
+
+        /* === 2. TOP NAVBAR === */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 55px;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1.5px solid var(--blue-sky);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 15px;
+            z-index: 1000;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-logo {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            border: 1px solid var(--golden-rose);
+            object-fit: cover;
+        }
+
+        .nav-title {
+            font-family: var(--font-cursive);
+            font-size: 22px;
+            color: #b76e79;
+            font-weight: bold;
+        }
+
+        .cart-icon-wrapper {
+            position: relative;
+            background: var(--baby-pink-trans);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--golden-rose);
+            color: #333;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            background: var(--blue-sky);
+            color: #fff;
+            font-size: 9px;
+            font-weight: bold;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* === 3. & 4. BACKGROUNDS & SCROLL EFFECT === */
+        /* Persistent Background (Bracelet) */
+        .bg-bracelet {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: url('https://images.unsplash.com/photo-1611591475113-5a0225d3042a?q=80&w=600&auto=format&fit=crop') center/cover no-repeat;
+            opacity: 0.65; /* 65-70% visibility */
+            z-index: -2;
+        }
+
+        /* Initial Background (Necklace Girl) */
+        .bg-necklace-girl {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: url('https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=600&auto=format&fit=crop') center/cover no-repeat;
+            z-index: -1;
+            transition: opacity 0.5s ease-out, transform 0.6s ease-out;
+        }
+
+        /* First View Hero Section */
+        .hero-section {
+            width: 100%;
+            height: 100vh;
+            padding-top: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hero-glass-box {
+            background: var(--glass-bg);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1.5px solid var(--golden-rose);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            width: 85%;
+            max-width: 320px;
+            box-shadow: 0 8px 32px var(--blue-sky-trans);
+        }
+
+        .hero-title {
+            font-family: var(--font-cursive);
+            font-size: 34px;
+            color: #b76e79;
+            margin-bottom: 10px;
+            line-height: 1;
+        }
+
+        .hero-note {
+            font-size: 11px;
+            color: #222;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        /* === MAIN CONTENT CONTAINER === */
+        .main-content {
+            padding: 20px 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* === 5. ABOUT SECTION === */
+        .glass-container {
+            background: rgba(255, 255, 255, 0.35);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--blue-sky);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 25px;
+        }
+
+        .section-heading {
+            font-family: var(--font-cursive);
+            font-size: 24px;
+            color: #b76e79;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .specialty-bar {
+            background: linear-gradient(90deg, rgba(255,209,220,0.6), rgba(135,206,235,0.4));
+            border-left: 3px solid var(--golden-rose);
+            padding: 8px 10px;
+            margin-bottom: 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-right: 1px solid var(--blue-sky);
+        }
+
+        /* === HORIZONTAL SEARCH & CATEGORY BAR === */
+        .filter-container {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(5px);
+            border: 1px solid var(--baby-pink);
+            border-radius: 25px;
+            padding: 5px;
+            margin-bottom: 20px;
+        }
+
+        .search-part {
+            width: 20%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-right: 1px solid var(--golden-rose-light);
+            color: #b76e79;
+            font-size: 12px;
+        }
+
+        .category-scroll {
+            width: 80%;
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 0 10px;
+            scroll-behavior: smooth;
+        }
+
+        .cat-btn {
+            background: rgba(255,255,255,0.7);
+            border: 1px solid var(--blue-sky);
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 10px;
+            white-space: nowrap;
+            color: var(--text-main);
+            font-family: var(--font-body);
+            cursor: pointer;
+            font-weight: 500;
+        }
+        .cat-btn.active {
+            background: var(--golden-rose);
+            color: #fff;
+            border-color: var(--golden-rose);
+        }
+
+        /* === 20+ PRODUCTS GRID === */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--blue-sky);
+            border-radius: 10px;
+            padding: 8px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: var(--glass-shadow);
+        }
+
+        .product-img {
+            width: 100%;
+            height: 120px;
+            border-radius: 8px;
+            object-fit: cover;
+            margin-bottom: 6px;
+        }
+
+        .product-name {
+            font-size: 10px;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-bottom: 4px;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .product-price {
+            font-size: 11px;
+            font-weight: bold;
+            color: #b76e79;
+        }
+
+        .add-btn {
+            background: var(--baby-pink);
+            border: 1px solid var(--golden-rose);
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-size: 9px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #333;
+        }
+
+        /* === 6. VIP PRODUCTS === */
+        .vip-scroll {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+        }
+
+        .vip-card {
+            min-width: 180px;
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(10px);
+            border: 2px solid var(--golden-rose);
+            border-radius: 12px;
+            padding: 10px;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .vip-badge {
+            position: absolute;
+            top: -8px;
+            left: 10px;
+            background: var(--golden-rose);
+            color: #fff;
+            font-size: 8px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .vip-card .product-img {
+            height: 140px;
+        }
+        .vip-card .product-name {
+            font-size: 11px;
+        }
+
+        /* === WHATSAPP INVITATION === */
+        .wa-invitation {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(8px);
+            border: 1.5px dashed var(--golden-rose);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .wa-title {
+            color: #25D366;
+            font-weight: bold;
+            font-size: 12px;
+            margin-bottom: 6px;
+        }
+
+        .wa-input-row {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .wa-input {
+            flex: 1;
+            padding: 6px 10px;
+            border: 1px solid var(--blue-sky);
+            border-radius: 6px;
+            font-size: 10px;
+            outline: none;
+            background: rgba(255,255,255,0.8);
+        }
+
+        .wa-join-btn {
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 10px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* === REVIEWS HORIZONTAL === */
+        .reviews-scroll {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+        }
+
+        .review-box {
+            min-width: 200px;
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--baby-pink);
+            border-radius: 10px;
+            padding: 10px;
+            flex-shrink: 0;
+        }
+        
+        .stars { color: #d4af37; font-size: 9px; margin-bottom: 4px; }
+        .reviewer-name { font-weight: bold; font-size: 10px; }
+        .review-text { font-size: 9px; color: var(--text-muted); margin-top: 3px; font-style: italic; }
+
+        /* === FAQS === */
+        .faq-item {
+            border-bottom: 1px solid var(--blue-sky-trans);
+            padding: 10px 0;
+        }
+        .faq-question {
+            font-weight: 600;
+            font-size: 11px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+        .faq-answer {
+            font-size: 10px;
+            color: var(--text-muted);
+            margin-top: 5px;
+            display: none;
+        }
+
+        /* === FOOTER === */
+        .footer-note {
+            text-align: center;
+            font-size: 10px;
+            color: var(--text-muted);
+            margin: 30px 0 15px;
+            font-style: italic;
+        }
+
+        .fake-certs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        .cert-chip {
+            background: rgba(255,255,255,0.6);
+            border: 1px solid var(--golden-rose);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 8px;
+            font-weight: bold;
+            color: #555;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* === CART SIDE DRAWER === */
+        .cart-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(0,0,0,0.4);
+            z-index: 1999;
+            display: none;
+            backdrop-filter: blur(2px);
+        }
+        .cart-overlay.active { display: block; }
+
+        .cart-drawer {
+            position: fixed;
+            top: 0; right: -100%;
+            width: 85%; max-width: 320px;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            z-index: 2000;
+            transition: right 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            border-left: 2px solid var(--golden-rose);
+        }
+        .cart-drawer.active { right: 0; }
+
+        .cart-header {
+            padding: 15px;
+            border-bottom: 1px solid var(--blue-sky);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            font-size: 14px;
+            color: #b76e79;
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 15px;
+        }
+
+        .cart-item-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            border-bottom: 1px dashed #ccc;
+            padding-bottom: 10px;
+        }
+        .c-item-img {
+            width: 45px; height: 45px;
+            border-radius: 6px;
+            object-fit: cover;
+            border: 1px solid var(--baby-pink);
+        }
+        .c-item-details { flex: 1; }
+        .c-item-name { font-size: 10px; font-weight: bold; }
+        .c-item-price { font-size: 10px; color: var(--text-muted); }
+        
+        .qty-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 4px;
+        }
+        .qty-btn {
+            background: var(--blue-sky-trans);
+            border: 1px solid var(--blue-sky);
+            width: 20px; height: 20px;
+            border-radius: 3px;
+            font-size: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        .cart-footer {
+            padding: 15px;
+            border-top: 1px solid var(--golden-rose);
+            background: rgba(255,209,220,0.2);
+        }
+        .cart-total {
+            display: flex; justify-content: space-between;
+            font-weight: bold; font-size: 12px; margin-bottom: 10px;
+        }
+        .checkout-btn {
+            width: 100%;
+            background: var(--golden-rose);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. SPLASH SCREEN -->
+    <div id="splash-screen">
+        <img src="1000004716_2.jpg" alt="Logo" class="splash-logo">
+        <div class="splash-text">Lily & Pearl</div>
+    </div>
+
+    <!-- 2. TOP NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <img src="1000004716_2.jpg" alt="Logo" class="nav-logo">
+            <span class="nav-title">Lily & Pearl</span>
+        </div>
+        <div class="cart-icon-wrapper" onclick="toggleCart()">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span class="cart-badge" id="cart-count">0</span>
+        </div>
+    </nav>
+
+    <!-- 3 & 4. FIXED BACKGROUNDS -->
+    <div class="bg-bracelet"></div>
+    <div class="bg-necklace-girl" id="bg-necklace"></div>
+
+    <!-- HERO SECTION (1st View) -->
+    <section class="hero-section">
+        <div class="hero-glass-box">
+            <h1 class="hero-title">Lily & Pearl</h1>
+            <p class="hero-note">
+                Welcome to a world of delicate aesthetics.<br>
+                Discover minimalist jewelry that whispers elegance.<br>
+                Crafted with love, golden rose tones, and pure pearls.<br>
+                Enhance your everyday look with our curated collection.<br>
+                Experience the beauty of subtle luxury today.
+            </p>
+        </div>
+    </section>
+
+    <!-- MAIN SCROLLABLE CONTENT -->
+    <main class="main-content">
+        
+        <!-- 5. ABOUT & SPECIALTIES -->
+        <div class="glass-container">
+            <h2 class="section-heading">About Us</h2>
+            <div class="specialty-bar">
+                <i class="fa-solid fa-gem" style="color:#b76e79;"></i> 
+                <span>Aesthetic & Minimalist High Quality Designs</span>
+            </div>
+            <div class="specialty-bar">
+                <i class="fa-solid fa-leaf" style="color:#b76e79;"></i> 
+                <span>100% Skin Safe & Hypoallergenic Materials</span>
+            </div>
+            <div class="specialty-bar">
+                <i class="fa-solid fa-gift" style="color:#b76e79;"></i> 
+                <span>Beautifully Customised Gifting Options</span>
+            </div>
+        </div>
+
+        <!-- SEARCH & HORIZONTAL CATEGORY SCROLL -->
+        <div class="filter-container">
+            <div class="search-part">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <div class="category-scroll">
+                <div class="cat-btn active" onclick="filterProducts('All')">All</div>
+                <div class="cat-btn" onclick="filterProducts('Necklace')">Necklace</div>
+                <div class="cat-btn" onclick="filterProducts('Bracelet')">Bracelet</div>
+                <div class="cat-btn" onclick="filterProducts('Pendant')">Pendant</div>
+                <div class="cat-btn" onclick="filterProducts('Earrings')">Earrings</div>
+                <div class="cat-btn" onclick="filterProducts('Rings')">Rings</div>
+            </div>
+        </div>
+
+        <!-- 20+ PRODUCTS GRID -->
+        <div class="products-grid" id="product-grid">
+            <!-- Injected via JS -->
+        </div>
+
+        <!-- 6. VIP PRODUCTS -->
+        <div class="glass-container" style="padding: 15px 10px;">
+            <h2 class="section-heading" style="font-size: 20px;">VIP Collection</h2>
+            <div class="vip-scroll" id="vip-container">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+
+        <!-- WHATSAPP LIVE INVITATION -->
+        <div class="wa-invitation">
+            <div class="wa-title"><i class="fa-brands fa-whatsapp"></i> Join VIP Secret Club</div>
+            <p style="font-size: 9px; color: var(--text-muted);">Enter your number to directly reach our admin and get live invitation & discounts!</p>
+            <div class="wa-input-row">
+                <input type="tel" id="wa-number" class="wa-input" placeholder="Enter WhatsApp No.">
+                <button class="wa-join-btn" onclick="joinWa()">Join Now</button>
+            </div>
+        </div>
+
+        <!-- REVIEWS -->
+        <div class="glass-container" style="padding: 15px 10px;">
+            <h2 class="section-heading" style="font-size: 20px;">Client Love</h2>
+            <div class="reviews-scroll">
+                <div class="review-box">
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <div class="reviewer-name">Anjali Verma</div>
+                    <div class="review-text">"So aesthetic! The golden rose polish looks extremely premium on my skin."</div>
+                </div>
+                <div class="review-box">
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+                    <div class="reviewer-name">Sneha R.</div>
+                    <div class="review-text">"The baby pink packaging and the pearl bracelet... absolute perfection!"</div>
+                </div>
+                <div class="review-box">
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <div class="reviewer-name">Priya M.</div>
+                    <div class="review-text">"Transparent tracking and beautiful minimalist necklace. Highly recommended."</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQS -->
+        <div class="glass-container">
+            <h2 class="section-heading" style="font-size: 20px;">FAQs</h2>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Is the jewelry anti-tarnish?</span>
+                    <i class="fa-solid fa-chevron-down" style="font-size: 9px; color: var(--golden-rose);"></i>
+                </div>
+                <div class="faq-answer">Yes, our pieces are coated with a special anti-tarnish layer to preserve the golden rose aesthetic.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>How long is shipping?</span>
+                    <i class="fa-solid fa-chevron-down" style="font-size: 9px; color: var(--golden-rose);"></i>
+                </div>
+                <div class="faq-answer">Pan-India delivery takes 3-5 working days.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Do you customize?</span>
+                    <i class="fa-solid fa-chevron-down" style="font-size: 9px; color: var(--golden-rose);"></i>
+                </div>
+                <div class="faq-answer">Absolutely, reach out to our admin via WhatsApp for custom initials or pearl setups.</div>
+            </div>
+        </div>
+
+        <!-- THANK YOU NOTE & FOOTER -->
+        <p class="footer-note">
+            Thank you for reaching Lily & Pearl.<br>
+            We hope our minimalist aesthetics bring a smile to your face.<br>
+            Stay beautiful, stay delicate.
+        </p>
+
+        <div class="fake-certs">
+            <div class="cert-chip"><i class="fa-solid fa-shield-halved" style="color:var(--blue-sky);"></i> ISO 9001:2015</div>
+            <div class="cert-chip"><i class="fa-solid fa-gem" style="color:var(--golden-rose);"></i> 100% Authentic Pearls</div>
+            <div class="cert-chip"><i class="fa-solid fa-lock" style="color:var(--blue-sky);"></i> Secured Checkout</div>
+        </div>
+        
+    </main>
+
+    <!-- CART SIDE DRAWER -->
+    <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
+    <div class="cart-drawer" id="cart-drawer">
+        <div class="cart-header">
+            <span>Your Cart</span>
+            <i class="fa-solid fa-xmark" style="cursor: pointer; color: #333;" onclick="toggleCart()"></i>
+        </div>
+        <div class="cart-items" id="cart-items-container">
+            <!-- JS dynamically injects items -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total Amount:</span>
+                <span id="cart-total-price">₹ 0</span>
+            </div>
+            <!-- CHECKOUT ON WHATSAPP BUTTON BUT SAYS ONLY CHECKOUT -->
+            <button class="checkout-btn" onclick="processCheckout()">Checkout</button>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // --- SCROLL ANIMATION FOR HERO BACKGROUND ---
+        window.addEventListener('scroll', () => {
+            const bgNecklace = document.getElementById('bg-necklace');
+            const scrollThreshold = window.innerHeight * 0.3; // 30% of 1st view
+            
+            if (window.scrollY > scrollThreshold) {
+                // Scroll up effect & disappear
+                bgNecklace.style.opacity = '0';
+                bgNecklace.style.transform = 'translateY(-40px)';
+            } else {
+                // Comes back when scrolled to top
+                bgNecklace.style.opacity = '1';
+                bgNecklace.style.transform = 'translateY(0)';
+            }
+        });
+
+        // --- PRODUCT DATA (20+) ---
+        const products = [
+            { id: 1, name: "Pearl Drop Minimalist", cat: "Necklace", price: 699, img: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=300&auto=format&fit=crop" },
+            { id: 2, name: "Aesthetic Sky Chain", cat: "Bracelet", price: 499, img: "https://images.unsplash.com/photo-1611591475113-5a0225d3042a?q=80&w=300&auto=format&fit=crop" },
+            { id: 3, name: "Rose Gold Initial", cat: "Pendant", price: 599, img: "https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?q=80&w=300&auto=format&fit=crop" },
+            { id: 4, name: "Baby Pink Studs", cat: "Earrings", price: 299, img: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=300&auto=format&fit=crop" },
+            { id: 5, name: "Delicate Pearl Ring", cat: "Rings", price: 349, img: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=300&auto=format&fit=crop" },
+            { id: 6, name: "Moonlight Choker", cat: "Necklace", price: 899, img: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=300&auto=format&fit=crop" },
+            { id: 7, name: "Infinity Rose Cuff", cat: "Bracelet", price: 549, img: "https://images.unsplash.com/photo-1573408301185-9146fe634ad0?q=80&w=300&auto=format&fit=crop" },
+            { id: 8, name: "Crystal Tear Pendant", cat: "Pendant", price: 649, img: "https://images.unsplash.com/photo-1599643477877-530eb83abc8e?q=80&w=300&auto=format&fit=crop" },
+            { id: 9, name: "Aesthetic Hoop Rings", cat: "Earrings", price: 399, img: "https://images.unsplash.com/photo-1630019852942-f89202989a59?q=80&w=300&auto=format&fit=crop" },
+            { id: 10, name: "Golden Leaf Band", cat: "Rings", price: 449, img: "https://images.unsplash.com/photo-1603561591411-07134e71a2a9?q=80&w=300&auto=format&fit=crop" },
+            { id: 11, name: "Layered Pearl Chain", cat: "Necklace", price: 999, img: "https://images.unsplash.com/photo-1506630448388-4e683c67ddb0?q=80&w=300&auto=format&fit=crop" },
+            { id: 12, name: "Subtle Charm Bangle", cat: "Bracelet", price: 599, img: "https://images.unsplash.com/photo-1611591475113-5a0225d3042a?q=80&w=300&auto=format&fit=crop" },
+            { id: 13, name: "Starry Night Pendant", cat: "Pendant", price: 749, img: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=300&auto=format&fit=crop" },
+            { id: 14, name: "Rose Drop Earrings", cat: "Earrings", price: 499, img: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=300&auto=format&fit=crop" },
+            { id: 15, name: "Minimal Heart Ring", cat: "Rings", price: 299, img: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=300&auto=format&fit=crop" },
+            { id: 16, name: "Vintage Pearl Collar", cat: "Necklace", price: 1099, img: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=300&auto=format&fit=crop" },
+            { id: 17, name: "Sky Gem Bracelet", cat: "Bracelet", price: 699, img: "https://images.unsplash.com/photo-1573408301185-9146fe634ad0?q=80&w=300&auto=format&fit=crop" },
+            { id: 18, name: "Golden Sun Pendant", cat: "Pendant", price: 549, img: "https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?q=80&w=300&auto=format&fit=crop" },
+            { id: 19, name: "Dainty Stud Pair", cat: "Earrings", price: 349, img: "https://images.unsplash.com/photo-1630019852942-f89202989a59?q=80&w=300&auto=format&fit=crop" },
+            { id: 20, name: "Twisted Aesthetic Ring", cat: "Rings", price: 399, img: "https://images.unsplash.com/photo-1603561591411-07134e71a2a9?q=80&w=300&auto=format&fit=crop" },
+            { id: 21, name: "Elegance Pearl Strand", cat: "Necklace", price: 1299, img: "https://images.unsplash.com/photo-1506630448388-4e683c67ddb0?q=80&w=300&auto=format&fit=crop" }
+        ];
+
+        // --- VIP PRODUCTS (4) ---
+        const vipProducts = [
+            { id: 101, name: "VIP Royal Pearl Choker", price: 2499, img: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=300&auto=format&fit=crop" },
+            { id: 102, name: "VIP Golden Rose Heirloom", price: 1999, img: "https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?q=80&w=300&auto=format&fit=crop" },
+            { id: 103, name: "VIP Blue Sky Diamond Cuff", price: 1799, img: "https://images.unsplash.com/photo-1573408301185-9146fe634ad0?q=80&w=300&auto=format&fit=crop" },
+            { id: 104, name: "VIP Aesthetic Solitaire Set", price: 2999, img: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=300&auto=format&fit=crop" }
+        ];
+
+        let cart = [];
+
+        // --- INITIAL RENDER ---
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProducts(products);
+            renderVipProducts();
+        });
+
+        function renderProducts(items) {
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = '';
+            items.forEach(p => {
+                grid.innerHTML += `
+                    <div class="product-card">
+                        <img src="${p.img}" alt="${p.name}" class="product-img" loading="lazy">
+                        <div class="product-name">${p.name}</div>
+                        <div class="price-row">
+                            <span class="product-price">₹${p.price}</span>
+                            <button class="add-btn" onclick="addToCart(${p.id}, false)">Add <i class="fa-solid fa-plus" style="font-size:7px;"></i></button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function renderVipProducts() {
+            const container = document.getElementById('vip-container');
+            vipProducts.forEach(p => {
+                container.innerHTML += `
+                    <div class="vip-card">
+                        <div class="vip-badge">VIP Exclusive</div>
+                        <img src="${p.img}" alt="${p.name}" class="product-img" loading="lazy">
+                        <div class="product-name">${p.name}</div>
+                        <div class="price-row">
+                            <span class="product-price">₹${p.price}</span>
+                            <button class="add-btn" style="background:var(--golden-rose); color:white;" onclick="addToCart(${p.id}, true)">Add <i class="fa-solid fa-plus" style="font-size:7px;"></i></button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // --- FILTER FUNCTION ---
+        function filterProducts(cat) {
+            // Update active styling
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if(btn.innerText === cat) btn.classList.add('active');
+            });
+
+            if (cat === 'All') {
+                renderProducts(products);
+            } else {
+                const filtered = products.filter(p => p.cat === cat);
+                renderProducts(filtered);
+            }
+        }
+
+        // --- CART LOGIC ---
+        function addToCart(id, isVip) {
+            const sourceArr = isVip ? vipProducts : products;
+            const product = sourceArr.find(p => p.id === id);
+            
+            const existing = cart.find(item => item.id === id);
+            if (existing) {
+                existing.qty++;
+            } else {
+                cart.push({ ...product, qty: 1 });
+            }
+            updateCartUI();
+        }
+
+        function updateQty(id, change) {
+            const item = cart.find(i => i.id === id);
+            if (item) {
+                item.qty += change;
+                if (item.qty <= 0) {
+                    cart = cart.filter(i => i.id !== id);
+                }
+            }
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            // Update Badge
+            const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+            document.getElementById('cart-count').innerText = totalItems;
+
+            // Render Items
+            const container = document.getElementById('cart-items-container');
+            if (cart.length === 0) {
+                container.innerHTML = `<div style="text-align:center; color:#888; font-size: 11px; margin-top:20px;">Your cart is empty.</div>`;
+                document.getElementById('cart-total-price').innerText = `₹ 0`;
+                return;
+            }
+
+            let total = 0;
+            container.innerHTML = cart.map(item => {
+                total += item.price * item.qty;
+                return `
+                    <div class="cart-item-row">
+                        <img src="${item.img}" class="c-item-img">
+                        <div class="c-item-details">
+                            <div class="c-item-name">${item.name}</div>
+                            <div class="c-item-price">₹${item.price}</div>
+                            <div class="qty-controls">
+                                <button class="qty-btn" onclick="updateQty(${item.id}, -1)">-</button>
+                                <span style="font-size:11px; font-weight:bold;">${item.qty}</span>
+                                <button class="qty-btn" onclick="updateQty(${item.id}, 1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            document.getElementById('cart-total-price').innerText = `₹ ${total}`;
+        }
+
+        function toggleCart() {
+            document.getElementById('cart-drawer').classList.toggle('active');
+            document.getElementById('cart-overlay').classList.toggle('active');
+        }
+
+        // --- CHECKOUT VIA WHATSAPP (FAKE NUMBER) ---
+        function processCheckout() {
+            if (cart.length === 0) {
+                alert("Please add items to your cart first.");
+                return;
+            }
+            const fakeAdminNo = "919876543210"; 
+            let msg = "Hello Lily %26 Pearl! I would like to order:%0A%0A";
+            let total = 0;
+            
+            cart.forEach(item => {
+                msg += `- ${item.name} (x${item.qty}) : ₹${item.price * item.qty}%0A`;
+                total += item.price * item.qty;
+            });
+            
+            msg += `%0A*Total Payable: ₹${total}*%0A%0APlease process my order.`;
+            
+            window.open(`https://wa.me/${fakeAdminNo}?text=${msg}`, '_blank');
+        }
+
+        // --- WHATSAPP LIVE GROUP INVITATION ---
+        function joinWa() {
+            const num = document.getElementById('wa-number').value.trim();
+            if (!num || num.length < 10) {
+                alert("Please enter a valid number");
+                return;
+            }
+            const fakeAdminNo = "919876543210";
+            const msg = `Hi Admin, please add my number (${num}) to the Lily %26 Pearl VIP Group for live updates!`;
+            window.open(`https://wa.me/${fakeAdminNo}?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        // --- FAQ TOGGLE ---
+        function toggleFaq(el) {
+            const answer = el.nextElementSibling;
+            const icon = el.querySelector('i');
+            if (answer.style.display === "block") {
+                answer.style.display = "none";
+                icon.style.transform = "rotate(0deg)";
+            } else {
+                answer.style.display = "block";
+                icon.style.transform = "rotate(180deg)";
+            }
+        }
+    </script>
+</body>
+</html>
