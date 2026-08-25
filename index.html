@@ -1,0 +1,2444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lily & Pearl | Haute Aesthetic & Fine Jewelry</title>
+    <!-- Google Fonts for Premium & Cute Aesthetic -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* -------------------------------------
+           CSS Variables & Global Resets
+           ------------------------------------- */
+        :root {
+            --rose-gold: #B76E79;
+            --rose-gold-dark: #8C4A54;
+            --rose-gold-light: #E0BFB8;
+            --baby-pink: #FADADD;
+            --baby-pink-light: #FFF0F5;
+            --baby-pink-dark: #F4C2C2;
+            --sky-blue: #AEE2FF;
+            --sky-blue-dark: #70B8DF;
+            --mint-soft: #E8F5E9;
+            --text-dark: #2C1E1E;
+            --text-muted: #6E5A5A;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --pink-gradient: linear-gradient(135deg, #FADADD, #FFF0F5, #E0BFB8, #F4C2C2);
+            --gold-rose-gradient: linear-gradient(135deg, #B76E79, #E0BFB8, #FADADD, #B76E79);
+            --sky-gradient: linear-gradient(135deg, #AEE2FF, #E0BFB8, #FADADD);
+            --shadow-soft: 0 10px 30px rgba(183, 110, 121, 0.12);
+            --shadow-hover: 0 18px 40px rgba(183, 110, 121, 0.25);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px; 
+            color: var(--text-dark);
+            background-color: #FFF0F5;
+            overflow-x: hidden;
+        }
+
+        /* -------------------------------------
+           Custom Scrollbar
+           ------------------------------------- */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FFF0F5; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--rose-gold-light); 
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--rose-gold); 
+        }
+
+        /* -------------------------------------
+           Announcement Top Ribbon
+           ------------------------------------- */
+        .announcement-bar {
+            background: var(--gold-rose-gradient);
+            color: white;
+            text-align: center;
+            padding: 8px 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 1001;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .announcement-bar span.code {
+            background: rgba(255, 255, 255, 0.3);
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-weight: 700;
+        }
+
+        /* -------------------------------------
+           Enhanced Intro Screen
+           ------------------------------------- */
+        #intro-screen {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: radial-gradient(circle at center, var(--baby-pink) 0%, #FFD1DC 50%, var(--rose-gold) 100%);
+            z-index: 99999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 1.2s ease-in-out, visibility 1.2s;
+        }
+
+        .intro-logo-container {
+            position: relative;
+        }
+
+        .intro-logo-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--rose-gold);
+            box-shadow: 0 0 50px rgba(183, 110, 121, 0.6), inset 0 0 20px rgba(250, 218, 221, 0.8);
+            transform: translateY(-100vh) scale(0.5);
+            animation: cuteDrop 2.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            background: white;
+        }
+
+        .sparkle-icon {
+            position: absolute;
+            font-size: 1.5rem;
+            animation: pulseSparkle 1.5s infinite alternate;
+        }
+        .sparkle-1 { top: -10px; left: -10px; }
+        .sparkle-2 { bottom: 10px; right: -10px; animation-delay: 0.5s; }
+
+        @keyframes pulseSparkle {
+            0% { transform: scale(0.8) rotate(0deg); opacity: 0.5; }
+            100% { transform: scale(1.3) rotate(20deg); opacity: 1; }
+        }
+
+        @keyframes cuteDrop {
+            0% { transform: translateY(-100vh) scale(0.8) rotate(-15deg); opacity: 0; }
+            50% { transform: translateY(20px) scale(1.1) rotate(5deg); opacity: 1; box-shadow: 0 0 70px rgba(183, 110, 121, 0.9); }
+            75% { transform: translateY(-10px) scale(0.95) rotate(-2deg); }
+            100% { transform: translateY(0) scale(1) rotate(0deg); }
+        }
+
+        .intro-brand {
+            font-family: 'Great Vibes', cursive;
+            font-size: 5rem;
+            margin-top: 20px;
+            opacity: 0;
+            background: linear-gradient(to right, #87CEEB, #B76E79, #87CEEB);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0px 4px 10px rgba(255, 255, 255, 0.8));
+            animation: titleReveal 2.2s 1.5s forwards;
+            letter-spacing: 2px;
+        }
+
+        .intro-sub {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeIn 1.5s 2.2s forwards;
+            margin-top: 5px;
+        }
+
+        @keyframes titleReveal {
+            0% { opacity: 0; transform: translateY(20px) scale(0.9); filter: blur(10px); }
+            100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0px); }
+        }
+
+        /* -------------------------------------
+           Navigation Bar
+           ------------------------------------- */
+        header {
+            position: fixed;
+            top: 31px;
+            width: 100%;
+            background: rgba(255, 240, 245, 0.88);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 2px solid var(--rose-gold-light);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 5%;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(183, 110, 121, 0.1);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .nav-logo-img {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--rose-gold);
+        }
+
+        .logo-text {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5rem;
+            color: var(--rose-gold);
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--rose-gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--rose-gold);
+        }
+
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .icon-btn {
+            background: var(--baby-pink);
+            border: 2px solid var(--rose-gold-light);
+            border-radius: 50%;
+            width: 42px;
+            height: 42px;
+            cursor: pointer;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(183, 110, 121, 0.15);
+        }
+
+        .icon-btn:hover {
+            transform: scale(1.08) rotate(4deg);
+            background: var(--rose-gold);
+            border-color: var(--sky-blue);
+        }
+
+        .icon-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--text-dark);
+            transition: fill 0.3s;
+        }
+        
+        .icon-btn:hover svg {
+            fill: #fff;
+        }
+
+        .badge-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--sky-blue-dark);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 700;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        /* -------------------------------------
+           Hero & Parallax Section
+           ------------------------------------- */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(255, 240, 245, 0.25), rgba(250, 218, 221, 0.35)), url('https://images.unsplash.com/photo-1599643478524-fb66fa5320e5?q=80&w=2000') no-repeat center center;
+            background-size: cover;
+            background-attachment: fixed;
+            overflow: hidden;
+            padding-top: 60px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 45px 50px;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            border-radius: 25px;
+            border: 2px solid var(--rose-gold-light);
+            box-shadow: 0 20px 40px rgba(183, 110, 121, 0.25);
+            max-width: 850px;
+            animation: fadeIn 2s ease 3.5s both;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background: var(--baby-pink);
+            color: var(--rose-gold-dark);
+            padding: 6px 18px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            border: 1px solid var(--rose-gold-light);
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.4rem;
+            color: var(--rose-gold);
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.9);
+        }
+
+        .hero-subtitle {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3rem;
+            color: var(--sky-blue-dark);
+            margin-bottom: 25px;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.9);
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--gold-rose-gradient);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            box-shadow: 0 6px 20px rgba(183, 110, 121, 0.35);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(183, 110, 121, 0.5);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--rose-gold);
+            border: 2px solid var(--rose-gold);
+            padding: 12px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-secondary:hover {
+            background: var(--baby-pink);
+            color: var(--text-dark);
+        }
+
+        /* -------------------------------------
+           Stats Banner Bar
+           ------------------------------------- */
+        .stats-banner {
+            background: white;
+            padding: 30px 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            border-bottom: 2px solid var(--rose-gold-light);
+            box-shadow: var(--shadow-soft);
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--rose-gold);
+            margin-bottom: 5px;
+        }
+
+        .stat-item p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* -------------------------------------
+           Aesthetic Second Background Container
+           ------------------------------------- */
+        .aesthetic-bg-section {
+            position: relative;
+            background: linear-gradient(rgba(255, 255, 255, 0.82), rgba(255, 240, 245, 0.92)), url('https://images.unsplash.com/photo-1611591437281-460bfbe1220a?q=80&w=2000') no-repeat center center;
+            background-size: cover;
+            background-attachment: fixed;
+            min-height: 100vh;
+            padding-bottom: 60px;
+        }
+
+        /* -------------------------------------
+           About Section (Floating Borders)
+           ------------------------------------- */
+        .about-section {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 100px 6% 60px;
+            align-items: center;
+            gap: 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .about-text {
+            flex: 1 1 480px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 45px;
+            border-radius: 24px;
+            border: 2px solid var(--sky-blue);
+            box-shadow: 18px 18px 0px var(--rose-gold-light), 0 20px 40px rgba(183,110,121,0.15);
+            transition: transform 0.4s ease;
+        }
+
+        .about-text:hover {
+            transform: translateY(-8px);
+        }
+
+        .about-text h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--rose-gold);
+            font-size: 2.6rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .about-text p {
+            font-size: 0.95rem;
+            line-height: 1.85;
+            color: var(--text-muted);
+            margin-bottom: 18px;
+        }
+
+        .about-badges {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .about-badge-item {
+            background: var(--baby-pink);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--rose-gold-dark);
+            border: 1px dashed var(--rose-gold);
+        }
+
+        .about-image {
+            flex: 1 1 380px;
+            position: relative;
+            padding: 18px;
+            background: var(--baby-pink);
+            border-radius: 24px;
+            box-shadow: -18px 18px 0px var(--sky-blue-dark), 0 20px 40px rgba(135,206,235,0.25);
+            transition: transform 0.4s ease;
+        }
+        
+        .about-image:hover {
+            transform: translateY(-8px);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 420px;
+            border-radius: 14px;
+            object-fit: cover;
+        }
+
+        /* -------------------------------------
+           Our Royal Specialities (Expanded)
+           ------------------------------------- */
+        .specialities-section {
+            padding: 60px 6%;
+            text-align: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .specialities-section h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--rose-gold);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .specialities-subtitle {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.2rem;
+            color: var(--sky-blue-dark);
+            margin-bottom: 40px;
+        }
+
+        .specialities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        .speciality-card {
+            background: white;
+            padding: 30px 22px;
+            border-radius: 20px;
+            border: 1px dashed var(--rose-gold);
+            box-shadow: var(--shadow-soft);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .speciality-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 4px;
+            background: var(--gold-rose-gradient);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .speciality-card:hover::before {
+            opacity: 1;
+        }
+
+        .speciality-card:hover {
+            background: #FFFBFD;
+            border-style: solid;
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .speciality-icon {
+            font-size: 2.4rem;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .speciality-title {
+            font-family: 'Playfair Display', serif;
+            color: var(--text-dark);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .speciality-desc {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* -------------------------------------
+           Interactive Controls (Category, Search, Sort)
+           ------------------------------------- */
+        .catalog-controls-wrapper {
+            padding: 30px 6% 15px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-top: 2px solid var(--rose-gold-light);
+            border-bottom: 2px solid var(--rose-gold-light);
+            position: sticky;
+            top: 80px;
+            z-index: 99;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+
+        .controls-top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .search-box-wrap {
+            position: relative;
+            flex: 1 1 300px;
+            max-width: 450px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 20px 12px 45px;
+            border-radius: 30px;
+            border: 2px solid var(--rose-gold-light);
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            outline: none;
+            transition: all 0.3s;
+            background: white;
+        }
+
+        .search-input:focus {
+            border-color: var(--rose-gold);
+            box-shadow: 0 0 10px rgba(183, 110, 121, 0.2);
+        }
+
+        .search-icon-svg {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 18px;
+            height: 18px;
+            fill: var(--rose-gold);
+        }
+
+        .sort-filter-wrap {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .sort-select {
+            padding: 10px 20px;
+            border-radius: 30px;
+            border: 2px solid var(--rose-gold-light);
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-dark);
+            outline: none;
+            background: white;
+            cursor: pointer;
+        }
+
+        .categories-scroll {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .category-pill {
+            flex: 0 0 auto;
+            scroll-snap-align: start;
+            background: #fff;
+            border: 2px solid var(--baby-pink-dark);
+            color: var(--text-dark);
+            padding: 10px 26px;
+            border-radius: 40px;
+            font-family: 'Playfair Display', serif;
+            font-size: 0.95rem;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.03);
+        }
+
+        .category-pill:hover {
+            border-color: var(--sky-blue);
+            background: var(--sky-blue);
+            color: #fff;
+        }
+
+        .category-pill.active {
+            background: var(--gold-rose-gradient);
+            color: #fff;
+            border-color: transparent;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(183, 110, 121, 0.4);
+        }
+
+        /* -------------------------------------
+           Products Grid (Vertical Layout)
+           ------------------------------------- */
+        .products-section {
+            padding: 60px 6%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        @media (min-width: 768px) {
+            .product-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        @media (min-width: 1100px) {
+            .product-grid { grid-template-columns: repeat(4, 1fr); gap: 35px; }
+        }
+
+        .product-card {
+            background: #fff;
+            border: 1px solid var(--rose-gold-light);
+            border-radius: 18px;
+            padding: 16px;
+            text-align: center;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--sky-blue);
+        }
+
+        .product-tag-badge {
+            position: absolute;
+            top: 25px; left: 25px;
+            background: var(--gold-rose-gradient);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 15px;
+            z-index: 3;
+            text-transform: uppercase;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+        }
+
+        .wishlist-btn {
+            position: absolute;
+            top: 25px; right: 25px;
+            background: white;
+            border: 1px solid var(--rose-gold-light);
+            width: 34px; height: 34px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 3;
+            transition: all 0.3s;
+        }
+
+        .wishlist-btn svg {
+            width: 16px; height: 16px;
+            fill: #ccc;
+            transition: fill 0.3s;
+        }
+
+        .wishlist-btn.active svg, .wishlist-btn:hover svg {
+            fill: #ff4d4d;
+        }
+
+        .image-wrapper {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            background: var(--baby-pink-light); 
+            border-radius: 12px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            transition: transform 0.7s ease;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.1);
+        }
+
+        .quick-view-overlay {
+            position: absolute;
+            bottom: -50px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px 0;
+            transition: bottom 0.3s ease;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--rose-gold-dark);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .product-card:hover .quick-view-overlay {
+            bottom: 0;
+        }
+
+        .product-rating {
+            color: #FFD700;
+            font-size: 0.85rem;
+            margin-bottom: 5px;
+        }
+
+        .product-category {
+            font-family: 'Great Vibes', cursive;
+            color: var(--sky-blue-dark);
+            font-size: 1.4rem;
+            margin-bottom: 2px;
+        }
+
+        .product-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.05rem;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            font-weight: 600;
+            flex-grow: 1;
+        }
+
+        .product-price-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .product-price {
+            font-weight: 700;
+            color: var(--rose-gold-dark);
+            font-size: 1.15rem;
+        }
+
+        .product-old-price {
+            text-decoration: line-through;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        .add-to-cart {
+            background: #fff;
+            color: var(--rose-gold);
+            border: 2px solid var(--rose-gold);
+            padding: 10px 15px;
+            border-radius: 30px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            width: 100%;
+        }
+
+        .add-to-cart:hover {
+            background: var(--rose-gold);
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(183, 110, 121, 0.3);
+        }
+
+        /* -------------------------------------
+           Interactive Custom Gift Box Packaging Selector
+           ------------------------------------- */
+        .gift-box-section {
+            padding: 80px 6%;
+            background: linear-gradient(rgba(250, 218, 221, 0.4), rgba(255, 240, 245, 0.6));
+            border-top: 2px solid var(--rose-gold-light);
+            border-bottom: 2px solid var(--rose-gold-light);
+            text-align: center;
+        }
+
+        .gift-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: var(--shadow-soft);
+            border: 2px solid var(--sky-blue);
+        }
+
+        .gift-options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .gift-card {
+            border: 2px solid var(--baby-pink-dark);
+            padding: 20px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .gift-card.selected, .gift-card:hover {
+            border-color: var(--rose-gold);
+            background: var(--baby-pink-light);
+            transform: translateY(-5px);
+        }
+
+        .gift-card img {
+            width: 80px; height: 80px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+
+        /* -------------------------------------
+           4 Special Highlights Carousel
+           ------------------------------------- */
+        .special-products-wrapper {
+            padding: 70px 0;
+        }
+        
+        .section-title-center {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.6rem;
+            color: var(--rose-gold);
+            margin-bottom: 10px;
+        }
+
+        .section-subtitle-center {
+            text-align: center;
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.2rem;
+            color: var(--sky-blue-dark);
+            margin-bottom: 40px;
+        }
+
+        .special-products-scroll {
+            display: flex;
+            gap: 30px;
+            overflow-x: auto;
+            padding: 20px 6% 40px;
+            scroll-snap-type: x mandatory;
+        }
+
+        .special-card {
+            flex: 0 0 85%;
+            max-width: 380px;
+            scroll-snap-align: center;
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-hover);
+            border: 2px solid var(--sky-blue);
+            position: relative;
+        }
+
+        @media (min-width: 768px) {
+            .special-card { flex: 0 0 45%; }
+        }
+        @media (min-width: 1024px) {
+            .special-card { flex: 0 0 23%; }
+        }
+
+        .special-badge {
+            position: absolute;
+            top: 15px; right: 15px;
+            background: var(--gold-rose-gradient);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            z-index: 2;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .special-img-wrap {
+            height: 260px;
+            overflow: hidden;
+        }
+
+        .special-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        .special-card:hover .special-img-wrap img {
+            transform: scale(1.1);
+        }
+
+        .special-info {
+            padding: 22px;
+            text-align: center;
+        }
+
+        .special-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .special-info p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 18px;
+            line-height: 1.6;
+        }
+
+        /* -------------------------------------
+           Instagram Aesthetic Feed Section
+           ------------------------------------- */
+        .insta-feed-section {
+            padding: 60px 6%;
+            text-align: center;
+        }
+
+        .insta-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        @media (min-width: 768px) {
+            .insta-grid { grid-template-columns: repeat(6, 1fr); }
+        }
+
+        .insta-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            aspect-ratio: 1 / 1;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .insta-item img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+
+        .insta-item:hover img {
+            transform: scale(1.15);
+        }
+
+        .insta-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(183, 110, 121, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .insta-item:hover .insta-overlay {
+            opacity: 1;
+        }
+
+        /* -------------------------------------
+           Reviews (Horizontal Scroll)
+           ------------------------------------- */
+        .reviews-section {
+            padding: 70px 0;
+            background: var(--baby-pink);
+        }
+
+        .reviews-scroll {
+            display: flex;
+            gap: 25px;
+            overflow-x: auto;
+            padding: 20px 6% 40px;
+            scroll-snap-type: x mandatory;
+        }
+
+        .review-card {
+            flex: 0 0 85%;
+            max-width: 360px;
+            scroll-snap-align: center;
+            background: #fff;
+            padding: 32px;
+            border-radius: 22px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            position: relative;
+            border: 1px solid var(--rose-gold-light);
+        }
+        
+        @media (min-width: 768px) {
+            .review-card { flex: 0 0 40%; }
+        }
+
+        .stars {
+            color: #FFD700;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .review-text {
+            font-style: italic;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            line-height: 1.7;
+            font-size: 0.92rem;
+        }
+
+        .reviewer {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .reviewer img {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--sky-blue);
+        }
+
+        .reviewer-info {
+            text-align: left;
+        }
+
+        .reviewer-name {
+            font-weight: 600;
+            color: var(--text-dark);
+            display: block;
+        }
+
+        .reviewer-tag {
+            font-size: 0.75rem;
+            color: var(--rose-gold);
+        }
+
+        /* -------------------------------------
+           FAQs Section
+           ------------------------------------- */
+        .faq-section {
+            padding: 80px 6%;
+            max-width: 950px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: #fff;
+            margin-bottom: 18px;
+            border-radius: 14px;
+            border: 1px solid var(--rose-gold-light);
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .faq-question {
+            padding: 22px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--rose-gold-dark);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #FFFDFE;
+            transition: background 0.3s;
+        }
+
+        .faq-answer {
+            padding: 0 22px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            color: var(--text-muted);
+            line-height: 1.7;
+            font-size: 0.92rem;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 20px 22px;
+            max-height: 300px;
+        }
+        
+        .faq-item.active .faq-question {
+            background: var(--baby-pink);
+            color: var(--text-dark);
+        }
+
+        /* -------------------------------------
+           Newsletter Section
+           ------------------------------------- */
+        .newsletter-section {
+            padding: 70px 6%;
+            background: var(--gold-rose-gradient);
+            color: white;
+            text-align: center;
+            margin: 40px 6%;
+            border-radius: 30px;
+            box-shadow: var(--shadow-hover);
+        }
+
+        .newsletter-container {
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .newsletter-container h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            margin-bottom: 10px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 12px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .newsletter-input {
+            flex: 1 1 300px;
+            padding: 14px 22px;
+            border-radius: 30px;
+            border: none;
+            outline: none;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+        }
+
+        .newsletter-btn {
+            background: var(--text-dark);
+            color: white;
+            padding: 14px 30px;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: background 0.3s;
+        }
+
+        .newsletter-btn:hover {
+            background: var(--sky-blue-dark);
+        }
+
+        /* -------------------------------------
+           Footer & Certifications
+           ------------------------------------- */
+        footer {
+            background: #fff;
+            padding: 70px 6% 30px;
+            border-top: 5px solid var(--rose-gold);
+            text-align: center;
+        }
+
+        .certifications {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 50px;
+        }
+
+        .cert-badge {
+            background: var(--baby-pink-light);
+            padding: 12px 24px;
+            border-radius: 12px;
+            border: 1px dashed var(--rose-gold);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 500;
+            color: var(--text-dark);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .cert-badge img {
+            width: 32px;
+            height: 32px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+            margin-bottom: 50px;
+            text-align: left;
+        }
+
+        .footer-section {
+            flex: 1 1 220px;
+        }
+
+        .footer-section h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--rose-gold-dark);
+            margin-bottom: 18px;
+            font-size: 1.25rem;
+        }
+
+        .footer-section p, .footer-section a {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 2.1;
+            text-decoration: none;
+            display: block;
+        }
+
+        .footer-section a:hover {
+            color: var(--rose-gold);
+        }
+
+        .copyright {
+            border-top: 1px solid var(--rose-gold-light);
+            padding-top: 25px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* -------------------------------------
+           Modals & Slide Drawers (Cart & Wishlist)
+           ------------------------------------- */
+        .cart-overlay, .wishlist-overlay, .quickview-overlay-modal {
+            position: fixed;
+            top: 0; right: -100%;
+            width: 100vw; height: 100vh;
+            background: rgba(44, 30, 30, 0.4);
+            backdrop-filter: blur(8px);
+            z-index: 10000;
+            transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+        
+        .cart-overlay.open, .wishlist-overlay.open {
+            right: 0;
+        }
+
+        .cart-modal {
+            position: absolute;
+            top: 0; right: 0;
+            width: 100%;
+            max-width: 450px;
+            height: 100%;
+            background: #fff;
+            border-left: 4px solid var(--rose-gold);
+            padding: 30px 25px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: -15px 0 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--baby-pink);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .cart-header h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--rose-gold-dark);
+            font-size: 1.8rem;
+        }
+
+        .close-cart {
+            background: var(--baby-pink);
+            border: none;
+            color: var(--text-dark);
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-cart:hover {
+            background: var(--rose-gold);
+            color: #fff;
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            padding-right: 8px;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: #FAF8F9;
+            padding: 15px;
+            border-radius: 14px;
+            border: 1px solid var(--rose-gold-light);
+            position: relative;
+        }
+
+        .cart-item img {
+            width: 75px;
+            height: 75px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 1px solid var(--sky-blue);
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+        }
+
+        .cart-item-price {
+            color: var(--rose-gold-dark);
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+        }
+
+        .qty-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #fff;
+            border: 1px solid var(--rose-gold-light);
+            border-radius: 20px;
+            padding: 2px 10px;
+            width: fit-content;
+        }
+
+        .qty-btn {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            cursor: pointer;
+            width: 20px;
+        }
+
+        .qty-value {
+            font-size: 0.9rem;
+            font-weight: 600;
+            min-width: 15px;
+            text-align: center;
+        }
+
+        .cart-item-remove {
+            position: absolute;
+            top: 10px; right: 10px;
+            color: #ff4d4d;
+            cursor: pointer;
+            font-size: 1.2rem;
+            background: none;
+            border: none;
+        }
+
+        .cart-footer {
+            border-top: 2px solid var(--baby-pink);
+            padding-top: 20px;
+            margin-top: 20px;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .checkout-btn {
+            background: var(--gold-rose-gradient);
+            color: #fff;
+            border: none;
+            width: 100%;
+            padding: 16px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            border-radius: 30px;
+            cursor: pointer;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 18px rgba(183, 110, 121, 0.4);
+            transition: all 0.3s;
+        }
+
+        .checkout-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(183, 110, 121, 0.6);
+        }
+
+        /* Toast Popup */
+        .toast-notification {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: white;
+            border-left: 5px solid var(--rose-gold);
+            padding: 15px 25px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 99999;
+            transform: translateY(150%);
+            transition: transform 0.4s ease;
+        }
+
+        .toast-notification.show {
+            transform: translateY(0);
+        }
+
+        /* Responsive adjustments */
+        @max-width: 768px {
+            .nav-links { display: none; }
+            .hero-title { font-size: 2.2rem; }
+            .hero-subtitle { font-size: 2.2rem; }
+            .logo-text { font-size: 2rem; }
+            .about-text, .about-image { flex: 1 1 100%; }
+            .newsletter-section { margin: 20px 0; border-radius: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Promo Bar -->
+    <div class="announcement-bar">
+        ✨ Royalty Welcome: Enjoy 10% Off Your First Order <span class="code">PRINCESS10</span>
+    </div>
+
+    <!-- Intro Animation Screen -->
+    <div id="intro-screen">
+        <div class="intro-logo-container">
+            <span class="sparkle-icon sparkle-1">✨</span>
+            <img src="1000004716.jpg" alt="Lily & Pearl Logo" class="intro-logo-img">
+            <span class="sparkle-icon sparkle-2">💖</span>
+        </div>
+        <div class="intro-brand">Lily & Pearl</div>
+        <div class="intro-sub">Haute Aesthetic & Fine Jewelry</div>
+    </div>
+
+    <!-- Main Application Body -->
+    <div id="main-content" style="opacity: 0; display: none;">
+        
+        <!-- Header Nav -->
+        <header id="navbar">
+            <a href="#" class="logo-container">
+                <img src="1000004716.jpg" alt="Lily & Pearl" class="nav-logo-img">
+                <span class="logo-text">Lily & Pearl</span>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="#about">Our Story</a></li>
+                <li><a href="#specialities">Specialities</a></li>
+                <li><a href="#collections">Collections</a></li>
+                <li><a href="#custom-gift">Gift Box</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+
+            <div class="nav-controls">
+                <!-- Wishlist Icon -->
+                <button class="icon-btn" onclick="toggleWishlist()" aria-label="Open Wishlist">
+                    <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                    <span class="badge-count" id="wishlistBadge">0</span>
+                </button>
+
+                <!-- Cart Icon -->
+                <button class="icon-btn" onclick="toggleCart()" aria-label="Open Cart">
+                    <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+                    <span class="badge-count" id="cartBadge">0</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <span class="hero-tag">Handcrafted Fairycore Elegance</span>
+                <h1 class="hero-title">Aesthetic Perfection</h1>
+                <p class="hero-subtitle">Cute, Premium & Uniquely Yours</p>
+                <div class="hero-actions">
+                    <a href="#collections" class="btn-primary">Explore Collection</a>
+                    <a href="#custom-gift" class="btn-secondary">Build Custom Gift Box</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Bar -->
+        <section class="stats-banner">
+            <div class="stat-item">
+                <h3>50,000+</h3>
+                <p>Happy Royals Worldwide</p>
+            </div>
+            <div class="stat-item">
+                <h3>100%</h3>
+                <p>Ethically Sourced Gold & Pearls</p>
+            </div>
+            <div class="stat-item">
+                <h3>4.9 ★</h3>
+                <p>Customer Service Rating</p>
+            </div>
+            <div class="stat-item">
+                <h3>Lifetime</h3>
+                <p>Craftsmanship Warranty</p>
+            </div>
+        </section>
+
+        <!-- Main Content Area with Fixed Parallax Background -->
+        <div class="aesthetic-bg-section">
+            
+            <!-- About Section -->
+            <section class="about-section" id="about">
+                <div class="about-text">
+                    <h2>Our Cute Story</h2>
+                    <p>Welcome to Lily & Pearl, a dreamy sanctuary where romantic fairycore aesthetic meets ultra-fine luxury jewelry design. Every single creation is imagined in our atelier using a delicate harmony of signature rose gold alloys, baby-pink undertones, and sky-blue accents.</p>
+                    <p>We craft pieces that double as personal keepsakes. Whether you're dressing up for a royal garden tea or seeking an aesthetic piece for everyday luxury, Lily & Pearl is designed to make you feel magical.</p>
+                    <div class="about-badges">
+                        <span class="about-badge-item">✨ Non-Tarnish Formula</span>
+                        <span class="about-badge-item">🌸 Sensitive Skin Safe</span>
+                        <span class="about-badge-item">🎀 Custom Pink Packaging</span>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?q=80&w=1000" alt="Lily and Pearl Aesthetic Jewelry">
+                </div>
+            </section>
+
+            <!-- Specialities Section -->
+            <section class="specialities-section" id="specialities">
+                <h2>Our Royal Specialities</h2>
+                <p class="specialities-subtitle">Why Crafting With Us Feels Like Magic</p>
+                <div class="specialities-grid">
+                    <div class="speciality-card">
+                        <div class="speciality-icon">✨</div>
+                        <div class="speciality-title">Baby-Pink Gold Blend</div>
+                        <div class="speciality-desc">Our custom rose gold alloy infused with subtle blush undertones that never fade.</div>
+                    </div>
+                    <div class="speciality-card">
+                        <div class="speciality-icon">🕊️</div>
+                        <div class="speciality-title">Ethical Diamonds & Gems</div>
+                        <div class="speciality-desc">100% conflict-free lab and natural stones verified by international standards.</div>
+                    </div>
+                    <div class="speciality-card">
+                        <div class="speciality-icon">💧</div>
+                        <div class="speciality-title">Sky-Blue Enamel Details</div>
+                        <div class="speciality-desc">Hand-applied pastel sky-blue cold enamel accents for an ethereal look.</div>
+                    </div>
+                    <div class="speciality-card">
+                        <div class="speciality-icon">🌸</div>
+                        <div class="speciality-title">Hypoallergenic Assurance</div>
+                        <div class="speciality-desc">Nickel-free and lead-free precious metals designed for delicate skin types.</div>
+                    </div>
+                    <div class="speciality-card">
+                        <div class="speciality-icon">🎀</div>
+                        <div class="speciality-title">Complimentary Engraving</div>
+                        <div class="speciality-desc">Add custom names, initials, or royal dates inside your ring bands or pendants.</div>
+                    </div>
+                    <div class="speciality-card">
+                        <div class="speciality-icon">🌍</div>
+                        <div class="speciality-title">Insured Express Shipping</div>
+                        <div class="speciality-desc">Fully insured, trackable delivery packed inside signature velvet boxes.</div>
+                    </div>
+                    <div class="speciality-card">
+                        <div class="speciality-icon">♻️</div>
+                        <div class="speciality-title">100% Recycled Gold</div>
+                        <div class="speciality-desc">Committed to protecting our earth by utilizing recycled precious metals.</div>
+                    </div>
+                    <div class="speciality-card">
+                        <div class="speciality-icon">👑</div>
+                        <div class="speciality-title">Lifetime Stone Warranty</div>
+                        <div class="speciality-desc">We guarantee every stone setting against manufacturing defects forever.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Collection Controls & Filter Bar -->
+            <section class="catalog-controls-wrapper" id="collections">
+                <div class="controls-top-row">
+                    <div class="search-box-wrap">
+                        <svg class="search-icon-svg" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                        <input type="text" id="searchInput" class="search-input" placeholder="Search cute necklaces, rings, pearls..." oninput="handleSearchSort()">
+                    </div>
+                    
+                    <div class="sort-filter-wrap">
+                        <select id="sortSelect" class="sort-select" onchange="handleSearchSort()">
+                            <option value="featured">Featured First</option>
+                            <option value="low-high">Price: Low to High</option>
+                            <option value="high-low">Price: High to Low</option>
+                            <option value="rating">Highest Rated</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Category Scroll Pills -->
+                <div class="categories-scroll">
+                    <button class="category-pill active" onclick="filterCategory('All')">All Cute Finds</button>
+                    <button class="category-pill" onclick="filterCategory('Necklace')">Necklaces</button>
+                    <button class="category-pill" onclick="filterCategory('Bracelet')">Bracelets</button>
+                    <button class="category-pill" onclick="filterCategory('Ring')">Rings</button>
+                    <button class="category-pill" onclick="filterCategory('Earrings')">Earrings</button>
+                    <button class="category-pill" onclick="filterCategory('Anklet')">Anklets</button>
+                    <button class="category-pill" onclick="filterCategory('Charms')">Cute Charms</button>
+                </div>
+            </section>
+
+            <!-- Main Product Grid -->
+            <section class="products-section">
+                <div class="product-grid" id="productGrid">
+                    <!-- Javascript populates 20+ rich items dynamically -->
+                </div>
+            </section>
+
+            <!-- Interactive Gift Box Packaging Customizer -->
+            <section class="gift-box-section" id="custom-gift">
+                <div class="gift-container">
+                    <h2 style="font-family:'Playfair Display'; color:var(--rose-gold); font-size:2.2rem;">Custom Royal Gift Packaging</h2>
+                    <p style="color:var(--text-muted); margin-top:8px;">Select your signature complimentary box style for any gift order!</p>
+
+                    <div class="gift-options-grid">
+                        <div class="gift-card selected" onclick="selectGift(this, 'Blush Pink Velvet Box')">
+                            <div style="font-size:2.5rem;">🎀</div>
+                            <h4 style="margin:10px 0; font-family:'Playfair Display';">Blush Velvet Box</h4>
+                            <p style="font-size:0.8rem; color:var(--text-muted);">Soft pink velvet with gold foil stamp</p>
+                        </div>
+                        <div class="gift-card" onclick="selectGift(this, 'Sky Blue Fairy Chest')">
+                            <div style="font-size:2.5rem;">💎</div>
+                            <h4 style="margin:10px 0; font-family:'Playfair Display';">Sky Blue Chest</h4>
+                            <p style="font-size:0.8rem; color:var(--text-muted);">Pastel sky blue box with satin ribbon</p>
+                        </div>
+                        <div class="gift-card" onclick="selectGift(this, 'Floral Pearl Keepsake')">
+                            <div style="font-size:2.5rem;">🌸</div>
+                            <h4 style="margin:10px 0; font-family:'Playfair Display';">Pearl Keepsake</h4>
+                            <p style="font-size:0.8rem; color:var(--text-muted);">Wood-carved box with flower inlay</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Special Highlights Section -->
+            <section class="special-products-wrapper">
+                <h2 class="section-title-center">The Royal Highlights</h2>
+                <p class="section-subtitle-center">Handpicked Signature Pieces</p>
+                <div class="special-products-scroll">
+                    <!-- Special Product 1 -->
+                    <div class="special-card">
+                        <div class="special-badge">Limited Edition</div>
+                        <div class="special-img-wrap">
+                            <img src="https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?q=80&w=600" alt="Rose Quartz Heart">
+                        </div>
+                        <div class="special-info">
+                            <h3>Rose Quartz Heart Pendant</h3>
+                            <p>Hand-carved natural rose quartz encased in 18k blush gold settings. Radiates gentle aesthetic beauty.</p>
+                            <div class="product-price" style="margin-bottom:12px;">$245.00</div>
+                            <button class="add-to-cart" onclick="addToCartDirect(101, 'Rose Quartz Heart Pendant', 245.00, 'https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?q=80&w=600')">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- Special Product 2 -->
+                    <div class="special-card">
+                        <div class="special-badge">Bestseller</div>
+                        <div class="special-img-wrap">
+                            <img src="https://images.unsplash.com/photo-1596944924616-7b38e7cf9361?q=80&w=600" alt="Sky Blue Topaz Ring">
+                        </div>
+                        <div class="special-info">
+                            <h3>Sky Blue Topaz Crown Ring</h3>
+                            <p>A sky-blue centerpiece topaz cut with brilliant facets, framed by dainty conflict-free diamond leaves.</p>
+                            <div class="product-price" style="margin-bottom:12px;">$310.00</div>
+                            <button class="add-to-cart" onclick="addToCartDirect(102, 'Sky Blue Topaz Crown Ring', 310.00, 'https://images.unsplash.com/photo-1596944924616-7b38e7cf9361?q=80&w=600')">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- Special Product 3 -->
+                    <div class="special-card">
+                        <div class="special-badge">New Arrival</div>
+                        <div class="special-img-wrap">
+                            <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=600" alt="Pearl Drop Magic">
+                        </div>
+                        <div class="special-info">
+                            <h3>Pearl Drop Magic Earrings</h3>
+                            <p>High-luster freshwater pearls delicately cascading from rose gold ribbon bows. Pure fairycore joy.</p>
+                            <div class="product-price" style="margin-bottom:12px;">$185.00</div>
+                            <button class="add-to-cart" onclick="addToCartDirect(103, 'Pearl Drop Magic Earrings', 185.00, 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=600')">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- Special Product 4 -->
+                    <div class="special-card">
+                        <div class="special-badge">Signature</div>
+                        <div class="special-img-wrap">
+                            <img src="https://images.unsplash.com/photo-1611652022419-e9477580b031?q=80&w=600" alt="The Lily & Pearl Cuff">
+                        </div>
+                        <div class="special-info">
+                            <h3>The Lily & Pearl Cuff</h3>
+                            <p>Our namesake masterwork. Intertwined vine-cast gold holding twin glowing freshwater cultured pearls.</p>
+                            <div class="product-price" style="margin-bottom:12px;">$290.00</div>
+                            <button class="add-to-cart" onclick="addToCartDirect(104, 'The Lily & Pearl Cuff', 290.00, 'https://images.unsplash.com/photo-1611652022419-e9477580b031?q=80&w=600')">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Instagram Feed Section -->
+            <section class="insta-feed-section">
+                <h2 class="section-title-center">#LilyAndPearlRoyals</h2>
+                <p class="section-subtitle-center">Tag Us On Instagram To Be Featured</p>
+
+                <div class="insta-grid">
+                    <div class="insta-item">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400" alt="Insta Post">
+                        <div class="insta-overlay">❤️ 1.2k</div>
+                    </div>
+                    <div class="insta-item">
+                        <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=400" alt="Insta Post">
+                        <div class="insta-overlay">💖 2.4k</div>
+                    </div>
+                    <div class="insta-item">
+                        <img src="https://images.unsplash.com/photo-1605100804763-247f6612148e?q=80&w=400" alt="Insta Post">
+                        <div class="insta-overlay">✨ 3.1k</div>
+                    </div>
+                    <div class="insta-item">
+                        <img src="https://images.unsplash.com/photo-1599643477874-5c366d20f667?q=80&w=400" alt="Insta Post">
+                        <div class="insta-overlay">🌸 1.8k</div>
+                    </div>
+                    <div class="insta-item">
+                        <img src="https://images.unsplash.com/photo-1610633428808-620245228ab5?q=80&w=400" alt="Insta Post">
+                        <div class="insta-overlay">🎀 4.0k</div>
+                    </div>
+                    <div class="insta-item">
+                        <img src="https://images.unsplash.com/photo-1583064327998-f29e1620a2cb?q=80&w=400" alt="Insta Post">
+                        <div class="insta-overlay">💫 2.9k</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Reviews Section -->
+            <section class="reviews-section" id="reviews">
+                <h2 class="section-title-center" style="color:var(--text-dark);">Love Letters From Royals</h2>
+                <div class="reviews-scroll">
+                    <div class="review-card">
+                        <div class="stars">★★★★★</div>
+                        <p class="review-text">"The baby pink packaging felt like opening a magical fairy present! The Rose Gold Choker is super shiny and non-tarnish."</p>
+                        <div class="reviewer">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150" alt="Sarah J.">
+                            <div class="reviewer-info">
+                                <span class="reviewer-name">Sarah J.</span>
+                                <span class="reviewer-tag">Verified Princess</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="stars">★★★★★</div>
+                        <p class="review-text">"I ordered the Sky Blue Topaz ring for my birthday. It's so cute and comfortable to wear every day. Extremely high quality!"</p>
+                        <div class="reviewer">
+                            <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=150" alt="Emily R.">
+                            <div class="reviewer-info">
+                                <span class="reviewer-name">Emily R.</span>
+                                <span class="reviewer-tag">Verified Princess</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="stars">★★★★★</div>
+                        <p class="review-text">"The bespoke inner engraving was crystal clear. Unboxing this on my anniversary brought tears to my eyes. 10/10!"</p>
+                        <div class="reviewer">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=150" alt="Chloe M.">
+                            <div class="reviewer-info">
+                                <span class="reviewer-name">Chloe M.</span>
+                                <span class="reviewer-tag">Verified Princess</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="stars">★★★★★</div>
+                        <p class="review-text">"Fast shipping across the globe. The delicate freshwater pearl bracelet is my go-to piece now."</p>
+                        <div class="reviewer">
+                            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=150" alt="Jessica T.">
+                            <div class="reviewer-info">
+                                <span class="reviewer-name">Jessica T.</span>
+                                <span class="reviewer-tag">Verified Princess</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQs Section -->
+            <section class="faq-section" id="faq">
+                <h2 class="section-title-center">Frequently Asked Questions</h2>
+                
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">Will the rose gold finish tarnish or turn skin green? <span>+</span></div>
+                    <div class="faq-answer">Never! All our pieces feature a thick anti-tarnish protective coating over nickel-free sterling silver or solid 18k gold. They are 100% hypoallergenic and water-resistant.</div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">What is your return & exchange policy? <span>+</span></div>
+                    <div class="faq-answer">We offer a hassle-free 30-day royal exchange guarantee. If you are not completely enchanted by your jewelry, simply ship it back in its original packaging!</div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">Are the pearls and gemstones real? <span>+</span></div>
+                    <div class="faq-answer">Yes! We exclusively select 100% genuine freshwater pearls and ethically harvested gemstones with certified color clarity.</div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">How do I request complimentary custom engraving? <span>+</span></div>
+                    <div class="faq-answer">During checkout via WhatsApp, simply message your desired text (up to 15 characters) and our master jeweler will engrave it for free!</div>
+                </div>
+            </section>
+
+            <!-- Newsletter Subscription Section -->
+            <section class="newsletter-section">
+                <div class="newsletter-container">
+                    <h2>Join The Royal Club</h2>
+                    <p>Subscribe to receive secret discount codes, early access to limited collections, and aesthetic styling tips!</p>
+                    <form class="newsletter-form" onsubmit="handleNewsletter(event)">
+                        <input type="email" placeholder="Enter your email address..." class="newsletter-input" required>
+                        <button type="submit" class="newsletter-btn">Join Now 💖</button>
+                    </form>
+                </div>
+            </section>
+
+        </div> <!-- End of Aesthetic BG Section -->
+
+        <!-- Footer -->
+        <footer>
+            <div class="certifications">
+                <div class="cert-badge">
+                    <img src="https://img.icons8.com/color/48/000000/guarantee.png" alt="ISO">
+                    ISO 9001:2026 Certified
+                </div>
+                <div class="cert-badge">
+                    <img src="https://img.icons8.com/color/48/000000/diamond.png" alt="GGI">
+                    GGI Verified Gemstones
+                </div>
+                <div class="cert-badge">
+                    <img src="https://img.icons8.com/color/48/000000/best-seller.png" alt="Hallmark">
+                    Hallmark HUID 24K Gold
+                </div>
+                <div class="cert-badge">
+                    <img src="https://img.icons8.com/color/48/000000/vegan-symbol.png" alt="Cruelty Free">
+                    100% Eco-Friendly
+                </div>
+            </div>
+
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Lily & Pearl</h3>
+                    <p>Handcrafting aesthetic, fairycore, and fine jewelry for modern princesses. Every piece tells a fairytale story.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Explore</h3>
+                    <a href="#collections">Necklaces & Chokers</a>
+                    <a href="#collections">Gemstone Rings</a>
+                    <a href="#collections">Freshwater Pearls</a>
+                    <a href="#custom-gift">Gift Boxes</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Customer Care</h3>
+                    <a href="#faq">Track Royal Order</a>
+                    <a href="#faq">Jewelry Care Guide</a>
+                    <a href="#faq">Ring Sizing Chart</a>
+                    <a href="#faq">Contact Support</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal Verification</h3>
+                    <a href="#">Authenticity Checker</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Royal Service</a>
+                    <p>Reg ID: LP-2026-994A</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2026 Lily & Pearl Aesthetic Jewelry Inc. All Rights Reserved. Crafted with love and sparkles ✨
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Cart Overlay & Drawer Modal -->
+    <div class="cart-overlay" id="cartOverlay">
+        <div class="cart-modal">
+            <div class="cart-header">
+                <h2>Your Cute Cart</h2>
+                <button class="close-cart" onclick="toggleCart()">&times;</button>
+            </div>
+            <div class="cart-items" id="cartItemsContainer">
+                <!-- Injected via JS -->
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Total Estimate:</span>
+                    <span id="cartTotalValue">$0.00</span>
+                </div>
+                <button class="checkout-btn" onclick="processCheckout()">Checkout via WhatsApp 💬</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wishlist Overlay Drawer Modal -->
+    <div class="wishlist-overlay" id="wishlistOverlay">
+        <div class="cart-modal">
+            <div class="cart-header">
+                <h2>Your Wishlist</h2>
+                <button class="close-cart" onclick="toggleWishlist()">&times;</button>
+            </div>
+            <div class="cart-items" id="wishlistItemsContainer">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Popup Container -->
+    <div class="toast-notification" id="toast">
+        <span id="toastIcon" style="font-size:1.4rem;">✨</span>
+        <span id="toastMessage" style="font-size:0.9rem; font-weight:500;">Item added to your cart!</span>
+    </div>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Intro Screen Animation Handlers
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                const intro = document.getElementById('intro-screen');
+                const main = document.getElementById('main-content');
+                
+                intro.style.opacity = '0';
+                setTimeout(() => {
+                    intro.style.display = 'none';
+                    main.style.display = 'block';
+                    setTimeout(() => {
+                        main.style.opacity = '1';
+                        main.style.transition = 'opacity 1.2s ease';
+                    }, 100);
+                }, 1200); 
+            }, 3800); 
+        });
+
+        // Sticky Navbar Translucency on Scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 40) {
+                nav.style.background = 'rgba(255, 255, 255, 0.96)';
+                nav.style.boxShadow = '0 4px 20px rgba(183, 110, 121, 0.2)';
+            } else {
+                nav.style.background = 'rgba(255, 240, 245, 0.88)';
+                nav.style.boxShadow = '0 4px 15px rgba(183, 110, 121, 0.1)';
+            }
+        });
+
+        // FAQ Toggle Logic
+        window.toggleFaq = function(element) {
+            element.classList.toggle('active');
+        };
+
+        // Complete Expanded Product Database (20+ Items)
+        const productsDatabase = [
+            { id: 1, category: "Necklace", name: "Rose Gold Blush Choker", price: 120.00, oldPrice: 150.00, rating: 4.9, tag: "Bestseller", img: "https://images.unsplash.com/photo-1599643478524-fb66fa5320e5?q=80&w=500" },
+            { id: 2, category: "Ring", name: "Pink Sapphire Princess Ring", price: 250.00, oldPrice: 290.00, rating: 5.0, tag: "Popular", img: "https://images.unsplash.com/photo-1605100804763-247f6612148e?q=80&w=500" },
+            { id: 3, category: "Earrings", name: "Tear Drop Crystal Studs", price: 85.00, oldPrice: 110.00, rating: 4.8, tag: "Cute", img: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=500" },
+            { id: 4, category: "Bracelet", name: "Freshwater Pearl Hand Band", price: 95.00, oldPrice: 120.00, rating: 4.9, tag: "Classic", img: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?q=80&w=500" },
+            { id: 5, category: "Necklace", name: "Sky Blue Gemstone Pendant", price: 110.00, oldPrice: 135.00, rating: 4.7, tag: "New", img: "https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?q=80&w=500" },
+            { id: 6, category: "Ring", name: "Vintage Emerald Fairy Band", price: 180.00, oldPrice: 220.00, rating: 4.9, tag: "Rare", img: "https://images.unsplash.com/photo-1596944924616-7b38e7cf9361?q=80&w=500" },
+            { id: 7, category: "Bracelet", name: "Dainty Blush Chain Bracelet", price: 65.00, oldPrice: 80.00, rating: 4.6, tag: "Cute", img: "https://images.unsplash.com/photo-1573408301145-3fc1e860bc00?q=80&w=500" },
+            { id: 8, category: "Necklace", name: "Majestic Double Pearl Strand", price: 140.00, oldPrice: 175.00, rating: 5.0, tag: "Royal", img: "https://images.unsplash.com/photo-1610633428808-620245228ab5?q=80&w=500" },
+            { id: 9, category: "Earrings", name: "Royal Sapphire Mini Studs", price: 90.00, oldPrice: 115.00, rating: 4.8, tag: "New", img: "https://images.unsplash.com/photo-1602751584552-8ba73aad10be?q=80&w=500" },
+            { id: 10, category: "Necklace", name: "Goddess Layered Gold Chain", price: 135.00, oldPrice: 160.00, rating: 4.9, tag: "Popular", img: "https://images.unsplash.com/photo-1583064327998-f29e1620a2cb?q=80&w=500" },
+            { id: 11, category: "Ring", name: "Eternity Pink Crystal Band", price: 210.00, oldPrice: 240.00, rating: 4.9, tag: "Bestseller", img: "https://images.unsplash.com/photo-1600181516264-329ea1be6b14?q=80&w=500" },
+            { id: 12, category: "Bracelet", name: "Velvet Rope Gold Bangle", price: 105.00, oldPrice: 130.00, rating: 4.7, tag: "Luxury", img: "https://images.unsplash.com/photo-1611652022419-e9477580b031?q=80&w=500" },
+            { id: 13, category: "Charms", name: "Celestial Star Charm", price: 45.00, oldPrice: 60.00, rating: 4.8, tag: "Mini", img: "https://images.unsplash.com/photo-1599643477874-5c366d20f667?q=80&w=500" },
+            { id: 14, category: "Earrings", name: "Golden Bow Hoop Classics", price: 55.00, oldPrice: 75.00, rating: 4.6, tag: "Cute", img: "https://images.unsplash.com/photo-1617265163155-227eb0c7b39a?q=80&w=500" },
+            { id: 15, category: "Ring", name: "Princess Cut Diamond Ring", price: 320.00, oldPrice: 380.00, rating: 5.0, tag: "Royal", img: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=500" },
+            { id: 16, category: "Anklet", name: "Luna Crescent Gold Anklet", price: 75.00, oldPrice: 95.00, rating: 4.8, tag: "Summer", img: "https://images.unsplash.com/photo-1543294001-f7cd5d7fb516?q=80&w=500" },
+            { id: 17, category: "Bracelet", name: "Cubic Zirconia Sparkle Cuff", price: 115.00, oldPrice: 140.00, rating: 4.9, tag: "Sparkle", img: "https://images.unsplash.com/photo-1531995811006-35cb42e1a022?q=80&w=500" },
+            { id: 18, category: "Earrings", name: "Dangling Fairy Pearl Drops", price: 125.00, oldPrice: 150.00, rating: 4.9, tag: "Popular", img: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=500" },
+            { id: 19, category: "Charms", name: "Heart Lock & Key Charm", price: 50.00, oldPrice: 65.00, rating: 4.7, tag: "Cute", img: "https://images.unsplash.com/photo-1610633428808-620245228ab5?q=80&w=500" },
+            { id: 20, category: "Anklet", name: "Minimalist Layered Anklet", price: 95.00, oldPrice: 115.00, rating: 4.8, tag: "New", img: "https://images.unsplash.com/photo-1605100804763-247f6612148e?q=80&w=500" }
+        ];
+
+        // Global State Variables
+        let cart = [];
+        let wishlist = [];
+        let currentCategory = 'All';
+        let selectedGiftPackage = 'Blush Pink Velvet Box';
+
+        // Element DOM Selectors
+        const productGrid = document.getElementById('productGrid');
+        const searchInput = document.getElementById('searchInput');
+        const sortSelect = document.getElementById('sortSelect');
+
+        // Render Product Function
+        function renderProducts(items) {
+            productGrid.innerHTML = '';
+
+            if (items.length === 0) {
+                productGrid.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--rose-gold-dark);">
+                        <p style="font-family: 'Playfair Display'; font-size: 1.3rem;">No cute items found matching your search. 🌸</p>
+                    </div>
+                `;
+                return;
+            }
+
+            items.forEach(prod => {
+                const isWish = wishlist.some(w => w.id === prod.id);
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <span class="product-tag-badge">${prod.tag}</span>
+                    <button class="wishlist-btn ${isWish ? 'active' : ''}" onclick="toggleWishlistItem(${prod.id}, event)" aria-label="Wishlist">
+                        <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                    </button>
+                    <div class="image-wrapper">
+                        <img src="${prod.img}" alt="${prod.name}" class="product-image" loading="lazy">
+                        <div class="quick-view-overlay" onclick="showQuickToast('${prod.name}')">Quick Sparkle ✨</div>
+                    </div>
+                    <div class="product-rating">★ ${prod.rating.toFixed(1)}</div>
+                    <div class="product-category">${prod.category}</div>
+                    <h3 class="product-title">${prod.name}</h3>
+                    <div class="product-price-wrap">
+                        <span class="product-price">$${prod.price.toFixed(2)}</span>
+                        <span class="product-old-price">$${prod.oldPrice.toFixed(2)}</span>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart(${prod.id}, this)">Add to Cart 💖</button>
+                `;
+                productGrid.appendChild(card);
+            });
+        }
+
+        // Initialize Render
+        renderProducts(productsDatabase);
+
+        // Filter and Search System
+        window.filterCategory = function(cat) {
+            currentCategory = cat;
+            document.querySelectorAll('.category-pill').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.innerText.includes(cat) || (cat === 'All' && btn.innerText.includes('All'))) {
+                    btn.classList.add('active');
+                }
+            });
+            handleSearchSort();
+        };
+
+        window.handleSearchSort = function() {
+            let result = [...productsDatabase];
+
+            // Filter Category
+            if (currentCategory !== 'All') {
+                result = result.filter(p => p.category === currentCategory);
+            }
+
+            // Filter Search Text
+            const query = searchInput.value.toLowerCase().trim();
+            if (query) {
+                result = result.filter(p => p.name.toLowerCase().includes(query) || p.category.toLowerCase().includes(query));
+            }
+
+            // Sort
+            const sortVal = sortSelect.value;
+            if (sortVal === 'low-high') {
+                result.sort((a, b) => a.price - b.price);
+            } else if (sortVal === 'high-low') {
+                result.sort((a, b) => b.price - a.price);
+            } else if (sortVal === 'rating') {
+                result.sort((a, b) => b.rating - a.rating);
+            }
+
+            renderProducts(result);
+        };
+
+        // Cart Drawer Handlers
+        window.toggleCart = function() {
+            document.getElementById('cartOverlay').classList.toggle('open');
+        };
+
+        window.toggleWishlist = function() {
+            document.getElementById('wishlistOverlay').classList.toggle('open');
+        };
+
+        // Add To Cart Functions
+        window.addToCart = function(productId, btnElement) {
+            const prod = productsDatabase.find(p => p.id === productId);
+            processCartAddition(prod);
+            
+            showToast("Added " + prod.name + " to cart! 💖");
+
+            if (btnElement) {
+                btnElement.innerText = "Added! ✨";
+                setTimeout(() => {
+                    btnElement.innerText = "Add to Cart 💖";
+                }, 1200);
+            }
+        };
+
+        window.addToCartDirect = function(id, name, price, img) {
+            const customProd = { id, category: 'Special', name, price, oldPrice: price + 30, rating: 5.0, img };
+            processCartAddition(customProd);
+            showToast("Added " + name + " to cart! 🌸");
+        };
+
+        function processCartAddition(product) {
+            const item = cart.find(i => i.product.id === product.id);
+            if (item) {
+                item.quantity += 1;
+            } else {
+                cart.push({ product: product, quantity: 1 });
+            }
+            updateCartUI();
+        }
+
+        window.changeQty = function(productId, delta) {
+            const index = cart.findIndex(i => i.product.id === productId);
+            if (index > -1) {
+                cart[index].quantity += delta;
+                if (cart[index].quantity <= 0) {
+                    cart.splice(index, 1);
+                }
+                updateCartUI();
+            }
+        };
+
+        window.removeFromCart = function(productId) {
+            cart = cart.filter(i => i.product.id !== productId);
+            updateCartUI();
+        };
+
+        function updateCartUI() {
+            const totalCount = cart.reduce((sum, i) => sum + i.quantity, 0);
+            document.getElementById('cartBadge').innerText = totalCount;
+
+            const container = document.getElementById('cartItemsContainer');
+            container.innerHTML = '';
+            let totalVal = 0;
+
+            if (cart.length === 0) {
+                container.innerHTML = '<p style="color:var(--text-muted); text-align:center; margin-top:50px; font-style:italic;">Your cute cart is empty. 🎀</p>';
+            } else {
+                cart.forEach(item => {
+                    const lineTotal = item.product.price * item.quantity;
+                    totalVal += lineTotal;
+
+                    const el = document.createElement('div');
+                    el.className = 'cart-item';
+                    el.innerHTML = `
+                        <img src="${item.product.img}" alt="${item.product.name}">
+                        <div class="cart-item-details">
+                            <div class="cart-item-title">${item.product.name}</div>
+                            <div class="cart-item-price">$${item.product.price.toFixed(2)}</div>
+                            <div class="qty-controls">
+                                <button class="qty-btn" onclick="changeQty(${item.product.id}, -1)">-</button>
+                                <span class="qty-value">${item.quantity}</span>
+                                <button class="qty-btn" onclick="changeQty(${item.product.id}, 1)">+</button>
+                            </div>
+                        </div>
+                        <button class="cart-item-remove" onclick="removeFromCart(${item.product.id})">&times;</button>
+                    `;
+                    container.appendChild(el);
+                });
+            }
+
+            document.getElementById('cartTotalValue').innerText = `$${totalVal.toFixed(2)}`;
+        }
+
+        // Wishlist Toggle Manager
+        window.toggleWishlistItem = function(productId, event) {
+            event.stopPropagation();
+            const prod = productsDatabase.find(p => p.id === productId);
+            const index = wishlist.findIndex(w => w.id === productId);
+
+            if (index > -1) {
+                wishlist.splice(index, 1);
+                showToast("Removed from Wishlist 💔");
+            } else {
+                wishlist.push(prod);
+                showToast("Added to Wishlist! ❤️");
+            }
+
+            document.getElementById('wishlistBadge').innerText = wishlist.length;
+            renderWishlistUI();
+            handleSearchSort(); // Refreshes heart icon styles
+        };
+
+        function renderWishlistUI() {
+            const container = document.getElementById('wishlistItemsContainer');
+            container.innerHTML = '';
+
+            if (wishlist.length === 0) {
+                container.innerHTML = '<p style="color:var(--text-muted); text-align:center; margin-top:50px; font-style:italic;">No saved wishlist items yet. 💖</p>';
+            } else {
+                wishlist.forEach(prod => {
+                    const el = document.createElement('div');
+                    el.className = 'cart-item';
+                    el.innerHTML = `
+                        <img src="${prod.img}" alt="${prod.name}">
+                        <div class="cart-item-details">
+                            <div class="cart-item-title">${prod.name}</div>
+                            <div class="cart-item-price">$${prod.price.toFixed(2)}</div>
+                            <button class="add-to-cart" style="padding: 5px 12px; font-size: 0.75rem;" onclick="addToCart(${prod.id})">Move to Cart</button>
+                        </div>
+                        <button class="cart-item-remove" onclick="toggleWishlistItem(${prod.id}, event)">&times;</button>
+                    `;
+                    container.appendChild(el);
+                });
+            }
+        }
+
+        // Custom Gift Selector
+        window.selectGift = function(element, giftName) {
+            document.querySelectorAll('.gift-card').forEach(c => c.classList.remove('selected'));
+            element.classList.add('selected');
+            selectedGiftPackage = giftName;
+            showToast("Selected: " + giftName + " 🎀");
+        };
+
+        // Toast Notification System
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMessage').innerText = msg;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2500);
+        }
+
+        window.showQuickToast = function(name) {
+            showToast("Inspecting: " + name + " ✨");
+        };
+
+        // Newsletter Form Handler
+        window.handleNewsletter = function(e) {
+            e.preventDefault();
+            showToast("Welcome to the Royal Club! Check your inbox 💖");
+            e.target.reset();
+        };
+
+        // WhatsApp Checkout Integration
+        window.processCheckout = function() {
+            if (cart.length === 0) {
+                alert("Your cart is empty! Please add some cute items first. 🌸");
+                return;
+            }
+
+            let message = "Hi Lily & Pearl! 🎀%0A%0AI would love to place a royal order:%0A%0A";
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                const lineTotal = item.product.price * item.quantity;
+                message += `${index + 1}. ${item.product.name} (x${item.quantity}) - $${lineTotal.toFixed(2)}%0A`;
+                total += lineTotal;
+            });
+
+            message += `%0A*Packaging Choice:* ${selectedGiftPackage}`;
+            message += `%0A*Total Order Estimate: $${total.toFixed(2)}*%0A%0APlease assist me with the royal payment & delivery! ✨`;
+
+            const whatsappNumber = "12345678900"; 
+            const url = `https://wa.me/${whatsappNumber}?text=${message}`;
+            window.open(url, '_blank');
+        };
+    </script>
+</body>
+</html>
