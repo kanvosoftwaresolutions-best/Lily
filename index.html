@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lily & Pearl | Aesthetic Pink Jewelry</title>
+    <!-- Google Fonts for Soft Aesthetic -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* -------------------------------------
+           CSS Variables & Global Resets (Pink/Rose Gold Theme)
+           ------------------------------------- */
+        :root {
+            --rose-gold: #B76E79;
+            --rose-light: #E0BFB8;
+            --baby-pink: #FFF0F5;
+            --pink-bg: #FFE4E1;
+            --sky-blue: #BCE6FF; /* Accent color */
+            --text-dark: #4A4A4A;
+            --text-muted: #7A7A7A;
+            --white-glass: rgba(255, 255, 255, 0.85);
+            --gradient-pink: linear-gradient(135deg, #FFF0F5, #FFE4E1, #FADADD, #E0BFB8);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px; 
+            color: var(--text-dark);
+            background-color: var(--baby-pink);
+            overflow-x: hidden;
+        }
+
+        /* -------------------------------------
+           Intro Screen with Logo
+           ------------------------------------- */
+        #intro-screen {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: var(--gradient-pink);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 1.2s ease-in-out, visibility 1.2s;
+        }
+
+        .intro-logo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 0 30px rgba(183, 110, 121, 0.5);
+            animation: softPop 2.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            opacity: 0;
+            transform: scale(0.5);
+        }
+
+        @keyframes softPop {
+            0% { transform: scale(0.5); opacity: 0; }
+            50% { transform: scale(1.1); opacity: 1; box-shadow: 0 0 50px rgba(183, 110, 121, 0.8); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .intro-brand {
+            font-family: 'Great Vibes', cursive;
+            font-size: 4rem;
+            color: var(--rose-gold);
+            margin-top: 25px;
+            opacity: 0;
+            animation: fadeUp 2s 1.2s forwards;
+            text-shadow: 2px 2px 5px rgba(255,255,255,0.8);
+        }
+
+        @keyframes fadeUp {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* -------------------------------------
+           Navigation Bar
+           ------------------------------------- */
+        header {
+            position: fixed;
+            top: 0; width: 100%;
+            background: rgba(255, 240, 245, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(183, 110, 121, 0.2);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 6%;
+            transition: all 0.3s ease;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .header-logo {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--rose-gold);
+        }
+
+        .logo-text {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.2rem;
+            color: var(--rose-gold);
+        }
+
+        .cart-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            padding: 5px;
+            transition: transform 0.3s ease;
+        }
+        .cart-btn:hover { transform: scale(1.1); }
+        .cart-btn svg {
+            width: 26px; height: 26px; fill: var(--rose-gold);
+        }
+        .cart-badge {
+            position: absolute;
+            top: -2px; right: -5px;
+            background: var(--sky-blue);
+            color: var(--text-dark);
+            font-size: 0.7rem; font-weight: 600;
+            width: 18px; height: 18px;
+            border-radius: 50%; display: flex;
+            align-items: center; justify-content: center;
+            border: 1px solid white;
+        }
+
+        /* -------------------------------------
+           Hero & Parallax Reveal
+           ------------------------------------- */
+        /* First Background (Hero) */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex; align-items: center; justify-content: center; text-align: center;
+            background: url('https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=2000') no-repeat center center;
+            background-size: cover;
+            background-attachment: fixed; /* Parallax effect */
+        }
+        .hero::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(255,240,245,0.4), rgba(255,240,245,0.8));
+        }
+        .hero-content {
+            position: relative; z-index: 2; padding: 0 20px;
+        }
+        .hero-title {
+            font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--rose-gold);
+            letter-spacing: 3px; margin-bottom: 10px; text-transform: uppercase;
+        }
+        .hero-subtitle {
+            font-family: 'Great Vibes', cursive; font-size: 3rem; color: var(--text-dark);
+        }
+
+        /* Second Background (Cute Pink Bracelet Aesthetic) */
+        .story-section {
+            position: relative;
+            padding: 80px 6%;
+            background: url('https://images.unsplash.com/photo-1574931327157-550604b901dd?q=80&w=2000') no-repeat center center;
+            background-size: cover;
+            background-attachment: fixed; /* Creates the overlap reveal effect */
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+        }
+        .story-section::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255, 240, 245, 0.75); /* Soft pink overlay */
+        }
+
+        /* -------------------------------------
+           About (Floating Borders) & Specialties
+           ------------------------------------- */
+        .about-card {
+            position: relative; z-index: 2;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 50px; border-radius: 20px;
+            max-width: 900px; margin: 0 auto;
+            text-align: center;
+            /* Floating Border Animation */
+            box-shadow: 0 0 0 4px rgba(183, 110, 121, 0.2);
+            animation: floatBorder 3s infinite alternate;
+        }
+
+        @keyframes floatBorder {
+            0% { box-shadow: 0 0 0 2px rgba(183, 110, 121, 0.2), 0 10px 20px rgba(0,0,0,0.05); transform: translateY(0); }
+            100% { box-shadow: 0 0 0 8px rgba(188, 230, 255, 0.6), 0 15px 30px rgba(0,0,0,0.1); transform: translateY(-5px); }
+        }
+
+        .about-card h2 {
+            font-family: 'Playfair Display', serif; color: var(--rose-gold); font-size: 2.2rem; margin-bottom: 20px;
+        }
+        .about-card p {
+            font-size: 1rem; line-height: 1.8; color: var(--text-muted); margin-bottom: 25px;
+        }
+
+        /* 10 Brand Specialties */
+        .specialties-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; margin-top: 30px;
+        }
+        .specialty-item {
+            background: #fff; padding: 15px 10px; border-radius: 12px;
+            border: 1px solid rgba(183,110,121,0.2);
+            font-size: 0.85rem; font-weight: 500; color: var(--rose-gold);
+            transition: all 0.3s;
+        }
+        .specialty-item:hover {
+            background: var(--sky-blue); color: #fff; border-color: var(--sky-blue);
+        }
+
+        /* -------------------------------------
+           Categories (Horizontal Scroll)
+           ------------------------------------- */
+        .categories-container {
+            padding: 30px 6%; background: #fff; border-top: 1px solid rgba(183,110,121,0.1);
+        }
+        .categories-scroll {
+            display: flex; gap: 15px; overflow-x: auto; padding-bottom: 15px;
+            scrollbar-width: thin; scrollbar-color: var(--rose-light) transparent;
+        }
+        .categories-scroll::-webkit-scrollbar { height: 6px; }
+        .categories-scroll::-webkit-scrollbar-thumb { background: var(--rose-light); border-radius: 10px; }
+        
+        .category-pill {
+            background: var(--baby-pink); border: 1px solid var(--rose-light); color: var(--text-dark);
+            padding: 10px 30px; border-radius: 40px; font-family: 'Playfair Display', serif; font-size: 1rem;
+            cursor: pointer; white-space: nowrap; transition: all 0.4s ease;
+        }
+        .category-pill:hover, .category-pill.active {
+            background: var(--rose-gold); color: #fff; border-color: var(--rose-gold); box-shadow: 0 4px 10px rgba(183,110,121,0.3);
+        }
+
+        /* -------------------------------------
+           Main Products Grid (Vertical)
+           ------------------------------------- */
+        .products-section {
+            padding: 60px 6%; background: var(--baby-pink);
+        }
+        .product-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
+        }
+        @media (min-width: 992px) {
+            .product-grid { grid-template-columns: repeat(4, 1fr); gap: 30px; }
+        }
+        .product-card {
+            background: #fff; border-radius: 15px; padding: 15px; text-align: center;
+            border: 1px solid rgba(183,110,121,0.1);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            display: flex; flex-direction: column; justify-content: space-between;
+        }
+        .product-card:hover {
+            transform: translateY(-8px); box-shadow: 0 15px 30px rgba(183, 110, 121, 0.15);
+        }
+        .image-wrapper {
+            width: 100%; aspect-ratio: 1/1; background: var(--baby-pink); border-radius: 10px;
+            margin-bottom: 15px; overflow: hidden; display: flex; align-items: center; justify-content: center;
+        }
+        .product-image {
+            width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s;
+        }
+        .product-card:hover .product-image { transform: scale(1.08); }
+        
+        .product-category { font-family: 'Great Vibes', cursive; color: var(--rose-light); font-size: 1.2rem; }
+        .product-title { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--text-dark); margin: 5px 0 10px; font-weight: 600;}
+        .product-price { font-weight: 600; color: var(--rose-gold); font-size: 1.1rem; margin-bottom: 15px; }
+        
+        .add-to-cart {
+            background: #fff; color: var(--rose-gold); border: 2px solid var(--rose-gold);
+            padding: 10px; border-radius: 25px; font-family: 'Poppins', sans-serif; font-weight: 500;
+            cursor: pointer; transition: all 0.3s; width: 100%;
+        }
+        .add-to-cart:hover {
+            background: var(--rose-gold); color: #fff;
+        }
+
+        /* -------------------------------------
+           End Marker
+           ------------------------------------- */
+        .end-marker {
+            display: flex; align-items: center; justify-content: center; padding: 40px 6%;
+        }
+        .end-marker::before, .end-marker::after {
+            content: ''; flex: 1; border-bottom: 1px solid var(--rose-light); margin: 0 20px;
+        }
+        .end-marker span {
+            font-family: 'Great Vibes', cursive; font-size: 2rem; color: var(--rose-gold);
+        }
+
+        /* -------------------------------------
+           Special Products (Horizontal Scroll)
+           ------------------------------------- */
+        .special-section {
+            padding: 60px 6%; background: #fff;
+        }
+        .section-title {
+            text-align: center; font-family: 'Playfair Display', serif; color: var(--rose-gold);
+            font-size: 2.2rem; margin-bottom: 40px;
+        }
+        .special-scroll {
+            display: flex; gap: 25px; overflow-x: auto; padding: 20px 5px 40px;
+            scroll-snap-type: x mandatory; scrollbar-width: none;
+        }
+        .special-card {
+            flex: 0 0 300px; scroll-snap-align: center;
+            background: var(--baby-pink); border-radius: 20px; padding: 20px;
+            border: 1px solid rgba(183,110,121,0.2); box-shadow: 0 10px 20px rgba(0,0,0,0.03);
+        }
+        .special-card img {
+            width: 100%; height: 250px; object-fit: cover; border-radius: 12px; margin-bottom: 15px;
+        }
+        .special-card h3 { font-family: 'Playfair Display', serif; color: var(--text-dark); margin-bottom: 10px; }
+        .special-card p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px; line-height: 1.5; }
+        .special-price { color: var(--rose-gold); font-weight: 600; font-size: 1.2rem; margin-bottom: 15px; display: block;}
+
+        /* -------------------------------------
+           Reviews (Horizontal Scroll)
+           ------------------------------------- */
+        .reviews-section {
+            padding: 60px 6%; background: var(--pink-bg);
+        }
+        .reviews-scroll {
+            display: flex; gap: 20px; overflow-x: auto; padding-bottom: 30px; scroll-snap-type: x mandatory;
+        }
+        .review-card {
+            flex: 0 0 320px; scroll-snap-align: center; background: #fff; padding: 25px; border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(183,110,121,0.1); position: relative;
+        }
+        .stars { color: #FFD700; margin-bottom: 10px; font-size: 1.2rem; }
+        .review-text { font-style: italic; font-size: 0.9rem; color: var(--text-muted); margin-bottom: 15px; }
+        .reviewer-name { font-weight: 600; color: var(--rose-gold); }
+
+        /* -------------------------------------
+           FAQs Section
+           ------------------------------------- */
+        .faq-section {
+            padding: 60px 6%; background: #fff; max-width: 800px; margin: 0 auto;
+        }
+        .faq-item {
+            margin-bottom: 15px; border: 1px solid var(--rose-light); border-radius: 8px; overflow: hidden;
+        }
+        .faq-question {
+            background: var(--baby-pink); padding: 15px 20px; font-family: 'Playfair Display', serif;
+            font-weight: 600; color: var(--rose-gold); cursor: pointer; display: flex; justify-content: space-between;
+        }
+        .faq-answer {
+            padding: 0 20px; max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease;
+            color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;
+        }
+        .faq-item.active .faq-answer {
+            padding: 15px 20px; max-height: 200px;
+        }
+
+        /* -------------------------------------
+           Footer & Certifications
+           ------------------------------------- */
+        footer {
+            background: #fff; padding: 60px 6% 20px; border-top: 1px solid var(--rose-light); text-align: center;
+        }
+        .cert-container {
+            display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-bottom: 40px;
+        }
+        .cert-box {
+            background: var(--baby-pink); padding: 20px; border-radius: 15px; border: 1px dashed var(--rose-gold);
+            width: 200px;
+        }
+        .cert-box h4 { font-family: 'Playfair Display'; color: var(--rose-gold); margin-bottom: 8px; }
+        .cert-box p { font-size: 0.75rem; color: var(--text-muted); }
+        
+        .footer-logo { font-family: 'Great Vibes', cursive; font-size: 3rem; color: var(--rose-gold); margin-bottom: 10px; display: block; }
+        .footer-links { margin-bottom: 30px; }
+        .footer-links a { color: var(--text-muted); text-decoration: none; margin: 0 10px; font-size: 0.9rem; transition: color 0.3s; }
+        .footer-links a:hover { color: var(--sky-blue); }
+        .copyright { color: #aaa; font-size: 0.8rem; border-top: 1px solid #eee; padding-top: 20px; }
+
+        /* -------------------------------------
+           Working Cart (With Quantities)
+           ------------------------------------- */
+        .cart-overlay {
+            position: fixed; top: 0; right: -100%; width: 100vw; height: 100vh;
+            background: rgba(0,0,0,0.4); backdrop-filter: blur(5px); z-index: 10000;
+            transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+        .cart-overlay.open { right: 0; }
+        .cart-modal {
+            position: absolute; top: 0; right: 0; width: 100%; max-width: 400px; height: 100%;
+            background: #fff; padding: 25px 20px; display: flex; flex-direction: column;
+            box-shadow: -10px 0 30px rgba(183,110,121,0.2);
+        }
+        .cart-header {
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid var(--rose-light); padding-bottom: 15px; margin-bottom: 20px;
+        }
+        .cart-header h2 { font-family: 'Playfair Display', serif; color: var(--rose-gold); font-size: 1.5rem; }
+        .close-cart { background: none; border: none; font-size: 2rem; color: var(--text-muted); cursor: pointer; }
+        
+        .cart-items { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; padding-right: 5px; }
+        .cart-items::-webkit-scrollbar { width: 4px; }
+        .cart-items::-webkit-scrollbar-thumb { background: var(--rose-light); }
+        
+        .cart-item {
+            display: flex; align-items: center; gap: 15px; background: var(--baby-pink);
+            padding: 10px; border-radius: 10px; border: 1px solid rgba(183,110,121,0.2);
+        }
+        .cart-item img { width: 60px; height: 60px; object-fit: cover; border-radius: 8px; }
+        .cart-item-details { flex: 1; }
+        .cart-item-title { font-family: 'Playfair Display', serif; font-size: 0.9rem; font-weight: 600; margin-bottom: 5px; }
+        .cart-item-price { color: var(--rose-gold); font-weight: 500; font-size: 0.9rem; margin-bottom: 5px;}
+        
+        /* Quantity Controls */
+        .quant-controls { display: flex; align-items: center; gap: 10px; }
+        .quant-btn {
+            background: #fff; border: 1px solid var(--rose-light); width: 22px; height: 22px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            cursor: pointer; color: var(--rose-gold); font-weight: bold;
+        }
+        .quant-val { font-size: 0.85rem; font-weight: 600; }
+
+        .cart-footer { border-top: 1px solid var(--rose-light); padding-top: 20px; margin-top: 20px; }
+        .cart-total { display: flex; justify-content: space-between; font-size: 1.2rem; font-weight: 600; color: var(--text-dark); margin-bottom: 20px; }
+        .checkout-btn {
+            background: var(--rose-gold); color: #fff; border: none; width: 100%; padding: 15px;
+            font-family: 'Poppins', sans-serif; font-size: 1rem; font-weight: 600; border-radius: 30px;
+            cursor: pointer; transition: background 0.3s;
+        }
+        .checkout-btn:hover { background: #9E5B65; }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2rem; } .hero-subtitle { font-size: 2rem; }
+            .specialties-grid { grid-template-columns: repeat(2, 1fr); }
+            .cert-container { flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Intro Animation Screen -->
+    <div id="intro-screen">
+        <img src="1000004716.jpg" alt="Lily & Pearl" class="intro-logo">
+        <div class="intro-brand">Lily & Pearl</div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content" style="opacity: 0; display: none;">
+        
+        <!-- Header -->
+        <header id="navbar">
+            <a href="#" class="logo-container">
+                <img src="1000004716.jpg" alt="Logo" class="header-logo">
+                <span class="logo-text">Lily & Pearl</span>
+            </a>
+            <button class="cart-btn" onclick="toggleCart()" aria-label="Open Cart">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+                </svg>
+                <span class="cart-badge" id="cartBadge">0</span>
+            </button>
+        </header>
+
+        <!-- Hero Section (First background, scrolls up) -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Aesthetic Elegance</h1>
+                <p class="hero-subtitle">Cute, Handcrafted & Yours</p>
+            </div>
+        </section>
+
+        <!-- Story/About Section (Reveals pink background underneath) -->
+        <section class="story-section">
+            <div class="about-card">
+                <h2>Our Pink Aesthetic Promise</h2>
+                <p>Welcome to Lily & Pearl. We believe jewelry should be as cute and beautiful as the soul wearing it. Transitioning from traditional styles, we bring you delicate rose gold, baby pink hues, and sky blue accents to match your everyday aesthetic. Every piece is curated to make you feel like the main character.</p>
+                
+                <!-- 10 Brand Specialties Added -->
+                <div class="specialties-grid">
+                    <div class="specialty-item">🌸 100% Hypoallergenic</div>
+                    <div class="specialty-item">✨ Tarnish-Free Guarantee</div>
+                    <div class="specialty-item">🌿 Ethically Sourced</div>
+                    <div class="specialty-item">🎀 Cute Eco-Packaging</div>
+                    <div class="specialty-item">💧 Water & Sweat Proof</div>
+                    <div class="specialty-item">💎 Real Hand-cut Zirconia</div>
+                    <div class="specialty-item">🤍 Lifetime Warranty</div>
+                    <div class="specialty-item">🎨 Custom Engravings</div>
+                    <div class="specialty-item">🚚 Free Aesthetic Shipping</div>
+                    <div class="specialty-item">🧸 Made with Love</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories Filter (Horizontal Scroll) -->
+        <section class="categories-container" id="collections">
+            <div class="categories-scroll">
+                <button class="category-pill active" onclick="filterProducts('All')">All Cute Pieces</button>
+                <button class="category-pill" onclick="filterProducts('Necklace')">Necklaces</button>
+                <button class="category-pill" onclick="filterProducts('Bracelet')">Bracelets</button>
+                <button class="category-pill" onclick="filterProducts('Ring')">Rings</button>
+                <button class="category-pill" onclick="filterProducts('Earrings')">Earrings</button>
+            </div>
+        </section>
+
+        <!-- Products Grid (20 Beautiful Products, Images Working) -->
+        <section class="products-section">
+            <div class="product-grid" id="productGrid">
+                <!-- Injected via JS -->
+            </div>
+        </section>
+
+        <!-- End of Products Line -->
+        <div class="end-marker">
+            <span>Discover More Magic</span>
+        </div>
+
+        <!-- 4 Special Products (Horizontal Scroll) -->
+        <section class="special-section">
+            <h2 class="section-title">The Signature Collection</h2>
+            <div class="special-scroll">
+                <div class="special-card">
+                    <img src="https://images.unsplash.com/photo-1599643478524-fb66fa5320e5?w=500&q=80" alt="Special 1">
+                    <h3>The Rose Gold Cupid</h3>
+                    <span class="special-price">$145.00</span>
+                    <p>Our best-selling signature necklace. Adorned with a baby pink crystal center, this piece represents pure love and aesthetic perfection. Limited edition.</p>
+                    <button class="add-to-cart" onclick="addSpecialToCart('The Rose Gold Cupid', 145.00, 'https://images.unsplash.com/photo-1599643478524-fb66fa5320e5?w=500&q=80')">Add to Cart</button>
+                </div>
+                <div class="special-card">
+                    <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=500&q=80" alt="Special 2">
+                    <h3>Sky Blue Dream Cuff</h3>
+                    <span class="special-price">$180.00</span>
+                    <p>A mesmerizing bracelet featuring subtle sky blue enamel detailing wrapped in 18k rose gold. Perfect for stacking with your favorite cute outfits.</p>
+                    <button class="add-to-cart" onclick="addSpecialToCart('Sky Blue Dream Cuff', 180.00, 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=500&q=80')">Add to Cart</button>
+                </div>
+                <div class="special-card">
+                    <img src="https://images.unsplash.com/photo-1605100804763-247f6612148e?w=500&q=80" alt="Special 3">
+                    <h3>Pearl Princess Ring</h3>
+                    <span class="special-price">$120.00</span>
+                    <p>A hand-picked freshwater pearl set on a dainty, twisted rose gold band. This ring is the definition of soft-girl aesthetic and timeless grace.</p>
+                    <button class="add-to-cart" onclick="addSpecialToCart('Pearl Princess Ring', 120.00, 'https://images.unsplash.com/photo-1605100804763-247f6612148e?w=500&q=80')">Add to Cart</button>
+                </div>
+                <div class="special-card">
+                    <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&q=80" alt="Special 4">
+                    <h3>Fairy Wing Earrings</h3>
+                    <span class="special-price">$95.00</span>
+                    <p>Delicate, lightweight drops that shimmer like fairy wings in the sunlight. Hypoallergenic and cute enough to wear every single day.</p>
+                    <button class="add-to-cart" onclick="addSpecialToCart('Fairy Wing Earrings', 95.00, 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&q=80')">Add to Cart</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fake Reviews (Horizontal Scroll) -->
+        <section class="reviews-section">
+            <h2 class="section-title">What Our Angels Say</h2>
+            <div class="reviews-scroll">
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"Omg the packaging was so cute, pink bows everywhere! The necklace hasn't tarnished at all even though I shower with it."</p>
+                    <p class="reviewer-name">- Sarah M.</p>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"I bought the Sky Blue Dream Cuff and it matches perfectly with my rose gold watch. The aesthetic is unmatched."</p>
+                    <p class="reviewer-name">- Emily R.</p>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"Literally the prettiest ring I own. Lily & Pearl never disappoints. Also customer service was so sweet on WhatsApp!"</p>
+                    <p class="reviewer-name">- Chloe T.</p>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"My boyfriend got me the pearl collection for our anniversary and I cried. It's so delicate and beautiful."</p>
+                    <p class="reviewer-name">- Jessica K.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQs Section -->
+        <section class="faq-section">
+            <h2 class="section-title">Questions & Answers</h2>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">Does the jewelry tarnish? <span>+</span></div>
+                <div class="faq-answer">Absolutely not! We use a proprietary coating over our rose gold and stainless steel base, making all our pieces 100% water and sweat proof. Wear them to the gym or in the shower!</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">How long does shipping take? <span>+</span></div>
+                <div class="faq-answer">We offer free aesthetic shipping globally! Standard delivery takes 3-5 business days. Your cute pink package is fully tracked and insured.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">Are these real pearls? <span>+</span></div>
+                <div class="faq-answer">Yes, we ethically source real freshwater pearls. Because they are natural, each pearl has its own unique, beautiful shape.</div>
+            </div>
+        </section>
+
+        <!-- Footer & Certifications -->
+        <footer>
+            <!-- Fake Documents & Certifications as requested -->
+            <div class="cert-container">
+                <div class="cert-box">
+                    <h4>ISO 9001:2015 Certified</h4>
+                    <p>Verified Quality Management System ensuring premium craftsmanship in every single jewelry piece.</p>
+                </div>
+                <div class="cert-box">
+                    <h4>Hallmarked 18k</h4>
+                    <p>Officially stamped and verified for gold purity by the International Assay Office.</p>
+                </div>
+                <div class="cert-box">
+                    <h4>Ethical Diamond Cert</h4>
+                    <p>Compliant with the Kimberley Process. 100% conflict-free cubic zirconia and stones.</p>
+                </div>
+            </div>
+
+            <span class="footer-logo">Lily & Pearl</span>
+            <div class="footer-links">
+                <a href="#">Instagram @lilyandpearl_</a>
+                <a href="#">Contact Us</a>
+                <a href="#">Return Policy</a>
+                <a href="#">Track Order</a>
+            </div>
+            <div class="copyright">
+                &copy; 2026 Lily & Pearl Aesthetic Jewelry. Designed with Love.
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Advanced Cart Modal -->
+    <div class="cart-overlay" id="cartOverlay">
+        <div class="cart-modal">
+            <div class="cart-header">
+                <h2>Your Cute Bag</h2>
+                <button class="close-cart" onclick="toggleCart()">&times;</button>
+            </div>
+            <div class="cart-items" id="cartItemsContainer">
+                <!-- Items populated here via JS -->
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span id="cartTotalValue">$0.00</span>
+                </div>
+                <!-- WhatsApp Checkout -->
+                <button class="checkout-btn" onclick="processCheckout()">Checkout via WhatsApp</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Intro Animation logic
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                const intro = document.getElementById('intro-screen');
+                const main = document.getElementById('main-content');
+                intro.style.opacity = '0';
+                setTimeout(() => {
+                    intro.style.display = 'none';
+                    main.style.display = 'block';
+                    setTimeout(() => {
+                        main.style.opacity = '1';
+                        main.style.transition = 'opacity 1s ease';
+                    }, 50);
+                }, 1200);
+            }, 3500); // 3.5 seconds cute intro
+        });
+
+        // Toggle FAQ Accordion
+        function toggleFaq(element) {
+            const parent = element.parentElement;
+            parent.classList.toggle('active');
+            const icon = element.querySelector('span');
+            icon.innerText = parent.classList.contains('active') ? '-' : '+';
+        }
+
+        // 20 Beautiful Reliable Aesthetic Products
+        const products = [
+            { id: 1, category: "Necklace", name: "Rose Gold Heart Chain", price: 85.00, img: "https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?w=500&q=80" },
+            { id: 2, category: "Ring", name: "Pink Sapphire Solitaire", price: 110.00, img: "https://images.unsplash.com/photo-1600181516264-329ea1be6b14?w=500&q=80" },
+            { id: 3, category: "Earrings", name: "Daisy Drop Studs", price: 65.00, img: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&q=80" },
+            { id: 4, category: "Bracelet", name: "Soft Pearl Wristband", price: 75.00, img: "https://images.unsplash.com/photo-1573408301145-3fc1e860bc00?w=500&q=80" },
+            { id: 5, category: "Necklace", name: "Baby Pink Choker", price: 55.00, img: "https://images.unsplash.com/photo-1599643477874-5c366d20f667?w=500&q=80" },
+            { id: 6, category: "Ring", name: "Sky Blue Topaz Ring", price: 130.00, img: "https://images.unsplash.com/photo-1596944924616-7b38e7cf9361?w=500&q=80" },
+            { id: 7, category: "Bracelet", name: "Rose Charm Bangle", price: 90.00, img: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=500&q=80" },
+            { id: 8, category: "Necklace", name: "Dainty Crescent Moon", price: 70.00, img: "https://images.unsplash.com/photo-1543294001-f7cd5d7fb516?w=500&q=80" },
+            { id: 9, category: "Earrings", name: "Rose Gold Hoops", price: 45.00, img: "https://images.unsplash.com/photo-1617265163155-227eb0c7b39a?w=500&q=80" },
+            { id: 10, category: "Necklace", name: "Layered Pearl Chain", price: 115.00, img: "https://images.unsplash.com/photo-1610633428808-620245228ab5?w=500&q=80" },
+            { id: 11, category: "Ring", name: "Minimalist Twist Band", price: 60.00, img: "https://images.unsplash.com/photo-1605100804763-247f6612148e?w=500&q=80" },
+            { id: 12, category: "Bracelet", name: "Crystal Tennis Bracelet", price: 140.00, img: "https://images.unsplash.com/photo-1531995811006-35cb42e1a022?w=500&q=80" },
+            { id: 13, category: "Necklace", name: "Engraved Love Locket", price: 95.00, img: "https://images.unsplash.com/photo-1583064327998-f29e1620a2cb?w=500&q=80" },
+            { id: 14, category: "Earrings", name: "Crystal Teardrops", price: 80.00, img: "https://images.unsplash.com/photo-1602751584552-8ba73aad10be?w=500&q=80" },
+            { id: 15, category: "Ring", name: "Vintage Rose Ring", price: 150.00, img: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=500&q=80" },
+            { id: 16, category: "Necklace", name: "Infinity Knot Chain", price: 65.00, img: "https://images.unsplash.com/photo-1599643478524-fb66fa5320e5?w=500&q=80" },
+            { id: 17, category: "Bracelet", name: "Chunky Gold Link", price: 85.00, img: "https://images.unsplash.com/photo-1611652022419-e9477580b031?w=500&q=80" },
+            { id: 18, category: "Earrings", name: "Sky Blue Studs", price: 55.00, img: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&q=80" },
+            { id: 19, category: "Necklace", name: "Starflower Pendant", price: 88.00, img: "https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?w=500&q=80" },
+            { id: 20, category: "Ring", name: "Eternity Band", price: 125.00, img: "https://images.unsplash.com/photo-1600181516264-329ea1be6b14?w=500&q=80" }
+        ];
+
+        let cart = []; // Cart array containing objects with quantities
+
+        const productGrid = document.getElementById('productGrid');
+        
+        function displayProducts(productArray) {
+            productGrid.innerHTML = '';
+            productArray.forEach(prod => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <div class="image-wrapper">
+                        <img src="${prod.img}" alt="${prod.name}" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-category">${prod.category}</div>
+                    <h3 class="product-title">${prod.name}</h3>
+                    <div class="product-price">$${prod.price.toFixed(2)}</div>
+                    <button class="add-to-cart" onclick="addToCart(${prod.id}, this)">Add to Cart</button>
+                `;
+                productGrid.appendChild(card);
+            });
+        }
+
+        displayProducts(products);
+
+        // Filter Logic
+        window.filterProducts = function(category) {
+            document.querySelectorAll('.category-pill').forEach(pill => {
+                pill.classList.remove('active');
+                if(pill.innerText.includes(category) || (category === 'All' && pill.innerText.includes('All'))) {
+                    pill.classList.add('active');
+                }
+            });
+            if(category === 'All') {
+                displayProducts(products);
+            } else {
+                displayProducts(products.filter(p => p.category === category));
+            }
+        }
+
+        // Cart Drawer
+        window.toggleCart = function() {
+            document.getElementById('cartOverlay').classList.toggle('open');
+        }
+
+        // Add regular products to cart
+        window.addToCart = function(productId, btn) {
+            const product = products.find(p => p.id === productId);
+            addItemToCartLogic(product, btn);
+        }
+
+        // Add special products to cart
+        window.addSpecialToCart = function(name, price, img) {
+            const product = { id: name, name: name, price: price, img: img }; // Generate custom ID
+            addItemToCartLogic(product, null);
+            alert(`Added ${name} to your cute bag! 🎀`);
+        }
+
+        function addItemToCartLogic(product, btnElement) {
+            const existingItem = cart.find(item => item.id === product.id);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+            updateCartUI();
+
+            if(btnElement) {
+                const originalText = btnElement.innerText;
+                btnElement.innerText = 'Added! 🎀';
+                btnElement.style.background = 'var(--rose-gold)';
+                btnElement.style.color = '#fff';
+                setTimeout(() => {
+                    btnElement.innerText = originalText;
+                    btnElement.style.background = '#fff';
+                    btnElement.style.color = 'var(--rose-gold)';
+                }, 1000);
+            }
+        }
+
+        // Add or Subtract Quantity
+        window.changeQuantity = function(id, delta) {
+            const item = cart.find(item => item.id === id);
+            if (item) {
+                item.quantity += delta;
+                if (item.quantity <= 0) {
+                    cart = cart.filter(p => p.id !== id);
+                }
+            }
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            // Total items badge count
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cartBadge').innerText = totalItems;
+            
+            const container = document.getElementById('cartItemsContainer');
+            container.innerHTML = '';
+            let totalValue = 0;
+
+            if(cart.length === 0) {
+                container.innerHTML = '<p style="color:var(--text-muted); text-align:center; margin-top:40px; font-style:italic;">Your cute bag is empty.</p>';
+            } else {
+                cart.forEach((item) => {
+                    totalValue += item.price * item.quantity;
+                    const el = document.createElement('div');
+                    el.className = 'cart-item';
+                    
+                    // For dynamic IDs (strings or numbers)
+                    const idParam = typeof item.id === 'string' ? `'${item.id}'` : item.id;
+
+                    el.innerHTML = `
+                        <img src="${item.img}" alt="${item.name}">
+                        <div class="cart-item-details">
+                            <div class="cart-item-title">${item.name}</div>
+                            <div class="cart-item-price">$${item.price.toFixed(2)}</div>
+                            <div class="quant-controls">
+                                <button class="quant-btn" onclick="changeQuantity(${idParam}, -1)">-</button>
+                                <span class="quant-val">${item.quantity}</span>
+                                <button class="quant-btn" onclick="changeQuantity(${idParam}, 1)">+</button>
+                            </div>
+                        </div>
+                    `;
+                    container.appendChild(el);
+                });
+            }
+            document.getElementById('cartTotalValue').innerText = `$${totalValue.toFixed(2)}`;
+        }
+
+        // WhatsApp Checkout Process with Quantities
+        window.processCheckout = function() {
+            if (cart.length === 0) {
+                alert("Please add some cute items to your bag first! 🎀");
+                return;
+            }
+
+            let message = "Hii Lily & Pearl! 🎀%0A%0AI would love to place an order:%0A%0A";
+            let total = 0;
+            
+            cart.forEach((item, index) => {
+                message += `${index + 1}. ${item.name} (x${item.quantity}) - $${(item.price * item.quantity).toFixed(2)}%0A`;
+                total += (item.price * item.quantity);
+            });
+            
+            message += `%0A*Total: $${total.toFixed(2)}*%0A%0APlease let me know how to proceed with payment! 💕`;
+
+            const whatsappNumber = "12345678900"; 
+            window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
+        }
+    </script>
+</body>
+</html>
