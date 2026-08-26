@@ -1,0 +1,1489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Lily & Pearl | Premium Aesthetic Jewellery</title>
+    
+    <!-- Premium Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* =========================================================
+           CSS VARIABLES & AESTHETIC PALETTE
+           ========================================================= */
+        :root {
+            /* Requested Aesthetic Colors */
+            --golden-rose: #c88d94; 
+            --baby-pink: #fce7f3;
+            --sky-blue: #e0f2fe;
+            --sky-blue-border: #7dd3fc;
+            --silver-white: #f8fafc;
+            
+            /* Text Colors */
+            --text-dark: #2c3e50;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            
+            /* Typography Scale (Small to Medium, Mobile Fit) */
+            --font-calligraphy: 'Alex Brush', cursive;
+            --font-sans: 'Poppins', sans-serif;
+            --fs-xxs: 9px;
+            --fs-xs: 10px;
+            --fs-sm: 11.5px;
+            --fs-md: 13px;
+            --fs-lg: 16px;
+            --fs-xl: 22px;
+            --fs-xxl: 30px;
+            
+            /* Glassmorphism Variables - Made whiter as requested */
+            --glass-bg: rgba(255, 255, 255, 0.65); /* Whiter boxes */
+            --glass-blur: blur(14px);
+            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.8);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            font-size: var(--fs-md);
+            line-height: 1.5;
+            background-color: #f8fafc;
+        }
+
+        /* Mobile Container to mimic app feel on desktop */
+        .app-container {
+            max-width: 480px;
+            margin: 0 auto;
+            position: relative;
+            min-height: 100vh;
+            background: transparent;
+            box-shadow: 0 0 30px rgba(0,0,0,0.05);
+        }
+
+        /* =========================================================
+           1. SPLASH SCREEN
+           ========================================================= */
+        #splash-screen {
+            position: fixed;
+            inset: 0;
+            background: #ffffff;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeOutSplash 0.5s ease 2s forwards;
+        }
+
+        .splash-content {
+            display: flex;
+            flex-direction: row; 
+            align-items: center;
+            gap: 12px;
+            animation: popIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        .splash-logo {
+            width: 45px; height: 45px;
+            border-radius: 50%;
+            border: 2px solid var(--golden-rose);
+            object-fit: cover;
+        }
+
+        .splash-text {
+            font-family: var(--font-calligraphy);
+            font-size: 34px;
+            color: var(--golden-rose);
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        @keyframes fadeOutSplash {
+            to { opacity: 0; visibility: hidden; }
+        }
+
+        /* =========================================================
+           2. TOP NAVIGATION BAR
+           ========================================================= */
+        .navbar {
+            position: fixed;
+            top: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 480px;
+            height: 55px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border-bottom: 1px solid rgba(200, 141, 148, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-brand img {
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            border: 1.5px solid var(--golden-rose);
+            object-fit: cover;
+        }
+
+        .nav-title {
+            font-family: var(--font-calligraphy);
+            font-size: 26px;
+            color: var(--text-dark);
+            margin-top: 4px;
+        }
+
+        .cart-icon {
+            position: relative;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid var(--sky-blue-border);
+            width: 34px; height: 34px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-dark);
+            cursor: pointer;
+            font-size: 14px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -4px; right: -4px;
+            background: var(--golden-rose);
+            color: white;
+            font-size: 9px;
+            font-weight: 700;
+            width: 16px; height: 16px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid white;
+        }
+
+        /* =========================================================
+           BACKGROUND LAYERS
+           ========================================================= */
+        /* Layer 2: Diamond Dot Studs Background (Requested) */
+        #bg-layer-2 {
+            position: fixed;
+            top: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 480px;
+            height: 100vh;
+            background-image: url('https://images.unsplash.com/photo-1630019852942-f89202989a59?q=80&w=800&auto=format&fit=crop'); 
+            background-size: cover;
+            background-position: center;
+            z-index: -2;
+        }
+        
+        /* Overlay to ensure text readability against background */
+        .bg-overlay {
+            position: absolute; inset: 0;
+            background: rgba(255, 255, 255, 0.4); 
+        }
+
+        /* Layer 1: Pearl Hoops Background (Requested for 1st View) */
+        #bg-layer-1 {
+            position: fixed;
+            top: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 480px;
+            height: 100vh;
+            background-image: url('https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=800&auto=format&fit=crop'); 
+            background-size: cover;
+            background-position: center top;
+            z-index: -1;
+            will-change: opacity, transform;
+        }
+
+        /* =========================================================
+           3. HERO SECTION (1st View - Made Longer & Whiter)
+           ========================================================= */
+        #hero-view {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 20px;
+            position: relative;
+            z-index: 5;
+            padding-top: 55px;
+        }
+
+        .welcome-box {
+            background: rgba(255, 255, 255, 0.7); /* Whiter requested */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            /* Made vertically longer (approx 1.2x) */
+            padding: 45px 24px; 
+            min-height: 280px; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            width: 100%;
+            animation: floatBox 3.5s ease-in-out infinite alternate;
+            box-shadow: 0 15px 35px rgba(200, 141, 148, 0.15);
+        }
+
+        @keyframes floatBox {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-10px); }
+        }
+
+        .welcome-title {
+            font-family: var(--font-calligraphy);
+            font-size: 34px;
+            color: #2c3e50;
+            margin-bottom: 12px;
+            text-shadow: 0 1px 3px rgba(255,255,255,0.9);
+        }
+
+        .welcome-note {
+            font-size: var(--fs-md);
+            color: #334155;
+            line-height: 1.7;
+            font-weight: 500;
+        }
+
+        /* =========================================================
+           4. MAIN CONTENT & GLASS CONTAINERS
+           ========================================================= */
+        #main-content {
+            padding: 16px;
+            position: relative;
+            z-index: 5;
+            min-height: 100vh;
+        }
+
+        .glass-container {
+            background: var(--glass-bg); /* Whiter */
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border-radius: 18px;
+            padding: 16px;
+            margin-bottom: 22px;
+            box-shadow: var(--glass-shadow);
+        }
+
+        /* Enhanced Aesthetic Borders */
+        .border-golden { border: 1.5px solid rgba(200, 141, 148, 0.5); }
+        .border-pink { border: 1.5px solid rgba(252, 231, 243, 0.9); }
+        .border-blue { border: 1.5px solid rgba(125, 211, 252, 0.5); }
+
+        .section-title {
+            font-family: var(--font-calligraphy);
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 14px;
+            color: var(--text-dark);
+            text-shadow: 0 1px 2px rgba(255,255,255,0.8);
+        }
+
+        /* 1-Liner Horizontal Bars for Specialties */
+        .speciality-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .speciality-bar {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            padding: 10px 14px;
+            font-size: var(--fs-sm);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-left: 4px solid var(--golden-rose);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+        .speciality-bar:nth-child(even) { border-left-color: var(--sky-blue-border); }
+        .speciality-bar i { font-size: 13px; width: 16px; text-align: center; color: var(--text-medium); }
+
+        /* =========================================================
+           5. TRENDING NOW (Horizontal Scroll)
+           ========================================================= */
+        .trending-scroll {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            padding-bottom: 8px;
+        }
+        .trending-scroll::-webkit-scrollbar { display: none; }
+        
+        .trending-item {
+            min-width: 110px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 12px;
+            padding: 6px;
+            border: 1px solid var(--baby-pink);
+            text-align: center;
+            flex-shrink: 0;
+        }
+        .trending-img {
+            width: 100%;
+            height: 90px;
+            border-radius: 8px;
+            object-fit: cover;
+            margin-bottom: 6px;
+        }
+        .trending-title { font-size: var(--fs-xs); font-weight: 600; margin-bottom: 2px;}
+        .trending-price { font-size: var(--fs-xs); color: var(--golden-rose); font-weight: 700; margin-bottom: 6px;}
+
+        /* =========================================================
+           6. FILTER BAR & MAIN PRODUCTS
+           ========================================================= */
+        .filter-row {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.75); /* Whiter */
+            backdrop-filter: blur(12px);
+            border-radius: 25px;
+            padding: 6px;
+            margin-bottom: 18px;
+            border: 1px solid var(--golden-rose);
+            box-shadow: 0 4px 12px rgba(200, 141, 148, 0.1);
+        }
+
+        .search-icon-box {
+            width: 15%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--golden-rose);
+            font-size: 14px;
+            border-right: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .category-scroll {
+            width: 85%;
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            padding: 2px 8px;
+        }
+        .category-scroll::-webkit-scrollbar { display: none; }
+
+        .cat-btn {
+            background: rgba(255,255,255,0.8);
+            border: 1px solid transparent;
+            padding: 6px 14px;
+            border-radius: 15px;
+            font-size: var(--fs-xs);
+            white-space: nowrap;
+            color: var(--text-dark);
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.2s ease;
+        }
+        .cat-btn.active {
+            background: var(--golden-rose);
+            color: white;
+            box-shadow: 0 2px 8px rgba(200, 141, 148, 0.4);
+        }
+
+        /* MAIN PRODUCTS GRID */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.75); /* Whiter */
+            backdrop-filter: var(--glass-blur);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            border-radius: 14px;
+            padding: 8px;
+            display: flex;
+            flex-direction: column;
+            border-bottom: 3px solid var(--baby-pink);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+        .product-card:nth-child(even) { border-bottom-color: var(--sky-blue-border); }
+
+        .product-img {
+            width: 100%;
+            height: 130px; 
+            border-radius: 10px;
+            object-fit: cover;
+            margin-bottom: 8px;
+            background: #fff;
+        }
+
+        .product-name {
+            font-size: var(--fs-sm);
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-bottom: 4px;
+        }
+
+        .product-action {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .product-price {
+            font-size: var(--fs-sm);
+            font-weight: 700;
+            color: var(--text-medium);
+        }
+
+        .add-btn {
+            background: var(--golden-rose);
+            border: none;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: var(--fs-xs);
+            font-weight: 600;
+            cursor: pointer;
+            color: white;
+            transition: transform 0.1s;
+        }
+        .add-btn:active { transform: scale(0.95); }
+
+        /* =========================================================
+           7. VIP COLLECTION
+           ========================================================= */
+        .vip-scroll {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            padding-bottom: 8px;
+        }
+        .vip-scroll::-webkit-scrollbar { display: none; }
+
+        .vip-card {
+            min-width: 180px; 
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--golden-rose);
+            border-radius: 14px;
+            padding: 10px;
+            flex-shrink: 0;
+            position: relative;
+            box-shadow: 0 6px 15px rgba(200, 141, 148, 0.1);
+        }
+
+        .vip-badge {
+            position: absolute;
+            top: 6px; left: 6px;
+            background: var(--golden-rose);
+            color: white;
+            font-size: 9px;
+            padding: 3px 8px;
+            border-radius: 8px;
+            font-weight: 600;
+            z-index: 2;
+            text-transform: uppercase;
+        }
+
+        .vip-img {
+            width: 100%;
+            height: 150px;
+            border-radius: 10px;
+            object-fit: cover;
+            margin-bottom: 8px;
+        }
+
+        /* =========================================================
+           8. WHATSAPP INVITATION
+           ========================================================= */
+        .wa-box {
+            background: rgba(255, 255, 255, 0.85); /* Whiter */
+            border: 1.5px solid var(--sky-blue-border);
+            border-radius: 16px;
+            padding: 18px;
+            text-align: center;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 20px rgba(125, 211, 252, 0.15);
+        }
+        .wa-title { font-size: var(--fs-md); font-weight: 700; color: var(--text-dark); margin-bottom: 6px; }
+        .wa-sub { font-size: var(--fs-xs); color: var(--text-medium); margin-bottom: 12px; font-weight: 500;}
+        .wa-flex { display: flex; gap: 8px; }
+        .wa-input {
+            flex: 1; padding: 8px 12px; border-radius: 8px;
+            border: 1px solid rgba(0,0,0,0.1);
+            background: #fff;
+            font-size: var(--fs-xs); outline: none;
+        }
+        .wa-btn {
+            background: #25d366; color: white; border: none;
+            padding: 8px 16px; border-radius: 8px;
+            font-size: var(--fs-xs); font-weight: 600; cursor: pointer;
+        }
+
+        /* =========================================================
+           9. REVIEWS & FAQS
+           ========================================================= */
+        .review-scroll {
+            display: flex; gap: 12px; overflow-x: auto; scrollbar-width: none; padding-bottom: 6px;
+        }
+        .review-scroll::-webkit-scrollbar { display: none; }
+        .review-card {
+            min-width: 220px;
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(255,255,255,0.9);
+            border-left: 3px solid var(--baby-pink);
+            border-radius: 14px; padding: 12px; flex-shrink: 0;
+        }
+        .stars { color: var(--golden-rose); font-size: 10px; margin-bottom: 4px; }
+        .reviewer { font-size: var(--fs-sm); font-weight: 700; }
+        .review-txt { font-size: var(--fs-xs); margin-top: 4px; color: var(--text-medium); font-weight: 500;}
+
+        /* FAQS */
+        .faq-item {
+            margin-bottom: 8px;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .faq-item summary {
+            font-size: var(--fs-sm);
+            font-weight: 600;
+            padding: 10px 0;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '+'; color: var(--golden-rose); font-weight: bold; font-size: 14px;}
+        .faq-item[open] summary::after { content: '-'; }
+        .faq-desc {
+            font-size: var(--fs-xs);
+            padding: 0 0 10px 0;
+            color: var(--text-medium);
+            line-height: 1.5;
+        }
+
+        /* =========================================================
+           10. FOOTER & CERTIFICATES
+           ========================================================= */
+        .footer-box {
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .footer-note {
+            font-size: var(--fs-sm);
+            color: var(--text-dark);
+            margin-bottom: 15px;
+            line-height: 1.6;
+            font-weight: 600;
+        }
+        
+        .cert-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-bottom: 15px; }
+        .cert-chip { 
+            background: rgba(255, 255, 255, 0.9); 
+            border: 1px solid var(--golden-rose); 
+            padding: 5px 10px; 
+            border-radius: 8px; 
+            font-size: var(--fs-xxs); 
+            display: flex; align-items: center; gap: 5px; 
+            font-weight: 600; 
+            color: var(--text-dark);
+        }
+
+        /* =========================================================
+           11. CART MODAL
+           ========================================================= */
+        .cart-overlay {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.3);
+            z-index: 1999; display: none; opacity: 0; transition: opacity 0.3s;
+        }
+        .cart-overlay.active { display: block; opacity: 1; }
+
+        #cart-modal {
+            position: fixed; top: 0; right: -100%;
+            width: 85%; max-width: 320px; height: 100vh;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            z-index: 2000; transition: right 0.3s ease;
+            display: flex; flex-direction: column;
+            border-left: 2px solid var(--golden-rose);
+        }
+        #cart-modal.active { right: 0; }
+        
+        @media (min-width: 481px) {
+            #cart-modal {
+                right: auto;
+                left: calc(50% + 240px);
+                transform: translateX(-100%);
+                opacity: 0; pointer-events: none;
+            }
+            #cart-modal.active {
+                opacity: 1; pointer-events: auto;
+            }
+        }
+
+        .cart-header { padding: 15px; border-bottom: 1px solid rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; }
+        .cart-title { font-size: var(--fs-md); font-weight: 700; }
+        .close-btn { background: none; border: none; font-size: 16px; color: var(--text-dark); cursor: pointer; }
+
+        .cart-body { flex: 1; overflow-y: auto; padding: 15px; }
+        .cart-item { display: flex; gap: 10px; margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px dashed rgba(0,0,0,0.1); }
+        .cart-item-img { width: 45px; height: 45px; border-radius: 8px; object-fit: cover; border: 1px solid rgba(0,0,0,0.05); }
+        .cart-item-details { flex: 1; }
+        .cart-item-name { font-size: var(--fs-xs); font-weight: 600; margin-bottom: 3px; }
+        .cart-item-price { font-size: var(--fs-xs); color: var(--golden-rose); font-weight: 700; }
+        .qty-box { display: flex; align-items: center; gap: 8px; margin-top: 5px; }
+        .qty-btn { background: #f8fafc; border: 1px solid var(--text-light); width: 20px; height: 20px; border-radius: 4px; display: flex; justify-content: center; align-items: center; font-size: 10px; cursor:pointer;}
+        .qty-val { font-size: var(--fs-sm); font-weight: 600; width: 14px; text-align: center; }
+
+        .cart-footer { padding: 15px; background: rgba(252, 231, 243, 0.4); border-top: 1px solid rgba(0,0,0,0.05); }
+        .cart-total { display: flex; justify-content: space-between; font-size: var(--fs-sm); font-weight: 700; margin-bottom: 10px; }
+        .checkout-btn { width: 100%; background: var(--text-dark); color: white; border: none; padding: 12px; border-radius: 10px; font-size: var(--fs-sm); font-weight: 600; text-transform: uppercase; cursor: pointer; }
+
+        /* =========================================================
+           12. TOAST NOTIFICATION
+           ========================================================= */
+        #toast {
+            position: fixed;
+            bottom: -50px; left: 50%;
+            transform: translateX(-50%);
+            background: var(--text-dark);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: var(--fs-xs);
+            font-weight: 500;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 3000;
+            white-space: nowrap;
+        }
+        #toast.show {
+            bottom: 20px;
+            opacity: 1;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+
+        <!-- 1. SPLASH SCREEN -->
+        <div id="splash-screen">
+            <div class="splash-content">
+                <img src="https://images.unsplash.com/photo-1599643478514-4a4f89d38c64?w=100" class="splash-logo" alt="Logo">
+                <span class="splash-text">Lily & Pearl</span>
+            </div>
+        </div>
+
+        <!-- 2. TOP NAVBAR -->
+        <nav class="navbar">
+            <div class="nav-brand">
+                <img src="https://images.unsplash.com/photo-1599643478514-4a4f89d38c64?w=100" alt="Logo">
+                <span class="nav-title">Lily & Pearl</span>
+            </div>
+            <div class="cart-icon" onclick="toggleCart()">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="cart-badge" id="cart-count">0</span>
+            </div>
+        </nav>
+
+        <!-- DYNAMIC BACKGROUNDS -->
+        <div id="bg-layer-2"><div class="bg-overlay"></div></div>
+        <div id="bg-layer-1"></div>
+
+        <!-- 3. HERO VIEW (Whiter & Taller) -->
+        <section id="hero-view">
+            <div class="welcome-box">
+                <div class="welcome-title">Lily & Pearl</div>
+                <div class="welcome-note">
+                    Welcome to your aesthetic sanctuary. 
+                    Discover the magic of minimal elegance. 
+                    Each piece highlights your natural, girly glow. 
+                    Dive into our collection of white silvers & soft pinks. 
+                    Embrace the charm that makes you beautifully unique.
+                </div>
+            </div>
+        </section>
+
+        <!-- MAIN SCROLL CONTENT -->
+        <main id="main-content">
+            
+            <!-- 4. ABOUT & SPECIALITIES -->
+            <section class="glass-container border-golden">
+                <h2 class="section-title">Why Choose Us</h2>
+                <div class="speciality-list">
+                    <div class="speciality-bar">
+                        <i class="fa-solid fa-wand-magic-sparkles" style="color: var(--golden-rose);"></i>
+                        <span>Aesthetic Minimalist Designs</span>
+                    </div>
+                    <div class="speciality-bar">
+                        <i class="fa-solid fa-droplet" style="color: var(--sky-blue-border);"></i>
+                        <span>100% Anti-Tarnish & Waterproof</span>
+                    </div>
+                    <div class="speciality-bar">
+                        <i class="fa-solid fa-gem" style="color: var(--golden-rose);"></i>
+                        <span>Authentic Delicate Pearls</span>
+                    </div>
+                    <div class="speciality-bar">
+                        <i class="fa-solid fa-leaf" style="color: var(--sky-blue-border);"></i>
+                        <span>Hypoallergenic & Skin-Safe</span>
+                    </div>
+                    <div class="speciality-bar">
+                        <i class="fa-solid fa-box-open" style="color: var(--golden-rose);"></i>
+                        <span>Cute Eco-Friendly Packaging</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. TRENDING NOW SECTION -->
+            <section class="glass-container border-blue">
+                <h2 class="section-title" style="font-size: 20px;">Trending This Week</h2>
+                <div class="trending-scroll" id="trending-container">
+                    <!-- Populated by JS -->
+                </div>
+            </section>
+
+            <!-- 6. FILTER BAR & ALL PRODUCTS -->
+            <div class="filter-row">
+                <div class="search-icon-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <div class="category-scroll">
+                    <button class="cat-btn active" onclick="filterCat('all', this)">All</button>
+                    <button class="cat-btn" onclick="filterCat('necklace', this)">Necklaces</button>
+                    <button class="cat-btn" onclick="filterCat('bracelet', this)">Bracelets</button>
+                    <button class="cat-btn" onclick="filterCat('pendant', this)">Pendants</button>
+                    <button class="cat-btn" onclick="filterCat('earrings', this)">Earrings</button>
+                </div>
+            </div>
+
+            <div class="product-grid" id="product-grid"></div>
+
+            <!-- 7. EXCLUSIVE VIP COLLECTION -->
+            <section class="glass-container border-pink">
+                <h2 class="section-title">VIP Collection</h2>
+                <div class="vip-scroll" id="vip-container"></div>
+            </section>
+
+            <!-- 8. WHATSAPP INVITATION -->
+            <section class="wa-box">
+                <div class="wa-title"><i class="fa-brands fa-whatsapp" style="color:#25d366;"></i> Secret VIP Group</div>
+                <div class="wa-sub">Drop your number to receive direct admin invitation for hidden pink discounts!</div>
+                <div class="wa-flex">
+                    <input type="tel" id="wa-num" class="wa-input" placeholder="Enter Mobile No.">
+                    <button class="wa-btn" onclick="joinGroup()">Join Now</button>
+                </div>
+            </section>
+
+            <!-- 9. REVIEWS -->
+            <section class="glass-container border-blue">
+                <h2 class="section-title">Client Love</h2>
+                <div class="review-scroll">
+                    <div class="review-card">
+                        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        <div class="reviewer">Aarohi M.</div>
+                        <div class="review-txt">"So aesthetic! The white pearl necklace is exactly like the pictures. I wear it everyday!"</div>
+                    </div>
+                    <div class="review-card">
+                        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+                        <div class="reviewer">Kritika S.</div>
+                        <div class="review-txt">"Adorable packaging and the silver bracelet is so minimal and pretty. Fast delivery too."</div>
+                    </div>
+                    <div class="review-card">
+                        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        <div class="reviewer">Pooja</div>
+                        <div class="review-txt">"My blue pendant set hasn't faded at all. Everyday college wear approved."</div>
+                    </div>
+                    <div class="review-card">
+                        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        <div class="reviewer">Simran K.</div>
+                        <div class="review-txt">"Cutest aesthetics ever. The golden rose details are perfect. Will buy again!"</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 10. FAQS -->
+            <section class="glass-container border-golden">
+                <h2 class="section-title">FAQs</h2>
+                <details class="faq-item">
+                    <summary>Is the jewellery anti-tarnish?</summary>
+                    <div class="faq-desc">Yes! All our pieces are coated with a special 18k protective layer to prevent tarnishing and keep them shining forever.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>Can I wear it in the shower?</summary>
+                    <div class="faq-desc">Absolutely! Our aesthetic pieces are 100% waterproof. You don't need to take them off while showering.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>Do you offer free shipping?</summary>
+                    <div class="faq-desc">Yes, we offer free aesthetic shipping on all orders above ₹999 across India.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>How long does delivery take?</summary>
+                    <div class="faq-desc">Standard delivery takes 3-5 business days depending on your location. VIP orders get expedited 2-day shipping.</div>
+                </details>
+            </section>
+
+            <!-- 11. FOOTER & CERTIFICATES -->
+            <div class="footer-box">
+                <div class="footer-note">
+                    Thank you for reaching Lily & Pearl.<br>
+                    We appreciate your love for minimal aesthetics.<br>
+                    Stay beautiful, stay unique.
+                </div>
+                
+                <div class="cert-row">
+                    <div class="cert-chip"><i class="fa-solid fa-certificate" style="color:var(--golden-rose)"></i> ISO 9001:2015</div>
+                    <div class="cert-chip"><i class="fa-solid fa-shield-halved" style="color:var(--sky-blue-border)"></i> Skin Safe</div>
+                    <div class="cert-chip"><i class="fa-solid fa-check-double" style="color:var(--golden-rose)"></i> Quality Verified</div>
+                    <div class="cert-chip"><i class="fa-solid fa-gem" style="color:var(--sky-blue-border)"></i> Authentic</div>
+                </div>
+
+                <div style="text-align:center; font-size: 9px; color: var(--text-light); margin-top: 10px;">
+                    © 2026 Lily & Pearl Aesthetics. All Rights Reserved.
+                </div>
+            </div>
+            
+        </main>
+
+        <!-- CART MODAL -->
+        <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
+        <div id="cart-modal">
+            <div class="cart-header">
+                <div class="cart-title">Your Cart</div>
+                <button class="close-btn" onclick="toggleCart()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="cart-body" id="cart-body"></div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Subtotal</span>
+                    <span id="cart-sum">₹0</span>
+                </div>
+                <button class="checkout-btn" onclick="processCheckout()">Checkout</button>
+            </div>
+        </div>
+        
+        <!-- TOAST NOTIFICATION -->
+        <div id="toast">Added to cart!</div>
+
+    </div> <!-- End App Container -->
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // ==========================================
+        // SCROLL ANIMATION (Hero BG Fades at 30%)
+        // ==========================================
+        const bgLayer1 = document.getElementById('bg-layer-1');
+        
+        window.addEventListener('scroll', () => {
+            const scrolled = window.scrollY;
+            const threshold = window.innerHeight * 0.3; // 30% of viewport
+            
+            if (scrolled <= threshold) {
+                // Fade out linearly over the 30% scroll
+                const progress = scrolled / threshold; 
+                bgLayer1.style.opacity = 1 - progress;
+                // Slight upward parallax for aesthetic feel
+                bgLayer1.style.transform = `translateX(-50%) translateY(-${progress * 10}%)`;
+            } else {
+                bgLayer1.style.opacity = 0;
+            }
+        });
+
+        // ==========================================
+        // VALIDATED AESTHETIC PRODUCT DATA 
+        // Using provided working Unsplash images
+        // ==========================================
+        const imgHoops = "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=300&q=80";
+        const imgStuds = "https://images.unsplash.com/photo-1630019852942-f89202989a59?w=300&q=80";
+        const imgBlue = "https://images.unsplash.com/photo-1599643478514-4a4f89d38c64?w=300&q=80";
+        const imgWhiteNeck = "https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=300&q=80";
+        const imgBracelet = "https://images.unsplash.com/photo-1611591475113-5a0225d3042a?w=300&q=80";
+        const imgSilverNeck = "https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?w=300&q=80";
+        const imgEarrings = "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=300&q=80";
+        const imgBangle = "https://images.unsplash.com/photo-1573408301185-9146fe634ad0?w=300&q=80";
+        const imgPendant = "https://images.unsplash.com/photo-1600861194942-f883de0ebf79?w=300&q=80";
+        const imgLariat = "https://images.unsplash.com/photo-1506630448388-4e683c67ddb0?w=300&q=80";
+
+        const productsData = [
+            { id: 1, name: "Silver Dew Drop", cat: "necklace", price: 499, img: imgSilverNeck },
+            { id: 2, name: "White Pearl Aura", cat: "bracelet", price: 399, img: imgBangle },
+            { id: 3, name: "Sky Blue Teardrop", cat: "pendant", price: 549, img: imgBlue },
+            { id: 4, name: "Soft Pink Studs", cat: "earrings", price: 299, img: imgEarrings },
+            { id: 5, name: "Minimalist Chain", cat: "necklace", price: 449, img: imgWhiteNeck },
+            { id: 6, name: "Crystal Ice Bangle", cat: "bracelet", price: 599, img: imgBracelet },
+            { id: 7, name: "Rose Whisper Pendant", cat: "pendant", price: 499, img: imgPendant },
+            { id: 8, name: "Pearl Hoops", cat: "earrings", price: 349, img: imgHoops },
+            { id: 9, name: "Silver Lariat", cat: "necklace", price: 649, img: imgLariat },
+            { id: 10, name: "Aesthetic Charm", cat: "bracelet", price: 429, img: imgBangle },
+            { id: 11, name: "Moonstone Drop", cat: "pendant", price: 599, img: imgBlue },
+            { id: 12, name: "Diamond Dot Studs", cat: "earrings", price: 299, img: imgStuds },
+            { id: 13, name: "Layered Silver", cat: "necklace", price: 749, img: imgSilverNeck },
+            { id: 14, name: "Pink Quartz Cuff", cat: "bracelet", price: 499, img: imgBracelet },
+            { id: 15, name: "Ocean Heart", cat: "pendant", price: 699, img: imgBlue },
+            { id: 16, name: "Silver Huggies", cat: "earrings", price: 399, img: imgEarrings },
+            { id: 17, name: "Bridal White Pearl", cat: "necklace", price: 899, img: imgWhiteNeck },
+            { id: 18, name: "Delicate Chain", cat: "bracelet", price: 299, img: imgBangle },
+            { id: 19, name: "Star Pendant", cat: "pendant", price: 449, img: imgPendant },
+            { id: 20, name: "Crystal Drops", cat: "earrings", price: 499, img: imgStuds },
+            { id: 21, name: "Choker Elegance", cat: "necklace", price: 549, img: imgLariat },
+            { id: 22, name: "Silver Link", cat: "bracelet", price: 349, img: imgBracelet }
+        ];
+
+        const vipData = [
+            { id: 101, name: "Royal Pearl Set", price: 1499, img: imgWhiteNeck },
+            { id: 102, name: "Diamond Aura Cuff", price: 1299, img: imgBracelet },
+            { id: 103, name: "Pink Bridal Choker", price: 1899, img: imgLariat },
+            { id: 104, name: "Blue Crystal Drop", price: 1599, img: imgBlue }
+        ];
+
+        // Trending Items (Select few items for horizontal scroll)
+        const trendingData = [
+            { id: 8, name: "Pearl Hoops", price: 349, img: imgHoops },
+            { id: 12, name: "Diamond Studs", price: 299, img: imgStuds },
+            { id: 3, name: "Sky Teardrop", price: 549, img: imgBlue },
+            { id: 5, name: "Minimal Chain", price: 449, img: imgWhiteNeck },
+            { id: 7, name: "Rose Whisper", price: 499, img: imgPendant }
+        ];
+
+        let cart = [];
+
+        window.onload = () => {
+            renderTrending();
+            renderGrid(productsData);
+            renderVip();
+        };
+
+        function renderTrending() {
+            const container = document.getElementById('trending-container');
+            container.innerHTML = trendingData.map(p => `
+                <div class="trending-item">
+                    <img src="${p.img}" class="trending-img" loading="lazy" alt="${p.name}">
+                    <div class="trending-title">${p.name}</div>
+                    <div class="trending-price">₹${p.price}</div>
+                    <button class="add-btn" style="width:100%; padding: 4px;" onclick="addToCart(${p.id}, false)">Add +</button>
+                </div>
+            `).join('');
+        }
+
+        function renderGrid(data) {
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = data.map(p => `
+                <div class="product-card">
+                    <img src="${p.img}" class="product-img" loading="lazy" alt="${p.name}">
+                    <div class="product-name">${p.name}</div>
+                    <div class="product-action">
+                        <span class="product-price">₹${p.price}</span>
+                        <button class="add-btn" onclick="addToCart(${p.id}, false)">Add +</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderVip() {
+            const container = document.getElementById('vip-container');
+            container.innerHTML = vipData.map(p => `
+                <div class="vip-card">
+                    <div class="vip-badge">VIP ONLY</div>
+                    <img src="${p.img}" class="vip-img" loading="lazy" alt="${p.name}">
+                    <div class="product-name" style="font-size: 13px;">${p.name}</div>
+                    <div class="product-action" style="margin-top: 6px;">
+                        <span class="product-price" style="font-size: 13px;">₹${p.price}</span>
+                        <button class="add-btn" style="padding: 4px 10px;" onclick="addToCart(${p.id}, true)">Add +</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterCat(category, btn) {
+            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            if (category === 'all') {
+                renderGrid(productsData);
+            } else {
+                renderGrid(productsData.filter(p => p.cat === category));
+            }
+        }
+
+        // ==========================================
+        // CART & TOAST LOGIC
+        // ==========================================
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.innerText = msg;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2000);
+        }
+
+        function addToCart(id, isVip) {
+            let list = productsData;
+            if (isVip) list = vipData;
+            // Also check trending data if id comes from there
+            const item = list.find(p => p.id === id) || trendingData.find(p => p.id === id);
+            
+            if(!item) return;
+
+            const existing = cart.find(c => c.id === id);
+            if (existing) {
+                existing.qty += 1;
+            } else {
+                cart.push({ ...item, qty: 1 });
+            }
+            refreshCartUI();
+            
+            const badge = document.getElementById('cart-count');
+            badge.style.transform = 'scale(1.4)';
+            setTimeout(() => badge.style.transform = 'scale(1)', 150);
+            
+            showToast(`Added ${item.name} to cart ✨`);
+        }
+
+        function changeQty(id, delta) {
+            const item = cart.find(c => c.id === id);
+            if (item) {
+                item.qty += delta;
+                if (item.qty <= 0) cart = cart.filter(c => c.id !== id);
+            }
+            refreshCartUI();
+        }
+
+        function refreshCartUI() {
+            const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+            document.getElementById('cart-count').innerText = totalQty;
+            const body = document.getElementById('cart-body');
+            
+            if (cart.length === 0) {
+                body.innerHTML = `<div style="text-align:center; color:#64748b; font-size:12px; margin-top:40px; font-weight:500;">Your aesthetic cart is empty.<br><br>Find your sparkle! ✨</div>`;
+                document.getElementById('cart-sum').innerText = '₹0';
+                return;
+            }
+
+            let total = 0;
+            body.innerHTML = cart.map(item => {
+                total += item.price * item.qty;
+                return `
+                    <div class="cart-item">
+                        <img src="${item.img}" class="cart-item-img">
+                        <div class="cart-item-details">
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-price">₹${item.price}</div>
+                            <div class="qty-box">
+                                <button class="qty-btn" onclick="changeQty(${item.id}, -1)"><i class="fa-solid fa-minus"></i></button>
+                                <div class="qty-val">${item.qty}</div>
+                                <button class="qty-btn" onclick="changeQty(${item.id}, 1)"><i class="fa-solid fa-plus"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            document.getElementById('cart-sum').innerText = '₹' + total;
+        }
+
+        function toggleCart() {
+            document.getElementById('cart-modal').classList.toggle('active');
+            document.getElementById('cart-overlay').classList.toggle('active');
+        }
+
+        function processCheckout() {
+            if (cart.length === 0) {
+                alert("Please add items to cart first.");
+                return;
+            }
+            const fakeAdminNo = "919876543210";
+            let msg = "Hello Lily %26 Pearl! ✨ I'd like to place an order:%0A%0A";
+            let sum = 0;
+            cart.forEach(item => {
+                msg += `• ${item.name} (x${item.qty}) - ₹${item.price * item.qty}%0A`;
+                sum += item.price * item.qty;
+            });
+            msg += `%0ATotal Amount: ₹${sum}%0A%0APlease confirm my order.`;
+            window.open(`https://wa.me/${fakeAdminNo}?text=${msg}`, '_blank');
+        }
+
+        function joinGroup() {
+            const no = document.getElementById('wa-num').value.trim();
+            if (!no) {
+                alert("Please enter a valid mobile number.");
+                return;
+            }
+            const fakeAdminNo = "919876543210";
+            const msg = `Hi! Please add my number (${no}) to the VIP Secret Group. ✨`;
+            window.open(`https://wa.me/${fakeAdminNo}?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+    </script>
+  <script type="module">
+  // Import Firebase App and Realtime Database SDKs
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+  import { getDatabase, ref, set, push, onValue } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js";
+
+  // Your exact Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyA6LypFJz5v7o_PUo4cPh6byYkN7g-6zCQ",
+    authDomain: "jwellery-9621c.firebaseapp.com",
+    databaseURL: "https://jwellery-9621c-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "jwellery-9621c",
+    storageBucket: "jwellery-9621c.firebasestorage.app",
+    messagingSenderId: "783775121972",
+    appId: "1:783775121972:web:a5bd75d9304af5243b4061",
+    measurementId: "G-Y25RS0G3D5"
+  };
+
+  // Initialize Firebase and Realtime Database
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+
+  // --- EXAMPLE 1: HOW TO SAVE DATA (e.g., an order or inquiry) ---
+  // You can connect this function to a button click on your website
+  function saveOrder(customerName, itemName) {
+    const ordersListRef = ref(db, 'customer_orders');
+    const newOrderRef = push(ordersListRef); // Creates a unique ID for each order
+
+    set(newOrderRef, {
+      name: customerName,
+      item: itemName,
+      time: new Date().toLocaleString()
+    })
+    .then(() => {
+      console.log("Order saved to database successfully!");
+    })
+    .catch((error) => {
+      console.error("Failed to save order:", error);
+    });
+  }
+
+  // Test saving sample data immediately (Check your Firebase Console after loading your page!)
+  saveOrder("Rahul Sharma", "Gold Diamond Ring");
+
+
+  // --- EXAMPLE 2: HOW TO READ DATA IN REAL-TIME ---
+  // This listens for any changes in your database and prints them to the browser console
+  const dbRef = ref(db, 'customer_orders');
+  onValue(dbRef, (snapshot) => {
+    const data = snapshot.val();
+    console.log("Live Data from Firebase Database:", data);
+  });
+  </script>
+  <!-- =========================================================
+   FIREBASE & ADMIN DASHBOARD EXTENSION FOR LILY & PEARL
+   ========================================================= -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+  import { getDatabase, ref, set, push, remove, onValue } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js";
+
+  // Firebase Config provided for Jwellery project
+  const firebaseConfig = {
+    apiKey: "AIzaSyA6LypFJz5v7o_PUo4cPh6byYkN7g-6zCQ",
+    authDomain: "jwellery-9621c.firebaseapp.com",
+    databaseURL: "https://jwellery-9621c-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "jwellery-9621c",
+    storageBucket: "jwellery-9621c.firebasestorage.app",
+    messagingSenderId: "783775121972",
+    appId: "1:783775121972:web:a5bd75d9304af5243b4061",
+    measurementId: "G-Y25RS0G3D5"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+
+  // Inject Admin Lock Icon into Navbar next to Cart
+  const navBar = document.querySelector('.navbar');
+  const adminIconHTML = `
+    <div class="cart-icon" id="admin-trigger-btn" title="Admin Dashboard" style="margin-right: 8px; border-color: var(--golden-rose); color: var(--golden-rose);">
+        <i class="fa-solid fa-lock"></i>
+    </div>
+  `;
+  // Insert before the cart icon container
+  const cartIconElem = navBar.querySelector('.cart-icon');
+  cartIconElem.insertAdjacentHTML('beforebegin', adminIconHTML);
+
+  // Inject Admin Modal HTML into Body
+  const adminModalHTML = `
+    <div class="cart-overlay" id="admin-overlay"></div>
+    <div id="admin-modal" style="position:fixed; top:0; right:-100%; width:90%; max-width:360px; height:100vh; background:rgba(255,255,255,0.98); backdrop-filter:blur(20px); z-index:2500; transition:right 0.3s ease; display:flex; flex-direction:column; border-left:2px solid var(--golden-rose); box-shadow:-10px 0 30px rgba(0,0,0,0.1);">
+        <div class="cart-header">
+            <div class="cart-title" style="font-family:var(--font-calligraphy); font-size:24px; color:var(--golden-rose);">Lily & Pearl Admin</div>
+            <button class="close-btn" id="close-admin-modal"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="cart-body" id="admin-panel-body" style="padding:15px; overflow-y:auto;">
+            <!-- Content toggles between Login & Dashboard -->
+        </div>
+    </div>
+  `;
+  document.body.insertAdjacentHTML('beforeend', adminModalHTML);
+
+  // Inject Custom Styles for Admin UI
+  const adminStyle = document.createElement('style');
+  adminStyle.innerHTML = `
+    .admin-card-row { background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:10px; margin-bottom:10px; font-size:11px; }
+    .admin-input { width:100%; padding:8px; margin-bottom:6px; border:1px solid #cbd5e1; border-radius:6px; font-size:11px; outline:none; background:#fff; }
+    .admin-btn { background:var(--golden-rose); color:#fff; border:none; padding:8px 12px; border-radius:6px; font-size:11px; font-weight:600; cursor:pointer; width:100%; margin-top:4px; }
+    .admin-btn-danger { background:#ef4444; }
+    .admin-tab { display:flex; gap:5px; margin-bottom:12px; }
+    .admin-tab-btn { flex:1; padding:6px; font-size:10px; border:1px solid var(--golden-rose); background:#fff; border-radius:6px; cursor:pointer; font-weight:600; }
+    .admin-tab-btn.active { background:var(--golden-rose); color:#fff; }
+  `;
+  document.head.appendChild(adminStyle);
+
+  // References to UI elements
+  const adminTrigger = document.getElementById('admin-trigger-btn');
+  const adminOverlay = document.getElementById('admin-overlay');
+  const adminModal = document.getElementById('admin-modal');
+  const closeAdminBtn = document.getElementById('close-admin-modal');
+  const adminBody = document.getElementById('admin-panel-body');
+
+  function toggleAdminModal() {
+      const isOpen = adminModal.style.right === '0px';
+      if (isOpen) {
+          adminModal.style.right = '-100%';
+          adminOverlay.classList.remove('active');
+      } else {
+          adminModal.style.right = '0px';
+          adminOverlay.classList.add('active');
+          renderAdminLogin();
+      }
+  }
+
+  adminTrigger.addEventListener('click', toggleAdminModal);
+  adminOverlay.addEventListener('click', toggleAdminModal);
+  closeAdminBtn.addEventListener('click', toggleAdminModal);
+
+  // 1. Password Login View
+  function renderAdminLogin() {
+      adminBody.innerHTML = `
+          <div style="text-align:center; margin-top:50px;">
+              <i class="fa-solid fa-shield-halved" style="font-size:40px; color:var(--golden-rose); margin-bottom:15px;"></i>
+              <div style="font-weight:600; font-size:14px; margin-bottom:10px;">Enter Admin Passcode</div>
+              <input type="password" id="admin-pass-input" class="admin-input" placeholder="Passcode (lily@001)" style="text-align:center;">
+              <button class="admin-btn" id="login-submit-btn">Unlock Dashboard</button>
+          </div>
+      `;
+      document.getElementById('login-submit-btn').addEventListener('click', () => {
+          const pass = document.getElementById('admin-pass-input').value;
+          if (pass === 'lily@001') {
+              renderAdminDashboard();
+          } else {
+              alert('Incorrect passcode! Hint: lily@001');
+          }
+      });
+  }
+
+  // 2. Full Admin Control Panel Dashboard
+  let currentAdminTab = 'products'; // products, vip, trending
+  
+  function renderAdminDashboard() {
+      adminBody.innerHTML = `
+          <div class="admin-tab">
+              <button class="admin-tab-btn ${currentAdminTab==='products'?'active':''}" onclick="window.switchAdminTab('products')">Products</button>
+              <button class="admin-tab-btn ${currentAdminTab==='vip'?'active':''}" onclick="window.switchAdminTab('vip')">VIP</button>
+              <button class="admin-tab-btn ${currentAdminTab==='trending'?'active':''}" onclick="window.switchAdminTab('trending')">Trending</button>
+          </div>
+          <div id="admin-form-container"></div>
+          <hr style="margin:15px 0; border:0; border-top:1px solid #e2e8f0;">
+          <div style="font-weight:600; font-size:12px; margin-bottom:8px;" id="admin-list-title">Existing Items</div>
+          <div id="admin-items-list">Loading...</div>
+      `;
+      loadAdminList();
+  }
+
+  window.switchAdminTab = function(tab) {
+      currentAdminTab = tab;
+      renderAdminDashboard();
+  };
+
+  function loadAdminList() {
+      const dbNodeMap = {
+          'products': 'store_products',
+          'vip': 'store_vip',
+          'trending': 'store_trending'
+      };
+      const nodeName = dbNodeMap[currentAdminTab];
+
+      // Render Add/Edit Form
+      const formContainer = document.getElementById('admin-form-container');
+      formContainer.innerHTML = `
+          <div style="background:#fff; border:1.5px dashed var(--golden-rose); padding:10px; border-radius:8px;">
+              <div style="font-weight:600; font-size:11px; margin-bottom:6px; color:var(--golden-rose);">Add New to ${currentAdminTab.toUpperCase()}</div>
+              <input type="text" id="new-item-name" class="admin-input" placeholder="Item Name (e.g. Diamond Choker)">
+              <input type="number" id="new-item-price" class="admin-input" placeholder="Price in ₹ (e.g. 599)">
+              <input type="text" id="new-item-img" class="admin-input" placeholder="Image URL (Unsplash Link)">
+              ${currentAdminTab === 'products' ? `
+                  <select id="new-item-cat" class="admin-input">
+                      <option value="necklace">Necklace</option>
+                      <option value="bracelet">Bracelet</option>
+                      <option value="pendant">Pendant</option>
+                      <option value="earrings">Earrings</option>
+                  </select>
+              ` : ''}
+              <div style="display:flex; gap:5px; align-items:center; margin-bottom:6px; font-size:10px;">
+                  <input type="checkbox" id="new-item-sold"> Mark as Sold Out
+              </div>
+              <button class="admin-btn" id="save-new-item-btn">Save & Publish</button>
+          </div>
+      `;
+
+      document.getElementById('save-new-item-btn').addEventListener('click', () => {
+          const name = document.getElementById('new-item-name').value.trim();
+          const price = Number(document.getElementById('new-item-price').value);
+          const img = document.getElementById('new-item-img').value.trim();
+          const isSold = document.getElementById('new-item-sold').checked;
+          const cat = currentAdminTab === 'products' ? document.getElementById('new-item-cat').value : 'vip';
+
+          if (!name || !price || !img) {
+              alert('Please fill out Name, Price, and Image URL!');
+              return;
+          }
+
+          const targetRef = ref(db, nodeName);
+          const newRef = push(targetRef);
+          set(newRef, {
+              name: name,
+              price: price,
+              img: img,
+              cat: cat,
+              sold: isSold
+          }).then(() => {
+              alert('Successfully added!');
+              loadAdminList();
+          });
+      });
+
+      // Load Real-time List for Management
+      const listContainer = document.getElementById('admin-items-list');
+      const dataRef = ref(db, nodeName);
+      
+      onValue(dataRef, (snapshot) => {
+          const data = snapshot.val();
+          if (!data) {
+              listContainer.innerHTML = `<div style="font-size:10px; color:#64748b;">No items found. Add your first item above!</div>`;
+              return;
+          }
+
+          listContainer.innerHTML = Object.keys(data).map(key => {
+              const item = data[key];
+              return `
+                  <div class="admin-card-row" style="${item.sold ? 'opacity:0.6; background:#fee2e2;' : ''}">
+                      <div style="display:flex; gap:8px; align-items:center;">
+                          <img src="${item.img}" style="width:35px; height:35px; border-radius:6px; object-fit:cover;">
+                          <div style="flex:1;">
+                              <div style="font-weight:600;">${item.name} ${item.sold ? '(SOLD OUT)' : ''}</div>
+                              <div style="color:var(--golden-rose); font-weight:700;">₹${item.price}</div>
+                          </div>
+                      </div>
+                      <div style="margin-top:6px; display:flex; gap:4px;">
+                          <button class="admin-btn" style="margin-top:0; background:${item.sold ? '#10b981':'#f59e0b'};" onclick="window.toggleSoldStatus('${nodeName}', '${key}', ${!item.sold})">
+                              ${item.sold ? 'Mark Available' : 'Mark Sold'}
+                          </button>
+                          <button class="admin-btn admin-btn-danger" style="margin-top:0;" onclick="window.deleteAdminItem('${nodeName}', '${key}')">Delete</button>
+                      </div>
+                  </div>
+              `;
+          }).join('');
+      }, { onlyOnce: true });
+  }
+
+  // Global Delete & Toggle Sold Functions for Admin Panel
+  window.deleteAdminItem = function(node, key) {
+      if (confirm('Are you sure you want to delete this item?')) {
+          remove(ref(db, `${node}/${key}`)).then(() => {
+              loadAdminList();
+          });
+      }
+  };
+
+  window.toggleSoldStatus = function(node, key, newStatus) {
+      const itemRef = ref(db, `${node}/${key}`);
+      onValue(itemRef, (snap) => {
+          const val = snap.val();
+          if(val) {
+              val.sold = newStatus;
+              set(itemRef, val).then(() => loadAdminList());
+          }
+      }, { onlyOnce: true });
+  };
+
+  // Sync Firebase Data with Live Site Arrays/Containers automatically
+  // 1. Regular Products
+  onValue(ref(db, 'store_products'), (snapshot) => {
+      const val = snapshot.val();
+      if (val) {
+          const fetchedArray = Object.keys(val).map(k => ({ id: k, ...val[k] }));
+          if (typeof productsData !== 'undefined') {
+              // Overwrite or merge dynamically
+              productsData.length = 0;
+              productsData.push(...fetchedArray);
+              if (typeof renderGrid === 'function') renderGrid(productsData);
+          }
+      }
+  });
+
+  // 2. VIP Collection
+  onValue(ref(db, 'store_vip'), (snapshot) => {
+      const val = snapshot.val();
+      if (val) {
+          const fetchedVip = Object.keys(val).map(k => ({ id: k, ...val[k] }));
+          if (typeof vipData !== 'undefined') {
+              vipData.length = 0;
+              vipData.push(...fetchedVip);
+              if (typeof renderVip === 'function') renderVip();
+          }
+      }
+  });
+
+  // 3. Trending Now
+  onValue(ref(db, 'store_trending'), (snapshot) => {
+      const val = snapshot.val();
+      if (val) {
+          const fetchedTrending = Object.keys(val).map(k => ({ id: k, ...val[k] }));
+          if (typeof trendingData !== 'undefined') {
+              trendingData.length = 0;
+              trendingData.push(...fetchedTrending);
+              if (typeof renderTrending === 'function') renderTrending();
+          }
+      }
+  });
+</script>
+  
+</body>
+</html>
